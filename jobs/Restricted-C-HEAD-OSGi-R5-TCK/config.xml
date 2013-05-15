@@ -40,6 +40,81 @@ You have to sign an NDA before you are allowed access!</description>
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
+echo &quot;====================&quot;
+echo &quot;Generating genBND.sh&quot;
+echo &quot;====================&quot;
+cat &gt; bnd.sh &lt;&lt; EOF
+
+#!/bin/bash
+echo &apos;build=.&apos;
+
+##target
+echo &quot;&quot;
+echo &apos;-target = \
+    jar/&apos;$1&apos;;version=file&apos;
+
+## runpath
+#    jar/org.eclipse.osgi_3.8.2.R36x_v20110210.jar;version=file, \
+echo &quot;&quot;
+echo &apos;-runpath = \
+    jar/org.eclipse.osgi_3.8.2.v20130124-134944.jar;version=file, \
+    jar/com.springsource.junit-3.8.2.jar;version=file;export=&quot;junit.framework;version=3.8&quot;&apos;
+
+## runbundles
+echo &quot;&quot;
+echo &apos;-runbundles = \&apos;
+
+for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
+do
+    echo $f&quot;;version=file, \\&quot;
+done
+echo &apos;jar/&apos;$1&apos;;version=file&apos;
+
+## runproperties
+echo &quot;&quot;
+echo &apos;-runproperties = \
+    osgi.noShutdown=&quot;false&quot;, \
+    osgi.console.enable.builtin=true, \
+    report=&quot;true&quot;, \
+    launch.trace=true, \
+    osgi.compatibility.bootdelegation=&quot;false&quot;, \
+    org.osgi.test.cases.&apos;$2&apos;.system.packages.extra=&quot;junit.framework;version=3.8&quot;, \
+    osgi.support.multipleHosts=&quot;true&quot;, \
+    rsa.ct.timeout=&quot;300000&quot;, \
+    rsa.ct.timeout.factor=&quot;3&quot;, \
+    service.exported.intents.extra=&quot;passByValue&quot;, \
+    ecf.generic.client.keepAlive=&quot;30001&quot;, \
+    org.eclipse.ecf.osgi.services.remoteserviceadmin.HostContainerSelector.reuseExistingContainers=&quot;false&quot;, \
+    org.eclipse.ecf.osgi.services.discovery.allowLoopbackReference=&quot;true&quot;, \
+    org.eclipse.ecf.provider.generic.port.fallback=&quot;true&quot;, \
+    org.osgi.test.cases.&apos;$2&apos;.serverconfig=&quot;foo.bar,bar.foo,service.exported.intents.extra,ecf.generic.client.keepAlive&quot;, \
+    foo.bar=&quot;tests_should_not_expect_this&quot;, \
+    bar.foo=&quot;really_they_should_not&quot;, \&apos;
+
+#    osgi.console=&quot;&apos;$3&apos;&quot;, \
+
+echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
+for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
+do
+    echo $f&quot;,\\&quot;
+done
+echo &apos;&quot;&apos;
+
+
+echo &apos;-runvm = \
+    -Xmx512m, -XX:MaxPermSize=350m&apos;
+
+echo &apos;-runtrace = true&apos;
+echo &apos;&apos;
+
+
+EOF
+
+chmod +x bnd.sh
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
 
 echo &quot;=============================&quot;
 echo &quot;purge leftover folders if any&quot;
@@ -74,12 +149,12 @@ cp -r ${TCK_HOME}/* ${WORKSPACE}
 echo &quot;=============================&quot;
 echo &quot;Generate and print BND file&quot;
 echo &quot;=============================&quot;
-cat ../genBND.sh
+cat bnd.sh
 
 echo &quot;###########################################&quot;
 echo &quot;######### remoteserviceadmin ##############&quot;
 echo &quot;###########################################&quot;
-../genBND.sh org.osgi.test.cases.remoteserviceadmin-5.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
+bnd.sh org.osgi.test.cases.remoteserviceadmin-5.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
 cat org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
 
 echo &quot;=============================&quot;
@@ -96,7 +171,7 @@ echo &quot;###########################################&quot;
 echo &quot;=============================&quot;
 echo &quot;Generate and print BND file&quot;
 echo &quot;=============================&quot;
-../genBND.sh org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
+bnd.sh org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
 cat org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
 
 echo &quot;=============================&quot;
@@ -113,7 +188,7 @@ echo &quot;###########################################&quot;
 echo &quot;=============================&quot;
 echo &quot;Generate and print BND file&quot;
 echo &quot;=============================&quot;
-../genBND.sh org.osgi.test.cases.remoteservices-5.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-5.0.0.bnd
+bnd.sh org.osgi.test.cases.remoteservices-5.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-5.0.0.bnd
 cat org.osgi.test.cases.remoteservices-5.0.0.bnd
 
 echo &quot;=============================&quot;
@@ -123,9 +198,6 @@ java -jar jar/bnd.jar runtests -t osgi.ct.remoteservices
 mv org.osgi.test.cases.remoteservices-5.0.0.bnd org.osgi.test.cases.remoteservices-5.0.0.bnd.off
 mv reports/ reports.remoteservices/
 </command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command></command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
