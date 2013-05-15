@@ -66,7 +66,10 @@ echo &apos;-runbundles = \&apos;
 
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
 do
-    echo $f&quot;;version=file, \\&quot;
+    ## skip this single bundle in runbundles
+    if [[ ! $f == jar/plugins/org.eclipse.ecf.osgi.services.distribution_* ]]; then
+	echo $f&quot;;version=file, \\&quot;
+    fi
 done
 echo &apos;jar/&apos;$1&apos;;version=file&apos;
 
@@ -96,7 +99,10 @@ echo &apos;-runproperties = \
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
 do
-    echo $f&quot;,\\&quot;
+    ## skip this single bundle in runbundles
+    if [[ ! $f == jar/plugins/org.eclipse.ecf.osgi.services.distribution.launch-* ]]; then
+        echo $f&quot;,\\&quot;
+    fi
 done
 echo &apos;&quot;&apos;
 
