@@ -136,6 +136,13 @@ rm -rf jar/p2
 rm jar/artifacts.xml
 
 echo &quot;=============================&quot;
+echo &quot;    Remove unwanted jars     &quot;
+echo &quot;=============================&quot;
+rm jar/plugins/javax.xml_*.jar
+rm jar/plugins/org.eclipse.ecf.console_*.jar
+rm jar/plugins/org.eclipse.equinox.ds_*.jar
+
+echo &quot;=============================&quot;
 echo &quot;Move osgi runtime to current folder to have it find plugins/&quot;
 echo &quot;=============================&quot;
 mv ${WORKSPACE}/jar/plugins/org.eclipse.osgi_* jar/
