@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<user>
+  <fullName>Markus Alexander Kuppe</fullName>
+  <description></description>
+  <properties>
+    <jenkins.security.ApiTokenProperty>
+      <apiToken>FN3/6yArzOHMGc9W32Urxoe5HTxQiUS2wEwIIbn4FjLJYkR7Ol/CogNWb/nN1U40</apiToken>
+    </jenkins.security.ApiTokenProperty>
+    <hudson.plugins.greenballs.ColorBlindProperty>
+      <enabledColorBlindSupport>false</enabledColorBlindSupport>
+    </hudson.plugins.greenballs.ColorBlindProperty>
+    <hudson.tasks.Mailer_-UserProperty>
+      <emailAddress>ecf-dev_eclipse.org@lemmster.de</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
+    <hudson.model.MyViewsProperty>
+      <primaryViewName>All</primaryViewName>
+      <views>
+        <hudson.model.AllView>
+          <owner class="hudson.model.MyViewsProperty" reference="../../.."/>
+          <name>All</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+        </hudson.model.AllView>
+      </views>
+    </hudson.model.MyViewsProperty>
+    <hudson.security.HudsonPrivateSecurityRealm_-Details>
+      <passwordHash>FIprsa:6bc0cad32b0b19dd233e71207a1c02f07f2f54a54d797692db330d50f6aa23db</passwordHash>
+    </hudson.security.HudsonPrivateSecurityRealm_-Details>
+    <org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
+      <authorizedKeys>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDMWAN5uwlwEXXBM5gmvj3bhQzxfeLE9OVoPt2+GECRGO/vnzs0vX8yHsM25BVVOP1oIKFFWycp7ZRSNCfFG7FTSa8rpQ6KDuvMismMc2ijPBbVbO0jpdftaWFMeRKQvM7v8c+Sc8qHDbBecniT6MM2zRot/W+HkaX8SMlKw0eyDyz2N+HTjHVmV9nml7YT5g+YOQqwU/CI2itt6UKae2vbRgGsaNZnjB46haLCKTML6ydZrQniJtHDonQZa9m+jexEZVvTiRAIuTmozU5ozJA011CCZhscB5/wIAz7ENVmvXjecDxhI2PcpfPlNeuI/Qx1IVfRrnMDvohh2Ysj+QP tomcat@ecf-builds.osuosl.org</authorizedKeys>
+    </org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
+    <hudson.search.UserSearchProperty>
+      <insensitiveSearch>false</insensitiveSearch>
+    </hudson.search.UserSearchProperty>
+  </properties>
+</user>

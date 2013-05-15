@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<user>
+  <fullName>slewis</fullName>
+  <description></description>
+  <properties>
+    <hudson.security.HudsonPrivateSecurityRealm_-Details>
+      <passwordHash>XSmUtr:b651fd87ea623606c8ef23d6d56daeaf31daa4388df08c7ada440fc9810ec82f</passwordHash>
+    </hudson.security.HudsonPrivateSecurityRealm_-Details>
+    <hudson.model.MyViewsProperty>
+      <primaryViewName>All</primaryViewName>
+      <views>
+        <hudson.model.AllView>
+          <owner class="hudson.model.MyViewsProperty" reference="../../.."/>
+          <name>All</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+          <properties class="hudson.model.View$PropertyList"/>
+        </hudson.model.AllView>
+      </views>
+    </hudson.model.MyViewsProperty>
+    <jenkins.security.ApiTokenProperty>
+      <apiToken>pO8hiiDJO3l/knjlTn5TGa8Q5SQSzWGOZ0I8Y8ejmoPJYkR7Ol/CogNWb/nN1U40</apiToken>
+    </jenkins.security.ApiTokenProperty>
+    <hudson.search.UserSearchProperty>
+      <insensitiveSearch>false</insensitiveSearch>
+    </hudson.search.UserSearchProperty>
+    <hudson.tasks.Mailer_-UserProperty>
+      <emailAddress>slewis@composent.com</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
+  </properties>
+</user>
