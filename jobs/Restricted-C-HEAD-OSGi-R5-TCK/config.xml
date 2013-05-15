@@ -43,7 +43,7 @@ You have to sign an NDA before you are allowed access!</description>
 echo &quot;====================&quot;
 echo &quot;Generating genBND.sh&quot;
 echo &quot;====================&quot;
-cat &gt; bnd.sh &lt;&lt; EOF
+cat &gt; bnd.sh &lt;&lt; \EOF
 
 #!/bin/bash
 echo &apos;build=.&apos;
@@ -154,7 +154,7 @@ cat bnd.sh
 echo &quot;###########################################&quot;
 echo &quot;######### remoteserviceadmin ##############&quot;
 echo &quot;###########################################&quot;
-bnd.sh org.osgi.test.cases.remoteserviceadmin-5.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
+./bnd.sh org.osgi.test.cases.remoteserviceadmin-5.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
 cat org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
 
 echo &quot;=============================&quot;
@@ -171,7 +171,7 @@ echo &quot;###########################################&quot;
 echo &quot;=============================&quot;
 echo &quot;Generate and print BND file&quot;
 echo &quot;=============================&quot;
-bnd.sh org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
+./bnd.sh org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
 cat org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
 
 echo &quot;=============================&quot;
@@ -188,7 +188,7 @@ echo &quot;###########################################&quot;
 echo &quot;=============================&quot;
 echo &quot;Generate and print BND file&quot;
 echo &quot;=============================&quot;
-bnd.sh org.osgi.test.cases.remoteservices-5.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-5.0.0.bnd
+./bnd.sh org.osgi.test.cases.remoteservices-5.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-5.0.0.bnd
 cat org.osgi.test.cases.remoteservices-5.0.0.bnd
 
 echo &quot;=============================&quot;
