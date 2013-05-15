@@ -91,9 +91,7 @@ echo &apos;-runproperties = \
     service.exported.intents.extra=&quot;passByValue&quot;, \
     service.exported.configs=&quot;ecf.generic.server&quot;, \
     ecf.generic.server.port=&quot;@@FREE_PORT@@&quot;, \
-    ecf.generic.client.keepalive=&quot;30001&quot;, \
-
-#    osgi.console=&quot;&apos;$3&apos;&quot;, \
+    ecf.generic.client.keepalive=&quot;30001&quot;, \&apos;
 
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
@@ -115,8 +113,7 @@ echo &apos;&apos;
 
 EOF
 
-chmod +x bnd.sh
-</command>
+chmod +x bnd.sh</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
