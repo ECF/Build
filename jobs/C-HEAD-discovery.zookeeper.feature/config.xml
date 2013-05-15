@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Continuous HEAD build of Zookeeper feature</description>
+  <logRotator>
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>1</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>true</keepDependencies>
+  <properties>
+    <hudson.plugins.disk__usage.DiskUsageProperty/>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>file:///opt/hudson/git/org.eclipse.ecf.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <excludedRegions>(?:(?!zookeeper).)+</excludedRegions>
+    <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <scmName></scmName>
+  </scm>
+  <quietPeriod>5</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector">
+    <hudson.triggers.SCMTrigger>
+      <spec># every 15 minutes
+*/15 * * * *
+</spec>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+  </builders>
+  <publishers>
+    <hudson.plugins.templateproject.ProxyPublisher>
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+      <timeoutMinutes>30</timeoutMinutes>
+      <failBuild>false</failBuild>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper>
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.discovery.zookeeper.feature
+MSPEC_NAME=org.eclipse.ecf.zookeeper.mspec
+BUILD_ACTION=site.p2
+SITE_INCLUDE_TOP=true
+SITE_SIGNING=false
+SITE_PACK200=true
+ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+TEST_BUNDLE=org.eclipse.ecf.tests.provider.zookeeper
+LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.zookeeper.launch</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>

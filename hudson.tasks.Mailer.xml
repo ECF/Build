@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.tasks.Mailer_-DescriptorImpl plugin="mailer@1.4">
+  <defaultSuffix>@eclipse.org</defaultSuffix>
+  <hudsonUrl>https://build.ecf-project.org/hudson/</hudsonUrl>
+  <adminAddress>hudson@ecf-project.org</adminAddress>
+  <smtpHost>smtp.osuosl.org</smtpHost>
+  <useSsl>false</useSsl>
+  <charset>UTF-8</charset>
+</hudson.tasks.Mailer_-DescriptorImpl>

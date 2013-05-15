@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Continuous HEAD build of osgi services feature</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>10</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.3.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>file:///opt/hudson/git/org.eclipse.ecf.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <disableSubmodules>false</disableSubmodules>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>true</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
+    <useShallowClone>false</useShallowClone>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <reference></reference>
+    <excludedRegions>(?:(?!osgi.services).)+</excludedRegions>
+    <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
+  </scm>
+  <quietPeriod>5</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector">
+    <hudson.triggers.SCMTrigger>
+      <spec># every 15 minutes
+*/15 * * * *
+</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.3">
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
+      <installationName>Buckminster 3.6</installationName>
+      <commands>junit --launch org.eclipse.ecf.tests.osgi.services.distribution.r-osgi/org.eclipse.ecf.tests.osgi.services.distribution.r-osgi.launch -o &apos;${WORKSPACE}/junit_result2.xml&apos; --flatXML
+</commands>
+      <logLevel>info</logLevel>
+      <params></params>
+      <targetPlatformName>None</targetPlatformName>
+      <userTemp></userTemp>
+      <userOutput></userOutput>
+      <userCommand></userCommand>
+      <userWorkspace></userWorkspace>
+      <globalPropertiesFile></globalPropertiesFile>
+      <equinoxLauncherArgs></equinoxLauncherArgs>
+    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+  </builders>
+  <publishers>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>Restricted-C-HEAD-OSGi-R5-TCK</childProjects>
+      <threshold>
+        <name>UNSTABLE</name>
+        <ordinal>1</ordinal>
+        <color>YELLOW</color>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.3">
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
+      <timeoutMinutes>240</timeoutMinutes>
+      <failBuild>false</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.osgi.services.feature
+MSPEC_NAME=org.eclipse.ecf.osgi.services.mspec
+BUILD_ACTION=site.p2
+SITE_INCLUDE_TOP=true
+SITE_SIGNING=false
+SITE_PACK200=true
+ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+TEST_BUNDLE=org.eclipse.ecf.tests.osgi.services.distribution.generic
+LAUNCH_CONFIG=org.eclipse.ecf.tests.osgi.services.distribution.generic.launch
+</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>

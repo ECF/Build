@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.scm.CVSSCM_-DescriptorImpl plugin="cvs@2.8">
+  <generation>287</generation>
+  <compressionLevel>3</compressionLevel>
+  <privateKeyLocation>/var/lib/tomcat-6//.ssh/id_rsa</privateKeyLocation>
+  <privateKeyPassword>yWJEezpfwqIDVm/5zdVONA==</privateKeyPassword>
+  <knownHostsLocation>/var/lib/tomcat-6//.ssh/known_hosts</knownHostsLocation>
+  <authTokens/>
+  <changelogEncoding>UTF-8</changelogEncoding>
+</hudson.scm.CVSSCM_-DescriptorImpl>

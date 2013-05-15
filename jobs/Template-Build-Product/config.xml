@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Template project for a continuous build. Referenced by concrete builds.&#xd;
+So far we can only include builders, but no actions!</description>
+  <keepDependencies>true</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo -n &apos;purge old buckminster output&apos;
+test -e buckminster.output &amp;&amp; rm -rf buckminster.output/
+test -e buckminster.temp &amp;&amp; rm -rf buckminster.temp/
+test -e site.p2 &amp;&amp; rm -rf site.p2/
+test -e projects &amp;&amp; rm -rf projects/
+test -e .metadata &amp;&amp; rm -rf .metadata/
+test -e     targetPlatformPath &amp;&amp; rm -rf     targetPlatformPath/
+
+test -e junit_result.xml &amp;&amp; rm junit_result.xml
+test -e junit_result2.xml &amp;&amp; rm junit_result2.xml
+test -e coverage_report.xml &amp;&amp; rm coverage_report.xml
+
+echo -n &apos;cp all target, mspecs, rmap and cqueries to build root&apos;
+find -L org.eclipse.ecf -type f -iname &apos;*.rmap&apos; | xargs -i cp {} .
+find -L org.eclipse.ecf -type f -iname &apos;*.mspec&apos; | xargs -i cp {} .
+find -L org.eclipse.ecf -type f -iname &apos;*.cquery&apos; | xargs -i cp {} .
+
+echo -n &apos;create targetplatform and projects folder&apos;
+test -e targetPlatformPath || mkdir -p targetPlatformPath/
+test -e projects || mkdir projects/
+
+echo -n &apos;Flatten Repository&apos;
+find -L org.eclipse.ecf -type f -iname &apos;.project&apos; -printf %h\\n | xargs -i cp -rf {} projects/
+
+echo -n &apos;HACK!!! rename features containing &quot;-&quot; to &quot;_&quot; so they can be found by Bucky&apos;
+for f in projects/*-feature; do test -e $f &amp;&amp; mv $f `echo $f | tr &apos;-&apos; &apos;_&apos;`; done
+
+echo -n &apos;HACK!!! align folder and feature ids&apos;
+test -e projects/org.eclipse.ecf.sdk_feature &amp;&amp; mv projects/org.eclipse.ecf.sdk_feature projects/org.eclipse.ecf.sdk
+test -e projects/org.eclipse.ecf.core_feature &amp;&amp; mv projects/org.eclipse.ecf.core_feature projects/org.eclipse.ecf.core
+
+cd org.eclipse.ecf/
+git config user.email &quot;bugs.eclipse.org@lemmster.de&quot;
+git config user.name &quot;Markus Alexander Kuppe&quot;
+
+echo -n &apos;Done, ready to fire off Bucky\n===================\n&apos;</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+      <installationName>Buckminster 3.6</installationName>
+      <commands>installJRE --location ${HUDSON_HOME}/tools/Java1.4.2_update_18_x86-64/jre
+installJRE --location ${HUDSON_HOME}/tools/Java1.5_update_22_x86-64/jre
+installJRE --location ${HUDSON_HOME}/tools/Java1.6_update_20_x86-64/jre
+setpref org.eclipse.buckminster.pde.targetPlatformPath=${WORKSPACE}/targetPlatformPath
+import ${WORKSPACE}/${MSPEC_NAME}
+importtargetdefinition http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/plain/releng/org.eclipse.ecf.releng.bm/ECF3-5Baseline.target
+lstargets
+addbaseline -A ECF3-5Baseline
+build
+perform -Q -Dtarget.os=* -Dtarget.ws=* -Dtarget.arch=* ${FEATURE_NAME}#${BUILD_ACTION}
+perform -Q -Dtarget.os=win32 -Dtarget.ws=win32 -Dtarget.arch=x86 ${PRODUCT_FEATURE}#create.product.zip 
+</commands>
+      <logLevel>debug</logLevel>
+      <params>-Decf.p2.repository=${ECF_P2_REPOSITORY}
+-Dsite.include.top=${SITE_INCLUDE_TOP}
+-Dsite.signing=${SITE_SIGNING}
+-Dsite.pack200=${SITE_PACK200}
+-Dpde.bundle.range.generation=false
+-Dstaging.area=/home/data/httpd/download-staging.priv/rt/ecf
+-Dsigning.type=eclipse.remote
+-Declipse.committer.name=mkuppe
+-Declipse.committer.keyfile=/var/lib/tomcat-6/.ssh/id_rsa
+-Dqualifier.replacement.*=generator:buildTimestamp
+-Dgenerator.buildTimestamp.format=&apos;v&apos;yyyyMMdd-HHmm
+-DtargetPlatformPath=${WORKSPACE}/targetPlatformPath
+-DprojectsPath=${WORKSPACE}/projects
+-Declipse.p2.mirrors=false
+-Dsite.retain.unpacked=true
+</params>
+      <targetPlatformName>None</targetPlatformName>
+      <userTemp></userTemp>
+      <userOutput></userOutput>
+      <userCommand></userCommand>
+      <userWorkspace></userWorkspace>
+      <globalPropertiesFile></globalPropertiesFile>
+      <equinoxLauncherArgs></equinoxLauncherArgs>
+    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+    <hudson.tasks.Shell>
+      <command>test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2 &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2 ${WORKSPACE}/
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.warnings.WarningsPublisher>
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[WARNINGS] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds>
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>false</dontComputeNew>
+      <parserConfigurations/>
+      <consoleLogParsers/>
+    </hudson.plugins.warnings.WarningsPublisher>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>site.p2/</artifacts>
+      <latestOnly>false</latestOnly>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.Mailer>
+      <recipients>ecf-build@eclipse.org</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.twitter.TwitterPublisher/>
+  </publishers>
+  <buildWrappers/>
+</project>

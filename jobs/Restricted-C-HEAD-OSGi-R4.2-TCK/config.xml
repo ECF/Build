@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Run.Update:slewis</permission>
+      <permission>hudson.model.Run.Update:mkuppe</permission>
+      <permission>hudson.model.Item.Build:slewis</permission>
+      <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Run.Delete:slewis</permission>
+      <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>TCK_HOME</name>
+          <description></description>
+          <defaultValue>/home/mkuppe/osgi.tck/r4</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -x
+
+echo &quot;=============================&quot;
+echo &quot;purge leftover folders if any&quot;
+echo &quot;=============================&quot;
+test -e bin &amp;&amp; rm -rf bin/
+test -e jar &amp;&amp; rm -rf jar/
+test -e reports &amp;&amp; rm -rf reports/
+test -e generated &amp;&amp; rm -rf generated/
+
+echo &quot;=============================&quot;
+echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
+echo &quot;=============================&quot;
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/3.8,http://download.ecf-project.org/repo -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.ecf.discovery.jmdns.feature.feature.group,org.eclipse.equinox.event,org.junit/3.8.2.v3_8_2_v20100427-1100
+
+echo &quot;=============================&quot;
+echo &quot;Remove p2 director leftovers&quot;
+echo &quot;=============================&quot;
+rm -rf jar/p2
+rm jar/artifacts.xml
+
+echo &quot;=============================&quot;
+echo &quot;Move osgi runtime to current folder to have it find plugins/&quot;
+echo &quot;=============================&quot;
+mv ${WORKSPACE}/jar/plugins/org.eclipse.osgi_* jar/
+
+echo &quot;=============================&quot;
+echo &quot;Copy NDA-restricted RI tests to current folder for execution&quot;
+echo &quot;=============================&quot;
+ls -l ${TCK_HOME}/*
+cp -r ${TCK_HOME}/* ${WORKSPACE}
+
+echo &quot;=============================&quot;
+echo &quot;Generate and print BND file&quot;
+echo &quot;=============================&quot;
+cat ../genBND.sh
+../genBND.sh org.osgi.test.cases.remoteserviceadmin-1.0.0.jar &gt; org.osgi.test.cases.remoteserviceadmin-1.0.0.bnd
+cat org.osgi.test.cases.remoteserviceadmin-1.0.0.bnd
+
+echo &quot;=============================&quot;
+echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
+echo &quot;=============================&quot;
+java -jar jar/bnd.jar runtests -title osgi.ct
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command></command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>reports/*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>reports/</artifacts>
+      <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher plugin="blame-upstream-commiters@1.2">
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
+      <timeoutMinutes>30</timeoutMinutes>
+      <failBuild>true</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.osgi.services.tck.feature
+MSPEC_NAME=org.eclipse.ecf.osgi.services.tck.mspec
+ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>

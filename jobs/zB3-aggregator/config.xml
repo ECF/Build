@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>REPOSITORY</name>
+          <description>Alternatively http://ftp.osuosl.org/pub/eclipse/rt/ecf/latest/site.p2/</description>
+          <defaultValue>http://ftp.osuosl.org/pub/eclipse/rt/ecf/3.5.6/site.p2/</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>OUTPUT</name>
+          <description></description>
+          <defaultValue>/data/ecf/maven</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>file:///opt/hudson/git/org.eclipse.ecf.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <disableSubmodules>false</disableSubmodules>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <reference></reference>
+    <excludedRegions></excludedRegions>
+    <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>cp -f org.eclipse.ecf/releng/org.eclipse.ecf.releng.bm/ecf.rmap ${WORKSPACE}
+cp -f org.eclipse.ecf/releng/org.eclipse.ecf.releng.bm/rmap2b3aggr.xsl ${WORKSPACE}
+
+xsltproc --stringparam repository ${REPOSITORY} rmap2b3aggr.xsl ecf.rmap &gt; ecf.b3aggr
+cat ecf.b3aggr
+
+${HUDSON_HOME}/tools/Buckminster_3.6/b3aggr/b3 aggregate --buildModel ecf.b3aggr --action CLEAN_BUILD --buildRoot ${WORKSPACE}
+
+# remove garbage
+rm -rf ${WORKSPACE}/final/p2.packed/
+rm ${WORKSPACE}/final/artifacts.jar
+rm ${WORKSPACE}/final/content.jar
+
+# copy the rest
+mkdir -p ${OUTPUT}
+cp -rf ${WORKSPACE}/final/* ${OUTPUT}
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

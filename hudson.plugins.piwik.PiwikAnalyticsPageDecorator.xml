@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.piwik.PiwikAnalyticsPageDecorator plugin="piwikanalytics@1.1.0">
+  <siteId>2</siteId>
+  <piwikServer>ecf-project.org/</piwikServer>
+  <piwikPath>/statistics/</piwikPath>
+  <additionnalDownloadExtensions></additionnalDownloadExtensions>
+  <useAsync>false</useAsync>
+</hudson.plugins.piwik.PiwikAnalyticsPageDecorator>

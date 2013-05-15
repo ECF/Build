@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Continuous &lt;a href=&quot;https://bugs.eclipse.org/326228&quot;&gt;bug #326228&lt;/a&gt; build of jdmns feature (work is pretty much abandond)</description>
+  <logRotator>
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>3</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>file:///opt/hudson/git/org.eclipse.ecf.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>326228</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <disableSubmodules>false</disableSubmodules>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
+    <useShallowClone>false</useShallowClone>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <reference></reference>
+    <excludedRegions>(?:(?!jmdns).)+</excludedRegions>
+    <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
+  </scm>
+  <quietPeriod>5</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector">
+    <hudson.triggers.SCMTrigger>
+      <spec># every 15 minutes
+*/15 * * * *
+</spec>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.tasks.Shell>
+      <command># clear the site.p2/ folder because for this stream build we don&apos;t want to keep the artifacts as they might accidentally be picked up downstream consumers
+rm -rf ${WORKSPACE}/site.p2/
+#touch ${WORKSPACE}/site.p2/INTENTIONALLY_EMPTY.txt</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.templateproject.ProxyPublisher>
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
+    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+      <timeoutMinutes>15</timeoutMinutes>
+      <failBuild>false</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper>
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.discovery.jmdns.feature
+MSPEC_NAME=org.eclipse.ecf.jmdns.mspec
+BUILD_ACTION=site.p2
+SITE_INCLUDE_TOP=true
+SITE_SIGNING=false
+SITE_PACK200=true
+ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+TEST_BUNDLE=org.eclipse.ecf.tests.provider.jmdns
+LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jmdns.launch</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.buckminster.EclipseBuckminsterBuilder_-DescriptorImpl plugin="buckminster@1.1.1">
+  <buckminsterInstallations>
+    <hudson.plugins.buckminster.BuckminsterInstallation>
+      <name>Buckminster 3.6</name>
+      <home>/opt/hudson/tools/Buckminster/Buckminster_3.6/buckminster</home>
+      <properties/>
+      <params>-Xmx768m
+-Xms768m
+-XX:PermSize=512M
+-XX:MaxPermSize=512M
+</params>
+    </hudson.plugins.buckminster.BuckminsterInstallation>
+    <hudson.plugins.buckminster.BuckminsterInstallation>
+      <name>Buckminster 4.2</name>
+      <home></home>
+      <properties>
+        <hudson.tools.InstallSourceProperty>
+          <installers>
+            <hudson.plugins.buckminster.BuckminsterInstallation_-BuckminsterInstaller>
+              <id>4.2</id>
+              <update>false</update>
+            </hudson.plugins.buckminster.BuckminsterInstallation_-BuckminsterInstaller>
+          </installers>
+        </hudson.tools.InstallSourceProperty>
+      </properties>
+      <params>-Xmx768m
+-Xms768m
+-XX:PermSize=512M
+-XX:MaxPermSize=512M</params>
+    </hudson.plugins.buckminster.BuckminsterInstallation>
+  </buckminsterInstallations>
+  <installations/>
+</hudson.plugins.buckminster.EclipseBuckminsterBuilder_-DescriptorImpl>

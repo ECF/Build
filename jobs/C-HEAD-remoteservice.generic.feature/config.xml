@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Continuous HEAD build of remoteserivce generic feature</description>
+  <logRotator>
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>1</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>true</keepDependencies>
+  <properties>
+    <hudson.plugins.disk__usage.DiskUsageProperty/>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>1</configVersion>
+    <remoteRepositories>
+      <org.spearce.jgit.transport.RemoteConfig>
+        <string>origin</string>
+        <int>5</int>
+        <string>fetch</string>
+        <string>+refs/heads/*:refs/remotes/origin/*</string>
+        <string>receivepack</string>
+        <string>git-upload-pack</string>
+        <string>uploadpack</string>
+        <string>git-upload-pack</string>
+        <string>url</string>
+        <string>file:///opt/hudson/git/org.eclipse.ecf.git</string>
+        <string>tagopt</string>
+        <string></string>
+      </org.spearce.jgit.transport.RemoteConfig>
+    </remoteRepositories>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <mergeOptions/>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>false</clean>
+    <pruneBranches>false</pruneBranches>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <excludedRegions>(?:(?!provider.remoteservice|bundles/org.eclispe.ecf.remoteservice|remoteservice.feature|tests.remoteservice).)+</excludedRegions>
+    <excludedUsers></excludedUsers>
+    <skipTag>false</skipTag>
+  </scm>
+  <quietPeriod>5</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector">
+    <hudson.triggers.SCMTrigger>
+      <spec># every 15 minutes
+*/15 * * * *
+</spec>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+  </builders>
+  <publishers>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>C-HEAD-osgi.services.feature, C-HEAD-remoteservice.rest.feature, C-HEAD-remoteservice.rosgi.feature, C-HEAD-xmpp.feature</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
+    <hudson.plugins.templateproject.ProxyPublisher>
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+      <timeoutMinutes>120</timeoutMinutes>
+      <failBuild>false</failBuild>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper>
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.remoteservice.feature
+MSPEC_NAME=org.eclipse.ecf.remoteservice.mspec
+BUILD_ACTION=site.p2
+SITE_INCLUDE_TOP=true
+SITE_SIGNING=false
+SITE_PACK200=true
+ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+TEST_BUNDLE=org.eclipse.ecf.tests.remoteservice.generic
+LAUNCH_CONFIG=org.eclipse.ecf.tests.remoteservice.generic.launch
+SUPPORT_LAUNCH_CONFIG=org.eclipse.ecf.tests.remoteservice.generic.host.launch</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Template project for a continuous build. Referenced by concrete builds.&#xd;
+So far we can only include builders, but no actions!</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>TEST_DEBUG_RUN</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>-Xrunjdwp:transport=dt_socket,address=${TEST_DEBUG_PORT},server=y,suspend=n -Xdebug</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>test -e tests/ &amp;&amp; rm -rf tests/
+test -e testsresults/ &amp;&amp; rm -rf testresults/
+
+test -e tests/ || mkdir -p tests/
+test -e testresults/ || mkdir -p testresults/
+
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://download.eclipse.org/releases/indigo/,http://download.eclipse.org/eclipse/updates/3.7/,http://self.pluginbuilder.org/nightly/p2-updateSite,http://download.eclipse.org/technology/swtbot/helios/dev-build/update-site -d ${WORKSPACE}/tests/ -i org.eclipse.sdk.ide,org.pluginbuilder.autotestsuite.feature.feature.group,org.eclipse.swtbot.eclipse.feature.group -profile SDKProfile
+
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://rsync.osuosl.org/pub/eclipse/releases/indigo/,http://rsync.osuosl.org/pub/eclipse/eclipse/updates/3.7/,${ECF_P2_REPOSITORY},file://${HUDSON_HOME}/repo/${UPSTREAM_BUILD},file://${WORKSPACE}/site.p2 -d ${WORKSPACE}/tests/ -i ${INSTALLABLE_UNITS} -vmargs -Declipse.p2.mirrors=true
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>echo &apos;&lt;project name=&quot;apitask&quot; basedir=&quot;.&quot; default=&quot;run&quot;&gt;
+    &lt;property environment=&quot;env&quot; /&gt;
+    &lt;property name=&quot;eclipse.install.dir&quot; value=&quot;${env.HUDSON_HOME}/tools/Buckminster_3.6/buckminster/plugins&quot;/&gt;
+    &lt;property name=&quot;eclipse.lib.dir&quot; value=&quot;${env.WORKSPACE}/tmp&quot;/&gt;
+    &lt;property name=&quot;task.props&quot; value=&quot;${env.WORKSPACE}/tmp/scripts/api-tasks.properties&quot;/&gt;
+    &lt;property name=&quot;report.loc&quot; value=&quot;${env.WORKSPACE}/reports/xml&quot;/&gt;
+    &lt;property name=&quot;html.loc&quot; value=&quot;${env.WORKSPACE}/reports/html&quot;/&gt;
+    &lt;property name=&quot;scope.loc&quot; value=&quot;${env.WORKSPACE}/tests/plugins&quot;/&gt;
+ 
+    &lt;target name=&quot;init&quot; depends=&quot;extract-apitoolingjar&quot;&gt;
+	&lt;taskdef file=&quot;${task.props}&quot;&gt;
+	    &lt;classpath&gt;
+	    &lt;fileset dir=&quot;${eclipse.install.dir}&quot;&gt;
+	        &lt;include name=&quot;*.jar&quot;/&gt;
+	    &lt;/fileset&gt;
+	    &lt;fileset dir=&quot;${eclipse.lib.dir}&quot;&gt;
+	        &lt;include name=&quot;*.jar&quot;/&gt;
+	    &lt;/fileset&gt;
+	    &lt;/classpath&gt;
+	&lt;/taskdef&gt;
+    &lt;/target&gt;
+
+    &lt;target name=&quot;extract-apitoolingjar&quot;&gt;
+	&lt;unjar overwrite=&quot;true&quot; dest=&quot;${eclipse.lib.dir}&quot;&gt;
+	    &lt;fileset dir=&quot;${eclipse.install.dir}&quot;&gt;
+	        &lt;include name=&quot;org.eclipse.pde.api.tools_*.jar&quot;/&gt;
+	    &lt;/fileset&gt;
+	&lt;/unjar&gt;
+	&lt;move file=&quot;${eclipse.lib.dir}/lib/apitooling-ant.jar&quot; 
+              overwrite=&quot;true&quot; todir=&quot;${eclipse.lib.dir}&quot;/&gt;
+    &lt;/target&gt;
+
+    &lt;target name=&quot;run&quot; depends=&quot;init&quot;&gt;
+	&lt;apiuse
+    	    location=&quot;${scope.loc}&quot;
+	    report=&quot;${report.loc}&quot;
+	    referencepattern=&quot;.*&quot;
+	    scopepattern=&quot;^org\.eclipse\.ecf(\..+)?.*&quot;
+	    considerinternal=&quot;true&quot;
+	    considerapi=&quot;true&quot;
+	    considerillegaluse=&quot;true&quot;
+	    debug=&quot;true&quot;
+	/&gt;
+	&lt;apiuse_reportconversion
+	    xmlfiles=&quot;${report.loc}&quot;
+	    htmlfiles=&quot;${html.loc}&quot;
+	    debug=&quot;true&quot;
+	/&gt;
+
+    &lt;/target&gt;
+&lt;/project&gt;
+&apos; &gt; build.xml</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Ant>
+      <targets></targets>
+      <antName>apache-ant-1.8.1</antName>
+    </hudson.tasks.Ant>
+    <hudson.tasks.Shell>
+      <command>cd ${WORKSPACE}/tests/
+java -Dnet.mdns.port=${TEST_MDNS_PORT} -Dnet.slp.port=${TEST_SLP_PORT} -Dnet.slp.failercount=3 -Dnet.slp.multicastTimeouts=10,25,50,100,250,500,1000 -Dnet.slp.multicastMaximumWait=2000 -Dautotestsuite.headless=true -Dautotestsuite.debug=true -Dautotestsuite.results.directory=/${WORKSPACE}/testresults/ -Dautotestsuite.plugin.inclusions=${TESTSUITE_PLUGIN_INCLUSION} -Dautotestsuite.class.inclusions=${TESTSUITE_CLASS_INCLUSION} -Dautotestsuite.plugin.exclusions=${TESTSUITE_PLUGIN_EXCLUSION} -Dautotestsuite.class.exclusion=${TESTSUITE_CLASS_EXCLUSION} ${TEST_DEBUG_RUN} -Dchat.room.name=ecf-test-chatroom -Dusername0=ecf-test1@ecf-project.org -Dpassword0=8yxbe3f89f -Dusername1=ecf-test2@ecf-project.org -Dpassword1=8yxbe3f89f -Dusername2=ecf-test3@ecf-project.org -Dpassword2=8yxbe3f89f -Xmx768m -Xms768m -XX:PermSize=512M -XX:MaxPermSize=512M -jar plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -data ${WORKSPACE}/tests/workspace -application org.pluginbuilder.autotestsuite.application.autoTestApplication -testApplication org.eclipse.ui.ide.workbench -clean -consolelog -console || exit 0
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>testresults/</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.tasks.Mailer>
+      <recipients></recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.twitter.TwitterPublisher/>
+  </publishers>
+  <buildWrappers>
+    <org.jvnet.hudson.plugins.port__allocator.PortAllocator>
+      <ports>
+        <org.jvnet.hudson.plugins.port__allocator.DefaultPortType>
+          <name>TEST_DEBUG_PORT TEST_SLP_PORT TEST_MDNS_PORT</name>
+        </org.jvnet.hudson.plugins.port__allocator.DefaultPortType>
+      </ports>
+    </org.jvnet.hudson.plugins.port__allocator.PortAllocator>
+  </buildWrappers>
+</project>

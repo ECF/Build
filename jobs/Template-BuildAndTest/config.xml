@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Template project for a continuous build. Referenced by concrete builds.&#xd;
+So far we can only include builders, but no actions!</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-Build</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+      <installationName>Buckminster 3.6</installationName>
+      <commands>bglaunch --launch ${TEST_BUNDLE}/${SUPPORT_LAUNCH_CONFIG} --ignoremissing
+junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_result.xml&apos; --flatXML
+
+</commands>
+      <logLevel>debug</logLevel>
+      <params>-Decf.p2.repository=${ECF_P2_REPOSITORY}
+-Dsite.include.top=${SITE_INCLUDE_TOP}
+-Dsite.signing=${SITE_SIGNING}
+-Dsite.pack200=true
+-Dstaging.area=/home/data/httpd/download-staging.priv/rt/ecf
+-Dsigning.type=eclipse.remote
+-Declipse.committer.name=mkuppe
+-Declipse.committer.keyfile=/usr/share/tomcat5/.ssh/id_rsa
+-Dqualifier.replacement.*=generator:buildTimestamp
+-Dgenerator.buildTimestamp.format=&apos;v&apos;yyyyMMdd-HHmm
+-DtargetPlatformPath=${WORKSPACE}/targetPlatformPath
+-DprojectsPath=${WORKSPACE}/projects
+-Dosgi.console.enable.builtin=true
+</params>
+      <targetPlatformName>None</targetPlatformName>
+      <userTemp></userTemp>
+      <userOutput></userOutput>
+      <userCommand></userCommand>
+      <userWorkspace></userWorkspace>
+      <globalPropertiesFile></globalPropertiesFile>
+      <equinoxLauncherArgs></equinoxLauncherArgs>
+    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>junit_*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.plugins.templateproject.ProxyPublisher>
+      <projectName>Template-Build</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
+    <hudson.tasks.Mailer>
+      <recipients></recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>true</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+    <hudson.plugins.twitter.TwitterPublisher/>
+  </publishers>
+  <buildWrappers/>
+</project>

@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>This is the released build for HEAD.  Output is signed.</description>
+  <logRotator>
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>15</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>true</keepDependencies>
+  <properties>
+    <hudson.plugins.promoted__builds.JobPropertyImpl>
+      <activeProcessNames>
+        <string>Promoted_to_download.eclipse.org</string>
+      </activeProcessNames>
+    </hudson.plugins.promoted__builds.JobPropertyImpl>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>ssh://git.eclipse.org:29418/ecf/org.eclipse.ecf.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <disableSubmodules>false</disableSubmodules>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
+    <useShallowClone>false</useShallowClone>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <reference></reference>
+    <excludedRegions></excludedRegions>
+    <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
+  </scm>
+  <quietPeriod>5</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>Java1.5_update_22_x86-64</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-Build</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+      <installationName>Buckminster 3.6</installationName>
+      <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc</commands>
+      <logLevel>info</logLevel>
+      <params></params>
+      <targetPlatformName>None</targetPlatformName>
+      <userTemp></userTemp>
+      <userOutput></userOutput>
+      <userCommand></userCommand>
+      <userWorkspace></userWorkspace>
+      <globalPropertiesFile></globalPropertiesFile>
+      <equinoxLauncherArgs></equinoxLauncherArgs>
+    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+    <hudson.tasks.Shell>
+      <command>ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/site.p2&apos;
+ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/javadoc&apos;
+ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/*.zip&apos;
+
+ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/&apos;
+scp -r site.p2/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/site.p2/
+scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/
+ssh mkuppe@build.eclipse.org &apos;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/site.p2&apos;
+ssh mkuppe@build.eclipse.org &apos;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/javadoc&apos;
+
+# Buckminster 3.6
+test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip ${WORKSPACE}
+# Buckminster 3.5
+test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip ${WORKSPACE}
+
+scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.6Test
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.test.AggregatedTestResultPublisher>
+      <includeFailedBuilds>false</includeFailedBuilds>
+    </hudson.tasks.test.AggregatedTestResultPublisher>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>site.p2/</artifacts>
+      <latestOnly>false</latestOnly>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.JavadocArchiver>
+      <javadocDir>javadoc</javadocDir>
+      <keepAll>false</keepAll>
+    </hudson.tasks.JavadocArchiver>
+    <hudson.tasks.Fingerprinter>
+      <targets></targets>
+      <recordBuildArtifacts>true</recordBuildArtifacts>
+    </hudson.tasks.Fingerprinter>
+    <hudson.plugins.git.GitPublisher>
+      <configVersion>2</configVersion>
+      <pushMerge>false</pushMerge>
+      <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
+      <tagsToPush>
+        <hudson.plugins.git.GitPublisher_-TagToPush>
+          <targetRepoName>origin</targetRepoName>
+          <tagName>R-Release_HEAD-sdk_feature-${BUILD_NUMBER}_${BUILD_ID}</tagName>
+          <tagMessage></tagMessage>
+          <createTag>true</createTag>
+          <updateTag>false</updateTag>
+        </hudson.plugins.git.GitPublisher_-TagToPush>
+      </tagsToPush>
+    </hudson.plugins.git.GitPublisher>
+    <hudson.tasks.Mailer>
+      <recipients>ecf-build@eclipse.org</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>UPSTREAM_BUILD=${JOB_NAME}</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>L-HEAD-sdk.tests.feature</projects>
+          <condition>UNSTABLE_OR_BETTER</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+    <hudson.plugins.twitter.TwitterPublisher>
+      <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
+      <includeUrl>true</includeUrl>
+    </hudson.plugins.twitter.TwitterPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup>
+      <deleteDirs>false</deleteDirs>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+      <timeoutMinutes>90</timeoutMinutes>
+      <failBuild>false</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper>
+      <localVarText>SITE_SIGNING=true
+BUILD_ACTION=site.p2.zip
+SITE_INCLUDE_TOP=false
+SITE_PACK200=true
+FEATURE_NAME=org.eclipse.ecf.sdk
+MSPEC_NAME=org.eclipse.ecf.sdk.mspec
+ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>

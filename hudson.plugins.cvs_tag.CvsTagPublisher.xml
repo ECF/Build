@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.cvs__tag.CvsTagPublisher_-CvsTagDescriptorImpl plugin="cvs-tag@1.7">
+  <defaultTagName>${env[&apos;JOB_NAME&apos;]}-${env[&apos;BUILD_NUMBER&apos;]}-${new java.text.SimpleDateFormat(&quot;yyyy_MM_dd&quot;).format(new Date())}</defaultTagName>
+</hudson.plugins.cvs__tag.CvsTagPublisher_-CvsTagDescriptorImpl>

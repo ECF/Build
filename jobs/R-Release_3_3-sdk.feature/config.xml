@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>This is the released build for Release_3_3.  Output is signed.</description>
+  <logRotator>
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>15</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>true</keepDependencies>
+  <properties>
+    <hudson.plugins.disk__usage.DiskUsageProperty/>
+  </properties>
+  <scm class="hudson.scm.CVSSCM">
+    <cvsroot>:ext:mkuppe@dev.eclipse.org:/cvsroot/rt/</cvsroot>
+    <module>org.eclipse.ecf/applications
+org.eclipse.ecf/compendium
+org.eclipse.ecf/doc
+org.eclipse.ecf/examples
+org.eclipse.ecf/framework
+org.eclipse.ecf/incubation
+org.eclipse.ecf/protocols
+org.eclipse.ecf/providers
+org.eclipse.ecf/releng
+org.eclipse.ecf/server-side
+org.eclipse.ecf/tests</module>
+    <branch>Release_3_3</branch>
+    <canUseUpdate>false</canUseUpdate>
+    <flatten>false</flatten>
+    <isTag>false</isTag>
+    <excludedRegions></excludedRegions>
+  </scm>
+  <quietPeriod>5</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>Java1.5_update_22_x86-64</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-Build</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.tasks.Shell>
+      <command>ssh mkuppe@dev.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.3Test/helios/site.p2&apos;
+ssh mkuppe@dev.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.3Test/helios/*.zip&apos;
+
+scp -r site.p2/ mkuppe@dev.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.3Test/helios
+ssh mkuppe@dev.eclipse.org &apos;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/3.3Test/helios/site.p2&apos;
+
+# Buckminster 3.6
+test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip ${WORKSPACE}
+# Buckminster 3.5
+test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip ${WORKSPACE}
+
+scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.3Test/helios
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>site.p2/</artifacts>
+      <latestOnly>false</latestOnly>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.test.AggregatedTestResultPublisher/>
+    <hudson.tasks.Fingerprinter>
+      <targets></targets>
+      <recordBuildArtifacts>true</recordBuildArtifacts>
+    </hudson.tasks.Fingerprinter>
+    <hudson.tasks.Mailer>
+      <recipients>ecf-build@eclipse.org</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.cvs__tag.CvsTagPublisher>
+      <tagName>R-Release_3_3-sdk_feature-${env[&apos;BUILD_NUMBER&apos;]}-${new java.text.SimpleDateFormat(&quot;yyyy_MM_dd&quot;).format(new Date())}</tagName>
+    </hudson.plugins.cvs__tag.CvsTagPublisher>
+    <hudson.plugins.twitter.TwitterPublisher>
+      <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
+      <includeUrl>true</includeUrl>
+    </hudson.plugins.twitter.TwitterPublisher>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>UPSTREAM_BUILD=${JOB_NAME}</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>L-Release_3_3-sdk.tests.feature</projects>
+          <condition>UNSTABLE_OR_BETTER</condition>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.setenv.SetEnvBuildWrapper>
+      <localVarText>SITE_SIGNING=true
+BUILD_ACTION=site.p2.zip
+SITE_INCLUDE_TOP=false
+SITE_PACK200=true
+FEATURE_NAME=org.eclipse.ecf.sdk
+MSPEC_NAME=org.eclipse.ecf.sdk.mspec
+ECF_P2_REPOSITORY=
+</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+      <timeoutMinutes>90</timeoutMinutes>
+      <failBuild>false</failBuild>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+  </buildWrappers>
+</project>

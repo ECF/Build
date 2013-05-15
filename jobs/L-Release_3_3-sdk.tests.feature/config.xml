@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <logRotator>
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>true</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty/>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>UPSTREAM_BUILD</name>
+          <description>The upstream project which should be used by this test build</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>R-Release_3_3-sdk.feature</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>TEST_DEBUG_RUN</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>-Xrunjdwp:transport=dt_socket,address=${TEST_DEBUG_PORT},server=y,suspend=n -Xdebug</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty/>
+  </properties>
+  <scm class="hudson.scm.CVSSCM">
+    <cvsroot>:pserver:anonymous@dev.eclipse.org:/cvsroot/rt/</cvsroot>
+    <module>org.eclipse.ecf/</module>
+    <branch>Release_3_3</branch>
+    <canUseUpdate>true</canUseUpdate>
+    <flatten>false</flatten>
+    <isTag>false</isTag>
+    <excludedRegions></excludedRegions>
+  </scm>
+  <quietPeriod>5</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-Build</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.templateproject.ProxyBuilder>
+      <projectName>Template-Test</projectName>
+    </hudson.plugins.templateproject.ProxyBuilder>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>site.p2/, reports/</artifacts>
+      <latestOnly>false</latestOnly>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.Fingerprinter>
+      <targets>site.p2/, reports/</targets>
+      <recordBuildArtifacts>true</recordBuildArtifacts>
+    </hudson.tasks.Fingerprinter>
+    <hudson.plugins.templateproject.ProxyPublisher>
+      <projectName>Template-Test</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.setenv.SetEnvBuildWrapper>
+      <localVarText>SITE_SIGNING=false
+BUILD_ACTION=site.p2
+SITE_INCLUDE_TOP=true
+SITE_PACK200=true
+FEATURE_NAME=org.eclipse.ecf.tests_feature
+MSPEC_NAME=org.eclipse.ecf.tests.mspec
+ECF_P2_REPOSITORY=file://${HUDSON_HOME}/repo/${UPSTREAM_BUILD}/
+
+TEST_SLP_PORT=10427
+TEST_MDNS_PORT=15353
+INSTALLABLE_UNITS=org.eclipse.ecf.core.featurepatch.feature.group,org.eclipse.ecf.tests_feature.feature.group
+TESTSUITE_CLASS_INCLUSION=^org\.eclipse\.ecf(\..+)?
+TESTSUITE_CLASS_EXCLUSION=
+TESTSUITE_PLUGIN_INCLUSION=^org\.eclipse\.ecf\.tests(\..+)?
+TESTSUITE_PLUGIN_EXCLUSION=^org\.eclipse\.ecf\.tests$
+</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+      <timeoutMinutes>240</timeoutMinutes>
+      <failBuild>false</failBuild>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <org.jvnet.hudson.plugins.port__allocator.PortAllocator>
+      <ports>
+        <org.jvnet.hudson.plugins.port__allocator.DefaultPortType>
+          <name>NET_SLP_PORT TEST_DEBUG_PORT TEST_SLP_PORT TEST_MDNS_PORT</name>
+        </org.jvnet.hudson.plugins.port__allocator.DefaultPortType>
+      </ports>
+    </org.jvnet.hudson.plugins.port__allocator.PortAllocator>
+  </buildWrappers>
+</project>
