@@ -86,7 +86,7 @@ echo &apos;-runproperties = \
     rsa.ct.timeout=&quot;30000&quot;, \
     rsa.ct.timeout.factor=&quot;3&quot;, \
     org.eclipse.ecf.osgi.services.discovery.allowLoopbackReference=&quot;true&quot;, \
-    org.osgi.test.cases.remoteserviceadmin.serverconfig=&quot;service.exported.intents.extra,\
+    org.osgi.test.cases.&apos;$2&apos;.serverconfig=&quot;service.exported.intents.extra,\
     service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
     service.exported.intents.extra=&quot;passByValue&quot;, \
     service.exported.configs=&quot;ecf.generic.server&quot;, \
