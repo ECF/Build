@@ -91,7 +91,9 @@ echo &apos;-runproperties = \
     service.exported.intents.extra=&quot;passByValue&quot;, \
     service.exported.configs=&quot;ecf.generic.server&quot;, \
     ecf.generic.server.port=&quot;@@FREE_PORT@@&quot;, \
-    ecf.generic.client.keepalive=&quot;30001&quot;, \&apos;
+    ecf.generic.client.keepalive=&quot;30001&quot;, \
+    net.mdns.port=65354, \
+    net.mdns.interface=127.0.0.1, \&apos;
 
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
