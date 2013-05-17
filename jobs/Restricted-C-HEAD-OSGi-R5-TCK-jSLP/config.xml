@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Runs the OSGi R5 test compliance kit for remote services and remote service admin (osgi.enterprise).&#xd;
+&#xd;
+You have to sign an NDA before you are allowed access!</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>15</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.model.Item.Build:slewis</permission>
+      <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Run.Update:slewis</permission>
+      <permission>hudson.model.Run.Update:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
+      <permission>hudson.model.Run.Delete:slewis</permission>
+      <permission>hudson.model.Run.Delete:mkuppe</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+echo &quot;====================&quot;
+echo &quot;Generating genBND.sh&quot;
+echo &quot;====================&quot;
+cat &gt; bnd.sh &lt;&lt; \EOF
+
+#!/bin/bash
+echo &apos;build=.&apos;
+
+##target
+echo &quot;&quot;
+echo &apos;-target = \
+    jar/&apos;$1&apos;;version=file&apos;
+
+## runpath
+#    jar/org.eclipse.osgi_3.8.2.R36x_v20110210.jar;version=file, \
+echo &quot;&quot;
+echo &apos;-runpath = \
+    jar/org.eclipse.osgi_3.8.2.v20130124-134944.jar;version=file, \
+    jar/com.springsource.junit-3.8.2.jar;version=file;export=&quot;junit.framework;version=3.8&quot;&apos;
+
+## runbundles
+echo &quot;&quot;
+echo &apos;-runbundles = \&apos;
+
+for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
+do
+    ## skip this single bundle in runbundles
+    if [[ ! $f == jar/plugins/org.eclipse.ecf.osgi.services.distribution_* ]]; then
+	echo $f&quot;;version=file, \\&quot;
+    fi
+done
+echo &apos;jar/&apos;$1&apos;;version=file&apos;
+
+## runproperties
+echo &quot;&quot;
+echo &apos;-runproperties = \
+    osgi.noShutdown=&quot;false&quot;, \
+    osgi.console.enable.builtin=true, \
+    report=&quot;true&quot;, \
+    launch.trace=true, \
+    osgi.compatibility.bootdelegation=&quot;false&quot;, \
+    org.osgi.test.cases.&apos;$2&apos;.system.packages.extra=&quot;junit.framework;version=3.8&quot;, \
+    osgi.support.multipleHosts=&quot;true&quot;, \
+    rsa.ct.timeout=&quot;30000&quot;, \
+    rsa.ct.timeout.factor=&quot;3&quot;, \
+    org.osgi.test.cases.&apos;$2&apos;.serverconfig=&quot;service.exported.intents.extra,\
+    service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
+    service.exported.intents.extra=&quot;passByValue&quot;, \
+    service.exported.configs=&quot;ecf.generic.server&quot;, \
+    ecf.generic.server.port=&quot;@@FREE_PORT@@&quot;, \
+    ecf.generic.client.keepalive=&quot;30001&quot;, \
+    net.mdns.port=65354, \
+    net.mdns.interface=127.0.0.1, \&apos;
+
+echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
+for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
+do
+    ## skip this single bundle in runbundles
+    if [[ ! $f == jar/plugins/org.eclipse.ecf.osgi.services.distribution.launch-* ]]; then
+        echo $f&quot;,\\&quot;
+    fi
+done
+echo &apos;&quot;&apos;
+
+
+echo &apos;-runvm = \
+    -Xmx512m, -XX:MaxPermSize=350m&apos;
+
+echo &apos;-runtrace = true&apos;
+echo &apos;&apos;
+
+
+EOF
+
+chmod +x bnd.sh</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+echo &quot;=============================&quot;
+echo &quot;purge leftover folders if any&quot;
+echo &quot;=============================&quot;
+test -e bin &amp;&amp; rm -rf bin/
+test -e jar &amp;&amp; rm -rf jar/
+test -e reports &amp;&amp; rm -rf reports/
+test -e generated &amp;&amp; rm -rf generated/
+
+echo &quot;=============================&quot;
+echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
+echo &quot;=============================&quot;
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/4.2,http://download.ecf-project.org/repo -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.ecf.discovery.jmdns.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log
+
+echo &quot;=============================&quot;
+echo &quot;Remove p2 director leftovers&quot;
+echo &quot;=============================&quot;
+rm -rf jar/p2
+rm jar/artifacts.xml
+
+echo &quot;=============================&quot;
+echo &quot;    Remove unwanted jars     &quot;
+echo &quot;=============================&quot;
+rm jar/plugins/javax.xml_*.jar
+rm jar/plugins/org.eclipse.ecf.console_*.jar
+rm jar/plugins/org.eclipse.equinox.ds_*.jar
+
+echo &quot;=============================&quot;
+echo &quot;Move osgi runtime to current folder to have it find plugins/&quot;
+echo &quot;=============================&quot;
+mv ${WORKSPACE}/jar/plugins/org.eclipse.osgi_* jar/
+
+echo &quot;=============================&quot;
+echo &quot;Copy NDA-restricted RI tests to current folder for execution&quot;
+echo &quot;=============================&quot;
+ls -l ${TCK_HOME}/*
+cp -r ${TCK_HOME}/* ${WORKSPACE}
+
+echo &quot;=============================&quot;
+echo &quot;Generate and print BND file&quot;
+echo &quot;=============================&quot;
+cat bnd.sh
+
+echo &quot;###########################################&quot;
+echo &quot;######### remoteserviceadmin ##############&quot;
+echo &quot;###########################################&quot;
+./bnd.sh org.osgi.test.cases.remoteserviceadmin-5.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
+cat org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
+
+echo &quot;=============================&quot;
+echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
+echo &quot;=============================&quot;
+java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin
+mv org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd.off
+mv reports/ reports.remoteserviceadmin/
+
+echo &quot;###########################################&quot;
+echo &quot;######## remoteserviceadmin.secure#########&quot;
+echo &quot;###########################################&quot;
+
+echo &quot;=============================&quot;
+echo &quot;Generate and print BND file&quot;
+echo &quot;=============================&quot;
+./bnd.sh org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
+cat org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
+
+echo &quot;=============================&quot;
+echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
+echo &quot;=============================&quot;
+java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin.secure
+mv org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd.off
+mv reports/ reports.remoteserviceadmin.secure/
+
+echo &quot;###########################################&quot;
+echo &quot;########## remoteservices #################&quot;
+echo &quot;###########################################&quot;
+
+echo &quot;=============================&quot;
+echo &quot;Generate and print BND file&quot;
+echo &quot;=============================&quot;
+./bnd.sh org.osgi.test.cases.remoteservices-5.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-5.0.0.bnd
+cat org.osgi.test.cases.remoteservices-5.0.0.bnd
+
+echo &quot;=============================&quot;
+echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
+echo &quot;=============================&quot;
+java -jar jar/bnd.jar runtests -t osgi.ct.remoteservices
+mv org.osgi.test.cases.remoteservices-5.0.0.bnd org.osgi.test.cases.remoteservices-5.0.0.bnd.off
+mv reports/ reports.remoteservices/
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>reports.remoteservices/*.xml, reports.remoteserviceadmin.secure/*.xml, reports.remoteserviceadmin/*.xml</testResults>
+      <keepLongStdio>true</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher plugin="blame-upstream-commiters@1.2">
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.14">
+      <deleteDirs>false</deleteDirs>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
+      <timeoutMinutes>30</timeoutMinutes>
+      <failBuild>true</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.osgi.services.tck.feature
+MSPEC_NAME=org.eclipse.ecf.osgi.services.tck.mspec
+ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+TCK_HOME=/home/mkuppe/osgi.tck/r5
+</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>
