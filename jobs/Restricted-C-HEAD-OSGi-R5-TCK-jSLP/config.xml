@@ -92,6 +92,15 @@ echo &apos;-runproperties = \
     ecf.generic.server.port=&quot;@@FREE_PORT@@&quot;, \
     ecf.generic.client.keepalive=&quot;30001&quot;, \
     net.slp.port=65354, \
+    net.slp.rediscover=15000, \
+    ch.ethz.iks.slp.debug=true, \
+    net.slp.traceDATraffic=false, \
+    net.slp.traceMsg=true, \
+    net.slp.traceDrop=true, \
+    net.slp.traceReg=true, \
+    net.slp.failercount=3, \
+    net.slp.multicastTimeouts=10,25,50,100,250,500,1000, \
+    net.slp.multicastMaximumWait=2000, \
     net.slp.interface=127.0.0.1, \&apos;
 
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
