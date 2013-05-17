@@ -83,7 +83,7 @@ echo &apos;-runproperties = \
     osgi.compatibility.bootdelegation=&quot;false&quot;, \
     org.osgi.test.cases.&apos;$2&apos;.system.packages.extra=&quot;junit.framework;version=3.8&quot;, \
     osgi.support.multipleHosts=&quot;true&quot;, \
-    rsa.ct.timeout=&quot;30000&quot;, \
+    rsa.ct.timeout=&quot;90000&quot;, \
     rsa.ct.timeout.factor=&quot;3&quot;, \
     org.osgi.test.cases.&apos;$2&apos;.serverconfig=&quot;service.exported.intents.extra,\
     service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
