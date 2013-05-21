@@ -67,7 +67,7 @@ echo &apos;-runbundles = \&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
 do
     ## skip this single bundle in runbundles
-    if [[ ! $f == jar/plugins/org.eclipse.ecf.osgi.services.distribution_* ]]; then
+    if [[ (!($f == jar/plugins/org.eclipse.ecf.osgi.services.distribution_*) || ($2 == remoteservices) ]]; then
 	echo $f&quot;;version=file, \\&quot;
     fi
 done
@@ -94,6 +94,10 @@ echo &apos;-runproperties = \
     net.mdns.port=65354, \
     net.mdns.interface=127.0.0.1, \&apos;
 
+if [[ $2 == remoteserviceadmin]]; then
+    echo &apos;org.eclipse.ecf.osgi.services.discovery.disableDiscovery=&quot;true&quot;, \&apos;
+fi
+    
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
 do
