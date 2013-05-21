@@ -103,7 +103,11 @@ echo &apos;-runproperties = \
     net.slp.multicastMaximumWait=2000, \
     net.slp.interface=127.0.0.1, \&apos;
 
-if [[ ($2 == remoteserviceadmin) || ($2 == remoteserviceadmin.secure) ]]
+if [[ $2 == remoteserviceadmin.secure ]]; then
+    echo &apos;    java.security.manager, \&apos;
+fi
+
+if [[ ($2 == remoteserviceadmin) || ($2 == remoteserviceadmin.secure) ]]; then
     echo &apos;    org.eclipse.ecf.osgi.services.discovery.disableDiscovery=true, \&apos;
 fi
 
