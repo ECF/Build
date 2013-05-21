@@ -103,6 +103,10 @@ echo &apos;-runproperties = \
     net.slp.multicastMaximumWait=2000, \
     net.slp.interface=127.0.0.1, \&apos;
 
+if [[ $2 == remoteserviceadmin ]]
+    echo &apos;    org.eclipse.ecf.osgi.services.discovery.disableDiscovery=true, \&apos;
+fi
+
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
 do
