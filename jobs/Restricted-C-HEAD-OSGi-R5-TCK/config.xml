@@ -94,8 +94,8 @@ echo &apos;-runproperties = \
     net.mdns.port=65354, \
     net.mdns.interface=127.0.0.1, \&apos;
 
-if [[ $2 == remoteserviceadmin]]; then
-    echo &apos;org.eclipse.ecf.osgi.services.discovery.disableDiscovery=&quot;true&quot;, \&apos;
+if [[ $2 == remoteserviceadmin ]]; then
+    echo &apos;    org.eclipse.ecf.osgi.services.discovery.disableDiscovery=&quot;true&quot;, \&apos;
 fi
     
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
