@@ -157,6 +157,7 @@ echo &quot;=============================&quot;
 rm jar/plugins/javax.xml_*.jar
 rm jar/plugins/org.eclipse.ecf.console_*.jar
 rm jar/plugins/org.eclipse.equinox.ds_*.jar
+rm jar/plugins/org.eclipse.ecf.provider.discovery_*.jar
 
 echo &quot;=============================&quot;
 echo &quot;Move osgi runtime to current folder to have it find plugins/&quot;
