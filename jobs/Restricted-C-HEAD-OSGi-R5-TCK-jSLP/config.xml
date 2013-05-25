@@ -13,20 +13,20 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
-      <permission>hudson.model.Item.Build:slewis</permission>
-      <permission>hudson.model.Item.Build:mkuppe</permission>
       <permission>hudson.model.Run.Update:slewis</permission>
       <permission>hudson.model.Run.Update:mkuppe</permission>
-      <permission>hudson.model.Item.Read:slewis</permission>
-      <permission>hudson.model.Item.Read:mkuppe</permission>
-      <permission>hudson.model.Item.Workspace:slewis</permission>
-      <permission>hudson.model.Item.Workspace:mkuppe</permission>
       <permission>hudson.model.Item.Delete:slewis</permission>
       <permission>hudson.model.Item.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
       <permission>hudson.model.Run.Delete:slewis</permission>
       <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Build:slewis</permission>
+      <permission>hudson.model.Item.Build:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -161,6 +161,7 @@ echo &quot;=============================&quot;
 rm jar/plugins/javax.xml_*.jar
 rm jar/plugins/org.eclipse.ecf.console_*.jar
 rm jar/plugins/org.eclipse.equinox.ds_*.jar
+rm jar/plugins/org.eclipse.ecf.provider.discovery_*.jar
 
 echo &quot;=============================&quot;
 echo &quot;Move osgi runtime to current folder to have it find plugins/&quot;
