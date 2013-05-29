@@ -52,7 +52,7 @@ git config user.name &quot;Markus Alexander Kuppe&quot;
 
 echo -n &apos;Done, ready to fire off Bucky\n===================\n&apos;</command>
     </hudson.tasks.Shell>
-    <hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
       <installationName>Buckminster 3.6</installationName>
       <commands>installJRE --location ${HUDSON_HOME}/tools/Java1.4.2_update_18_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.5_update_22_x86-64/jre
@@ -77,6 +77,7 @@ perform ${FEATURE_NAME}#${BUILD_ACTION}
 -Declipse.committer.keyfile=/var/lib/tomcat-6/.ssh/id_rsa
 -Dqualifier.replacement.*=generator:buildTimestamp
 -Dgenerator.buildTimestamp.format=&apos;v&apos;yyyyMMdd-HHmm
+-DgenerateSourceReferences=true
 -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath
 -DprojectsPath=${WORKSPACE}/projects
 -Declipse.p2.mirrors=false
@@ -100,13 +101,14 @@ perform ${FEATURE_NAME}#${BUILD_ACTION}
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/</artifacts>
       <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer>
+    <hudson.tasks.Mailer plugin="mailer@1.5">
       <recipients></recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.twitter.TwitterPublisher/>
+    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.6"/>
   </publishers>
   <buildWrappers/>
 </project>
