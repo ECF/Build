@@ -14,6 +14,15 @@
     <hudson.plugins.buckminster.BuckminsterInstallation>
       <name>Buckminster 4.2</name>
       <home></home>
+      <properties/>
+      <params>-Xmx768m
+-Xms768m
+-XX:PermSize=512M
+-XX:MaxPermSize=512M</params>
+    </hudson.plugins.buckminster.BuckminsterInstallation>
+    <hudson.plugins.buckminster.BuckminsterInstallation>
+      <name>Buckminster 4.3</name>
+      <home></home>
       <properties>
         <hudson.tools.InstallSourceProperty>
           <installers>
