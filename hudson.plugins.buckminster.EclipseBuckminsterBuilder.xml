@@ -18,8 +18,8 @@
         <hudson.tools.InstallSourceProperty>
           <installers>
             <hudson.plugins.buckminster.BuckminsterInstallation_-BuckminsterInstaller>
-              <id>4.2</id>
-              <update>false</update>
+              <id>4.3</id>
+              <update>true</update>
             </hudson.plugins.buckminster.BuckminsterInstallation_-BuckminsterInstaller>
           </installers>
         </hudson.tools.InstallSourceProperty>
