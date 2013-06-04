@@ -2,7 +2,7 @@
 <project>
   <actions/>
   <description></description>
-  <logRotator>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>5</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
@@ -33,29 +33,58 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.disk__usage.DiskUsageProperty/>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.19"/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
-  <scm class="hudson.scm.CVSSCM">
-    <cvsroot>:pserver:anonymous@dev.eclipse.org:/cvsroot/rt/</cvsroot>
-    <module>org.eclipse.ecf/</module>
-    <branch>Release_3_3</branch>
-    <canUseUpdate>true</canUseUpdate>
+  <scm class="hudson.scm.CVSSCM" plugin="cvs@2.8">
     <flatten>false</flatten>
-    <isTag>false</isTag>
-    <excludedRegions></excludedRegions>
+    <repositories>
+      <hudson.scm.CvsRepository>
+        <cvsRoot>:pserver:anonymous@dev.eclipse.org:/cvsroot/rt/</cvsRoot>
+        <repositoryItems>
+          <hudson.scm.CvsRepositoryItem>
+            <modules>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/</remoteName>
+              </hudson.scm.CvsModule>
+            </modules>
+            <location class="hudson.scm.CvsRepositoryLocation$BranchRepositoryLocation">
+              <locationType>BRANCH</locationType>
+              <locationName>Release_3_3</locationName>
+              <useHeadIfNotFound>false</useHeadIfNotFound>
+            </location>
+          </hudson.scm.CvsRepositoryItem>
+        </repositoryItems>
+        <compressionLevel>-1</compressionLevel>
+        <excludedRegions>
+          <hudson.scm.ExcludedRegion>
+            <pattern></pattern>
+          </hudson.scm.ExcludedRegion>
+        </excludedRegions>
+        <passwordRequired>false</passwordRequired>
+      </hudson.scm.CvsRepository>
+    </repositories>
+    <canUseUpdate>true</canUseUpdate>
+    <skipChangeLog>false</skipChangeLog>
+    <pruneEmptyDirectories>true</pruneEmptyDirectories>
+    <disableCvsQuiet>false</disableCvsQuiet>
+    <cleanOnFailedUpdate>false</cleanOnFailedUpdate>
+    <forceCleanCopy>true</forceCleanCopy>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
-    <hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-Test</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
@@ -63,17 +92,18 @@
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/, reports/</artifacts>
       <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.Fingerprinter>
       <targets>site.p2/, reports/</targets>
       <recordBuildArtifacts>true</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.templateproject.ProxyPublisher>
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
       <projectName>Template-Test</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.setenv.SetEnvBuildWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>SITE_SIGNING=false
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
@@ -91,11 +121,14 @@ TESTSUITE_PLUGIN_INCLUSION=^org\.eclipse\.ecf\.tests(\..+)?
 TESTSUITE_PLUGIN_EXCLUSION=^org\.eclipse\.ecf\.tests$
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
       <timeoutMinutes>240</timeoutMinutes>
       <failBuild>false</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
-    <org.jvnet.hudson.plugins.port__allocator.PortAllocator>
+    <org.jvnet.hudson.plugins.port__allocator.PortAllocator plugin="port-allocator@1.5">
       <ports>
         <org.jvnet.hudson.plugins.port__allocator.DefaultPortType>
           <name>NET_SLP_PORT TEST_DEBUG_PORT TEST_SLP_PORT TEST_MDNS_PORT</name>
