@@ -2,7 +2,7 @@
 <project>
   <actions/>
   <description>Continuous HEAD build of JMS feature</description>
-  <logRotator>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
@@ -10,41 +10,37 @@
   </logRotator>
   <keepDependencies>true</keepDependencies>
   <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty/>
-    <com.coravy.hudson.plugins.github.GithubProjectProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.19"/>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.6">
       <projectUrl>http://github.com/ECF/JMS/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>1</configVersion>
-    <remoteRepositories>
-      <org.spearce.jgit.transport.RemoteConfig>
-        <string>origin</string>
-        <int>5</int>
-        <string>fetch</string>
-        <string>+refs/heads/*:refs/remotes/origin/*</string>
-        <string>receivepack</string>
-        <string>git-upload-pack</string>
-        <string>uploadpack</string>
-        <string>git-upload-pack</string>
-        <string>url</string>
-        <string>git://github.com/ECF/JMS.git</string>
-        <string>tagopt</string>
-        <string></string>
-      </org.spearce.jgit.transport.RemoteConfig>
-    </remoteRepositories>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>git://github.com/ECF/JMS.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
         <name>master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <localBranch></localBranch>
-    <mergeOptions/>
+    <disableSubmodules>false</disableSubmodules>
     <recursiveSubmodules>false</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <authorOrCommitter>false</authorOrCommitter>
     <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
     <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
+    <useShallowClone>false</useShallowClone>
     <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
     <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
@@ -63,17 +59,17 @@
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
   <publishers>
-    <hudson.plugins.templateproject.ProxyPublisher>
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.setenv.SetEnvBuildWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.provider.jms.feature
 MSPEC_NAME=org.eclipse.ecf.jms.mspec
 BUILD_ACTION=site.p2
@@ -84,9 +80,12 @@ ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
 TEST_BUNDLE=org.eclipse.ecf.tests.provider.jms.activemq
 LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jms.activemq.launch</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
       <timeoutMinutes>30</timeoutMinutes>
       <failBuild>false</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
   </buildWrappers>
 </project>
