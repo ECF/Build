@@ -4,7 +4,9 @@
   <description>Template project for a continuous build. Referenced by concrete builds.&#xd;
 So far we can only include builders, but no actions!</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
@@ -14,10 +16,10 @@ So far we can only include builders, but no actions!</description>
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
-    <hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
       <installationName>Buckminster 3.6</installationName>
       <commands>bglaunch --launch ${TEST_BUNDLE}/${SUPPORT_LAUNCH_CONFIG} --ignoremissing
 junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_result.xml&apos; --flatXML
@@ -53,18 +55,18 @@ junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_resul
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.plugins.templateproject.ProxyPublisher>
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
-    <hudson.tasks.Mailer>
+    <hudson.tasks.Mailer plugin="mailer@1.5">
       <recipients></recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher plugin="blame-upstream-commiters@1.2">
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
-    <hudson.plugins.twitter.TwitterPublisher/>
+    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.6"/>
   </publishers>
   <buildWrappers/>
 </project>
