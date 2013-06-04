@@ -2,7 +2,7 @@
 <project>
   <actions/>
   <description>This is the released build for Release_3_3.  Output is signed.</description>
-  <logRotator>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>15</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
@@ -10,36 +10,95 @@
   </logRotator>
   <keepDependencies>true</keepDependencies>
   <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty/>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.19"/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
-  <scm class="hudson.scm.CVSSCM">
-    <cvsroot>:ext:mkuppe@dev.eclipse.org:/cvsroot/rt/</cvsroot>
-    <module>org.eclipse.ecf/applications
-org.eclipse.ecf/compendium
-org.eclipse.ecf/doc
-org.eclipse.ecf/examples
-org.eclipse.ecf/framework
-org.eclipse.ecf/incubation
-org.eclipse.ecf/protocols
-org.eclipse.ecf/providers
-org.eclipse.ecf/releng
-org.eclipse.ecf/server-side
-org.eclipse.ecf/tests</module>
-    <branch>Release_3_3</branch>
-    <canUseUpdate>false</canUseUpdate>
+  <scm class="hudson.scm.CVSSCM" plugin="cvs@2.8">
     <flatten>false</flatten>
-    <isTag>false</isTag>
-    <excludedRegions></excludedRegions>
+    <repositories>
+      <hudson.scm.CvsRepository>
+        <cvsRoot>:ext:mkuppe@dev.eclipse.org:/cvsroot/rt/</cvsRoot>
+        <repositoryItems>
+          <hudson.scm.CvsRepositoryItem>
+            <modules>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/applications</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/compendium</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/doc</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/examples</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/framework</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/incubation</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/protocols</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/providers</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/releng</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/server-side</remoteName>
+              </hudson.scm.CvsModule>
+              <hudson.scm.CvsModule>
+                <localName></localName>
+                <remoteName>org.eclipse.ecf/tests</remoteName>
+              </hudson.scm.CvsModule>
+            </modules>
+            <location class="hudson.scm.CvsRepositoryLocation$BranchRepositoryLocation">
+              <locationType>BRANCH</locationType>
+              <locationName>Release_3_3</locationName>
+              <useHeadIfNotFound>false</useHeadIfNotFound>
+            </location>
+          </hudson.scm.CvsRepositoryItem>
+        </repositoryItems>
+        <compressionLevel>-1</compressionLevel>
+        <excludedRegions>
+          <hudson.scm.ExcludedRegion>
+            <pattern></pattern>
+          </hudson.scm.ExcludedRegion>
+        </excludedRegions>
+        <passwordRequired>false</passwordRequired>
+      </hudson.scm.CvsRepository>
+    </repositories>
+    <canUseUpdate>false</canUseUpdate>
+    <skipChangeLog>false</skipChangeLog>
+    <pruneEmptyDirectories>true</pruneEmptyDirectories>
+    <disableCvsQuiet>false</disableCvsQuiet>
+    <cleanOnFailedUpdate>false</cleanOnFailedUpdate>
+    <forceCleanCopy>true</forceCleanCopy>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>Java1.5_update_22_x86-64</jdk>
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.tasks.Shell>
@@ -62,25 +121,29 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/</artifacts>
       <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.test.AggregatedTestResultPublisher/>
+    <hudson.tasks.test.AggregatedTestResultPublisher>
+      <includeFailedBuilds>false</includeFailedBuilds>
+    </hudson.tasks.test.AggregatedTestResultPublisher>
     <hudson.tasks.Fingerprinter>
       <targets></targets>
       <recordBuildArtifacts>true</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
-    <hudson.tasks.Mailer>
+    <hudson.tasks.Mailer plugin="mailer@1.5">
       <recipients>ecf-build@eclipse.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.cvs__tag.CvsTagPublisher>
+    <hudson.plugins.cvs__tag.CvsTagPublisher plugin="cvs-tag@1.7">
       <tagName>R-Release_3_3-sdk_feature-${env[&apos;BUILD_NUMBER&apos;]}-${new java.text.SimpleDateFormat(&quot;yyyy_MM_dd&quot;).format(new Date())}</tagName>
+      <moveTag>false</moveTag>
     </hudson.plugins.cvs__tag.CvsTagPublisher>
-    <hudson.plugins.twitter.TwitterPublisher>
+    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.6">
       <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
       <includeUrl>true</includeUrl>
     </hudson.plugins.twitter.TwitterPublisher>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.18">
       <configs>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
@@ -90,12 +153,13 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
           </configs>
           <projects>L-Release_3_3-sdk.tests.feature</projects>
           <condition>UNSTABLE_OR_BETTER</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
       </configs>
     </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.setenv.SetEnvBuildWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>SITE_SIGNING=true
 BUILD_ACTION=site.p2.zip
 SITE_INCLUDE_TOP=false
@@ -105,9 +169,12 @@ MSPEC_NAME=org.eclipse.ecf.sdk.mspec
 ECF_P2_REPOSITORY=
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
       <timeoutMinutes>90</timeoutMinutes>
       <failBuild>false</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
   </buildWrappers>
 </project>
