@@ -2,15 +2,17 @@
 <project>
   <actions/>
   <description>Continuous &lt;a href=&quot;https://bugs.eclipse.org/326228&quot;&gt;bug #326228&lt;/a&gt; build of jdmns feature (work is pretty much abandond)</description>
-  <logRotator>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>3</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
-  <scm class="hudson.plugins.git.GitSCM">
+  <properties>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -58,11 +60,12 @@
       <spec># every 15 minutes
 */15 * * * *
 </spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.tasks.Shell>
@@ -72,15 +75,15 @@ rm -rf ${WORKSPACE}/site.p2/
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.plugins.templateproject.ProxyPublisher>
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
-    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher plugin="blame-upstream-commiters@1.2">
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
       <timeoutMinutes>15</timeoutMinutes>
       <failBuild>false</failBuild>
       <writingDescription>false</writingDescription>
@@ -88,7 +91,7 @@ rm -rf ${WORKSPACE}/site.p2/
       <timeoutType>absolute</timeoutType>
       <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
-    <hudson.plugins.setenv.SetEnvBuildWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.discovery.jmdns.feature
 MSPEC_NAME=org.eclipse.ecf.jmdns.mspec
 BUILD_ACTION=site.p2
