@@ -97,6 +97,9 @@ test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEAT
 scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.6Test
 </command>
     </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>for i in $(find ${WORKSPACE} \( -type d -name &apos;javadoc&apos; \) -o \( -type f -name &apos;toc.htm*&apos; \) | sed -e &apos;s/toc\.^Cm.//&apos; | sort -u); do /opt/hudson/tools/hudson.model.JDK/Java1.7_update_25_x86-64/bin/java -jar /opt/hudson/tools/JavadocUpdaterTool-1_2_2013/JavadocUpdaterTool.jar -R $i; done</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.test.AggregatedTestResultPublisher>
