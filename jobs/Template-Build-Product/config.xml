@@ -3,7 +3,7 @@
   <actions/>
   <description>Template project for a continuous build. Referenced by concrete builds.&#xd;
 So far we can only include builders, but no actions!</description>
-  <keepDependencies>true</keepDependencies>
+  <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -52,7 +52,7 @@ git config user.name &quot;Markus Alexander Kuppe&quot;
 
 echo -n &apos;Done, ready to fire off Bucky\n===================\n&apos;</command>
     </hudson.tasks.Shell>
-    <hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
       <installationName>Buckminster 3.6</installationName>
       <commands>installJRE --location ${HUDSON_HOME}/tools/Java1.4.2_update_18_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.5_update_22_x86-64/jre
@@ -95,17 +95,21 @@ perform -Q -Dtarget.os=win32 -Dtarget.ws=win32 -Dtarget.arch=x86 ${PRODUCT_FEATU
       <command>test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2 &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2 ${WORKSPACE}/
 </command>
     </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>for i in $(find ${WORKSPACE} \( -type d -name &apos;javadoc&apos; \) -o \( -type f -name &apos;toc.htm*&apos; \) | sed -e &apos;s/toc\.^Cm.//&apos; | sort -u); do /opt/hudson/tools/hudson.model.JDK/Java1.7_update_25_x86-64/bin/java -jar /opt/hudson/tools/JavadocUpdaterTool-1_2_2013/JavadocUpdaterTool.jar -R $i; done</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.plugins.warnings.WarningsPublisher>
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.26">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
       <pluginName>[WARNINGS] </pluginName>
       <defaultEncoding></defaultEncoding>
       <canRunOnFailed>false</canRunOnFailed>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds>
+      <thresholds plugin="analysis-core@1.49">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -125,19 +129,21 @@ perform -Q -Dtarget.os=win32 -Dtarget.ws=win32 -Dtarget.arch=x86 ${PRODUCT_FEATU
       </thresholds>
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>false</dontComputeNew>
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
       <parserConfigurations/>
-      <consoleLogParsers/>
+      <consoleParsers/>
     </hudson.plugins.warnings.WarningsPublisher>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/</artifacts>
       <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer>
+    <hudson.tasks.Mailer plugin="mailer@1.5">
       <recipients>ecf-build@eclipse.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.twitter.TwitterPublisher/>
+    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.6"/>
   </publishers>
   <buildWrappers/>
 </project>
