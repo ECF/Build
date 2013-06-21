@@ -117,6 +117,20 @@
         </hudson.tools.InstallSourceProperty>
       </properties>
     </jdk>
+    <jdk>
+      <name>Java1.7_update_25_x86-64</name>
+      <home></home>
+      <properties>
+        <hudson.tools.InstallSourceProperty>
+          <installers>
+            <hudson.tools.JDKInstaller>
+              <id>jdk-7u25-oth-JPR</id>
+              <acceptLicense>true</acceptLicense>
+            </hudson.tools.JDKInstaller>
+          </installers>
+        </hudson.tools.InstallSourceProperty>
+      </properties>
+    </jdk>
   </jdks>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
