@@ -9,11 +9,9 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>true</keepDependencies>
-  <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.20"/>
-  </properties>
+  <properties/>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
-    <configVersion>1</configVersion>
+    <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <name>origin</name>
@@ -40,9 +38,14 @@
     <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <reference></reference>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
     <skipTag>false</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>
@@ -75,6 +78,9 @@
       <globalPropertiesFile></globalPropertiesFile>
       <equinoxLauncherArgs></equinoxLauncherArgs>
     </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
+    <hudson.tasks.Shell>
+      <command>for i in $(find ${WORKSPACE} \( -type d -name &apos;javadoc&apos; \) -o \( -type f -name &apos;toc.htm*&apos; \) | sed -e &apos;s/toc\.^Cm.//&apos; | sort -u); do /opt/hudson/tools/hudson.model.JDK/Java1.7_update_25_x86-64/bin/java -jar /opt/hudson/tools/JavadocUpdaterTool-1_2_2013/JavadocUpdaterTool.jar -R $i; done</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.JavadocArchiver plugin="javadoc@1.1">
@@ -118,6 +124,7 @@
       <writingDescription>false</writingDescription>
       <timeoutPercentage>0</timeoutPercentage>
       <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>SITE_SIGNING=false
