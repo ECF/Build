@@ -16,6 +16,7 @@
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>1</configVersion>
@@ -126,7 +127,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.6">
+    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.7">
       <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
       <includeUrl>true</includeUrl>
     </hudson.plugins.twitter.TwitterPublisher>
