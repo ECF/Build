@@ -11,6 +11,7 @@
   <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.20"/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.9">
     <flatten>false</flatten>
@@ -138,7 +139,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <tagName>R-Release_3_3-sdk_feature-${env[&apos;BUILD_NUMBER&apos;]}-${new java.text.SimpleDateFormat(&quot;yyyy_MM_dd&quot;).format(new Date())}</tagName>
       <moveTag>false</moveTag>
     </hudson.plugins.cvs__tag.CvsTagPublisher>
-    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.6">
+    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.7">
       <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
       <includeUrl>true</includeUrl>
     </hudson.plugins.twitter.TwitterPublisher>
