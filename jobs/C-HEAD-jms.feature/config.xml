@@ -8,15 +8,14 @@
     <artifactDaysToKeep>-1</artifactDaysToKeep>
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
-  <keepDependencies>true</keepDependencies>
+  <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.20"/>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.6">
       <projectUrl>http://github.com/ECF/JMS/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
-    <configVersion>1</configVersion>
+    <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <name>origin</name>
@@ -29,7 +28,6 @@
         <name>master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
-    <localBranch></localBranch>
     <disableSubmodules>false</disableSubmodules>
     <recursiveSubmodules>false</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -44,9 +42,14 @@
     <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <reference></reference>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
     <skipTag>false</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>
@@ -55,7 +58,11 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
   <authToken>fa0z624pihgawerfp08z24</authToken>
-  <triggers class="vector"/>
+  <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>@weekly</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
@@ -68,6 +75,14 @@
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
+      <timeoutMinutes>30</timeoutMinutes>
+      <failBuild>false</failBuild>
+      <writingDescription>false</writingDescription>
+      <timeoutPercentage>0</timeoutPercentage>
+      <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.provider.jms.feature
 MSPEC_NAME=org.eclipse.ecf.jms.mspec
@@ -79,12 +94,5 @@ ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
 TEST_BUNDLE=org.eclipse.ecf.tests.provider.jms.activemq
 LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jms.activemq.launch</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
-      <timeoutMinutes>30</timeoutMinutes>
-      <failBuild>false</failBuild>
-      <writingDescription>false</writingDescription>
-      <timeoutPercentage>0</timeoutPercentage>
-      <timeoutType>absolute</timeoutType>
-    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
   </buildWrappers>
 </project>
