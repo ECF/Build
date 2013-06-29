@@ -56,6 +56,10 @@
     </com.cloudbees.jenkins.GitHubPushTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
+  <rootModule>
+    <groupId>zooserver</groupId>
+    <artifactId>org.eclipse.ecf.zooserver.product</artifactId>
+  </rootModule>
   <rootPOM>org.eclipse.ecf.zooserver.product/pom.xml</rootPOM>
   <goals>clean install</goals>
   <mavenName>apache-maven-2.2.1</mavenName>
