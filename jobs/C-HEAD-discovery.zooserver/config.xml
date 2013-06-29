@@ -56,10 +56,12 @@
     </com.cloudbees.jenkins.GitHubPushTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
+  <rootPOM>org.eclipse.ecf.zooserver.product/pom.xml</rootPOM>
   <goals>clean install</goals>
   <mavenName>apache-maven-2.2.1</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
+  <localRepository class="hudson.maven.local_repo.PerJobLocalRepositoryLocator"/>
   <perModuleEmail>true</perModuleEmail>
   <ignoreUpstremChanges>false</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
