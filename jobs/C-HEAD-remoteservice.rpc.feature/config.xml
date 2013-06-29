@@ -11,8 +11,8 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Read:psamolisov</permission>
       <permission>hudson.model.Item.Workspace:psamolisov</permission>
+      <permission>hudson.model.Item.Read:psamolisov</permission>
       <permission>hudson.model.Run.Delete:psamolisov</permission>
       <permission>hudson.model.Item.Configure:psamolisov</permission>
       <permission>hudson.model.Run.Update:psamolisov</permission>
@@ -63,6 +63,9 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
   <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>@weekly</spec>
+    </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
       <spec># every 15 minutes
 */15 * * * *
@@ -88,6 +91,7 @@
       <writingDescription>false</writingDescription>
       <timeoutPercentage>0</timeoutPercentage>
       <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.remoteservice.rpc.feature
