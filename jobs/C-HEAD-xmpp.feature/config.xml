@@ -8,13 +8,10 @@
     <artifactDaysToKeep>-1</artifactDaysToKeep>
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
-  <keepDependencies>true</keepDependencies>
-  <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.20"/>
-    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
-  </properties>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
-    <configVersion>1</configVersion>
+    <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <name>origin</name>
@@ -41,9 +38,14 @@
     <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+    <reference></reference>
     <excludedRegions>(?:(?!xmpp|org.jivesoftware.smack).)+</excludedRegions>
     <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
     <skipTag>false</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>
@@ -52,6 +54,9 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
   <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>@weekly</spec>
+    </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
       <spec># every 15 minutes
 */15 * * * *
@@ -77,6 +82,7 @@
       <writingDescription>false</writingDescription>
       <timeoutPercentage>0</timeoutPercentage>
       <timeoutType>absolute</timeoutType>
+      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.xmpp.feature
