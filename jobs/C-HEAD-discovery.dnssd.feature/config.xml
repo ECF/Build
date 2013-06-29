@@ -56,6 +56,9 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
   <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>@weekly</spec>
+    </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
       <spec># every 15 minutes
 */15 * * * *
