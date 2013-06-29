@@ -58,7 +58,7 @@
   <concurrentBuild>false</concurrentBuild>
   <rootModule>
     <groupId>zooserver</groupId>
-    <artifactId>org.eclipse.ecf.zooserver.product</artifactId>
+    <artifactId>zooserver-parent</artifactId>
   </rootModule>
   <rootPOM>org.eclipse.ecf.zooserver.parent/pom.xml</rootPOM>
   <goals>clean install</goals>
