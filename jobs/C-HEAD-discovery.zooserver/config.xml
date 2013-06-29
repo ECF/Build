@@ -62,7 +62,7 @@
   </rootModule>
   <rootPOM>org.eclipse.ecf.zooserver.parent/pom.xml</rootPOM>
   <goals>clean install</goals>
-  <mavenName>apache-maven-2.2.1</mavenName>
+  <mavenName>apache-maven-3.0</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
   <localRepository class="hudson.maven.local_repo.PerJobLocalRepositoryLocator"/>
