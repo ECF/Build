@@ -91,8 +91,8 @@ echo &apos;-runproperties = \
     service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
     service.exported.intents.extra=&quot;passByValue&quot;, \
     service.exported.configs=&quot;ecf.generic.server&quot;, \
-    zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized&quot;, \
-    zoodiscovery.flavor.centralized=&quot;disco.ecf-project.org&quot;, \
+    zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \
+    zoodiscovery.autoStart, \
     ecf.generic.server.port=&quot;@@FREE_PORT@@&quot;, \
     ecf.generic.client.keepalive=&quot;30001&quot; \&apos;
 
