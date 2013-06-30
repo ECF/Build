@@ -87,12 +87,9 @@ echo &apos;-runproperties = \
     osgi.support.multipleHosts=&quot;true&quot;, \
     rsa.ct.timeout=&quot;90000&quot;, \
     rsa.ct.timeout.factor=&quot;3&quot;, \
-    org.osgi.test.cases.&apos;$2&apos;.serverconfig=&quot;service.exported.intents.extra,\
-    service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
+    org.osgi.test.cases.&apos;$2&apos;.serverconfig=&quot;service.exported.intents.extra,service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
     service.exported.intents.extra=&quot;passByValue&quot;, \
     service.exported.configs=&quot;ecf.generic.server&quot;, \
-    zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \
-    zoodiscovery.autoStart, \
     ecf.generic.server.port=&quot;@@FREE_PORT@@&quot;, \
     ecf.generic.client.keepalive=&quot;30001&quot; \&apos;
 
@@ -181,7 +178,7 @@ cat org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
 echo &quot;=============================&quot;
 echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
 echo &quot;=============================&quot;
-java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin
+java -jar jar/bnd.jar -et runtests -t osgi.ct.remoteserviceadmin
 mv org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd.off
 mv reports/ reports.remoteserviceadmin/
 
@@ -198,7 +195,7 @@ cat org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
 echo &quot;=============================&quot;
 echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
 echo &quot;=============================&quot;
-java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin.secure
+java -jar jar/bnd.jar -et runtests -t osgi.ct.remoteserviceadmin.secure
 mv org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd.off
 mv reports/ reports.remoteserviceadmin.secure/
 
@@ -215,7 +212,7 @@ cat org.osgi.test.cases.remoteservices-5.0.0.bnd
 echo &quot;=============================&quot;
 echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
 echo &quot;=============================&quot;
-java -jar jar/bnd.jar runtests -t osgi.ct.remoteservices
+java -jar jar/bnd.jar -et runtests -t osgi.ct.remoteservices
 mv org.osgi.test.cases.remoteservices-5.0.0.bnd org.osgi.test.cases.remoteservices-5.0.0.bnd.off
 mv reports/ reports.remoteservices/
 </command>
