@@ -100,9 +100,9 @@ if [[ $2 == remoteserviceadmin.secure ]]; then
     echo &apos;    java.security.manager, \&apos;
 fi
 
-#if [[ ($2 == remoteserviceadmin) || ($2 == remoteserviceadmin.secure) ]]; then
-#    echo &apos;    org.eclipse.ecf.osgi.services.discovery.disableDiscovery=true, \&apos;
-#fi
+if [[ ($2 == remoteserviceadmin) || ($2 == remoteserviceadmin.secure) ]]; then
+    echo &apos;    org.eclipse.ecf.osgi.services.discovery.disableDiscovery=true, \&apos;
+fi
 
 echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
