@@ -52,7 +52,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>(Default)</jdk>
+  <jdk>Java1.6_update_20_x86-64</jdk>
   <triggers class="vector">
     <hudson.triggers.TimerTrigger>
       <spec>@weekly</spec>
