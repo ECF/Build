@@ -34,6 +34,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.20"/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.9">
     <flatten>false</flatten>
@@ -127,7 +128,7 @@ TESTSUITE_PLUGIN_EXCLUSION=^org\.eclipse\.ecf\.tests$
       <timeoutPercentage>0</timeoutPercentage>
       <timeoutType>absolute</timeoutType>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
-    <org.jvnet.hudson.plugins.port__allocator.PortAllocator plugin="port-allocator@1.5">
+    <org.jvnet.hudson.plugins.port__allocator.PortAllocator plugin="port-allocator@1.6">
       <ports>
         <org.jvnet.hudson.plugins.port__allocator.DefaultPortType>
           <name>NET_SLP_PORT TEST_DEBUG_PORT TEST_SLP_PORT TEST_MDNS_PORT</name>
