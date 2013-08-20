@@ -11,6 +11,7 @@
   <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.20"/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.9">
     <flatten>false</flatten>
@@ -142,7 +143,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
       <includeUrl>true</includeUrl>
     </hudson.plugins.twitter.TwitterPublisher>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.18">
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.19">
       <configs>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
