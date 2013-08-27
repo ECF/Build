@@ -112,7 +112,6 @@ echo &apos;-runproperties = \
     ecf.generic.client.keepalive=&quot;30001&quot;, \
     net.mdns.port=65354, \
     net.mdns.interface=127.0.0.1, \
-
     net.slp.port=65354, \
     net.slp.rediscover=15000, \
     ch.ethz.iks.slp.debug=true, \
@@ -124,7 +123,6 @@ echo &apos;-runproperties = \
     net.slp.multicastTimeouts=10,25,50,100,250,500,1000, \
     net.slp.multicastMaximumWait=2000, \
     net.slp.interface=127.0.0.1, \
-
     zoodiscovery.autoStart=true, \
     zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \&apos;
 
