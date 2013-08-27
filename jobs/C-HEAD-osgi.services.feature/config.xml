@@ -88,17 +88,17 @@
     </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
   </builders>
   <publishers>
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
     <hudson.tasks.BuildTrigger>
-      <childProjects>Restricted-C-HEAD-OSGi-R5-TCK</childProjects>
+      <childProjects>Restricted-C-HEAD-OSGi-R5-TCK, Restricted-C-HEAD-OSGi-TCK</childProjects>
       <threshold>
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>
         <color>YELLOW</color>
       </threshold>
     </hudson.tasks.BuildTrigger>
-    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
-      <projectName>Template-BuildAndTest</projectName>
-    </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
     <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
