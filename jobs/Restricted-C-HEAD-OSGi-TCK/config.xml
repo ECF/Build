@@ -59,7 +59,6 @@ You have to sign an NDA before you are allowed access!</description>
       <name>jdk</name>
       <values>
         <string>Java1.6_update_20_x86-64</string>
-        <string>Java1.5_update_22_x86-64</string>
         <string>Java1.7_update_25_x86-64</string>
       </values>
     </hudson.matrix.JDKAxis>
