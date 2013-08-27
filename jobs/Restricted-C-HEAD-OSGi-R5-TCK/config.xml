@@ -13,20 +13,20 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
-      <permission>hudson.model.Run.Update:slewis</permission>
-      <permission>hudson.model.Run.Update:mkuppe</permission>
       <permission>hudson.model.Item.Workspace:slewis</permission>
       <permission>hudson.model.Item.Workspace:mkuppe</permission>
-      <permission>hudson.model.Item.Read:slewis</permission>
-      <permission>hudson.model.Item.Read:mkuppe</permission>
-      <permission>hudson.model.Item.Build:slewis</permission>
-      <permission>hudson.model.Item.Build:mkuppe</permission>
       <permission>hudson.model.Item.Delete:slewis</permission>
       <permission>hudson.model.Item.Delete:mkuppe</permission>
       <permission>hudson.model.Run.Delete:slewis</permission>
       <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.model.Run.Update:slewis</permission>
+      <permission>hudson.model.Run.Update:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Build:slewis</permission>
+      <permission>hudson.model.Item.Build:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -142,7 +142,7 @@ test -e generated &amp;&amp; rm -rf generated/
 echo &quot;=============================&quot;
 echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
 echo &quot;=============================&quot;
-${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/4.2,http://download.ecf-project.org/repo -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.ecf.discovery.jmdns.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/4.3,http://download.ecf-project.org/repo -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.ecf.discovery.jmdns.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group
 
 echo &quot;=============================&quot;
 echo &quot;Remove p2 director leftovers&quot;
@@ -234,8 +234,9 @@ mv reports/ reports.remoteservices/
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.14">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.16">
       <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
       <timeoutMinutes>30</timeoutMinutes>
