@@ -11,11 +11,12 @@
   <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.20"/>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.11">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.13">
       <activeProcessNames>
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>1</configVersion>
