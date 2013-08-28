@@ -90,7 +90,7 @@ echo &apos;-target = \
 #    jar/org.eclipse.osgi_3.8.2.R36x_v20110210.jar;version=file, \
 echo &quot;&quot;
 echo &apos;-runpath = \
-    jar/org.eclipse.osgi_3.8.2.v20130124-134944.jar;version=file, \
+    jar/org.eclipse.osgi.jar;version=file, \
     jar/com.springsource.junit-3.8.2.jar;version=file;export=&quot;junit.framework;version=3.8&quot;&apos;
 
 ## runbundles
@@ -206,6 +206,11 @@ echo &quot;=============================&quot;
 echo &quot;Move osgi runtime to current folder to have it find plugins/&quot;
 echo &quot;=============================&quot;
 mv ${WORKSPACE}/jar/plugins/org.eclipse.osgi_* jar/
+
+echo &quot;=============================&quot;
+echo &quot;Remove version suffix from osgi runtime (.bnd files expect this) /&quot;
+echo &quot;=============================&quot;
+cp jar/org.eclipse.osgi_* jar/org.eclipse.osgi.jar
 
 echo &quot;=============================&quot;
 echo &quot;Copy NDA-restricted RI tests to current folder for execution&quot;
