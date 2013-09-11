@@ -15,6 +15,7 @@
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.5.0">
     <configVersion>2</configVersion>
@@ -161,13 +162,12 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
-      <timeoutMinutes>90</timeoutMinutes>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>90</timeoutMinutes>
+      </strategy>
       <failBuild>false</failBuild>
       <writingDescription>false</writingDescription>
-      <timeoutPercentage>0</timeoutPercentage>
-      <timeoutType>absolute</timeoutType>
-      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>SITE_SIGNING=true
