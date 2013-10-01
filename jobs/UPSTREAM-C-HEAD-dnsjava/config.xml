@@ -11,7 +11,7 @@
   <scm class="hudson.scm.SubversionSCM" plugin="subversion@1.51">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
-        <remote>https://dnsjava.svn.sourceforge.net/svnroot/dnsjava/trunk</remote>
+        <remote>http://svn.code.sf.net/p/dnsjava/code/trunk</remote>
         <local>.</local>
         <depthOption>infinity</depthOption>
         <ignoreExternalsOption>false</ignoreExternalsOption>
