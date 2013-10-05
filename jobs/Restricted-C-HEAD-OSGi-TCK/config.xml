@@ -180,6 +180,9 @@ echo &apos;&apos;
 
 EOF
 
+# replace the string §ECF_DISTRIBUTION_PROVIDER in generated bnd.sh with the actual environment variable provided by jenkins (do not know a better HACK right now)
+sed -i -e &apos;s/$ECF_DISTRIBUTION_PROVIDER/&apos;$ECF_DISTRIBUTION_PROVIDER&apos;/g&apos; bnd.sh
+
 chmod +x bnd.sh</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
