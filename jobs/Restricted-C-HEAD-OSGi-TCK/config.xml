@@ -13,27 +13,30 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.scm.SCM.Tag:slewis</permission>
-      <permission>hudson.scm.SCM.Tag:mkuppe</permission>
-      <permission>hudson.model.Item.Workspace:slewis</permission>
-      <permission>hudson.model.Item.Workspace:mkuppe</permission>
+      <permission>hudson.model.Item.Discover:slewis</permission>
+      <permission>hudson.model.Item.Discover:mkuppe</permission>
       <permission>hudson.model.Item.Delete:slewis</permission>
       <permission>hudson.model.Item.Delete:mkuppe</permission>
       <permission>hudson.model.Item.Cancel:slewis</permission>
       <permission>hudson.model.Item.Cancel:mkuppe</permission>
       <permission>hudson.model.Run.Delete:slewis</permission>
       <permission>hudson.model.Run.Delete:mkuppe</permission>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
       <permission>hudson.model.Run.Update:slewis</permission>
       <permission>hudson.model.Run.Update:mkuppe</permission>
-      <permission>hudson.model.Item.Discover:slewis</permission>
-      <permission>hudson.model.Item.Discover:mkuppe</permission>
-      <permission>hudson.model.Item.Read:slewis</permission>
-      <permission>hudson.model.Item.Read:mkuppe</permission>
       <permission>hudson.model.Item.Build:slewis</permission>
       <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.scm.SCM.Tag:slewis</permission>
+      <permission>hudson.scm.SCM.Tag:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -67,6 +70,7 @@ You have to sign an NDA before you are allowed access!</description>
       <values>
         <string>4.2</string>
         <string>4.3</string>
+        <string>4.4milestones</string>
       </values>
     </hudson.matrix.TextAxis>
   </axes>
@@ -283,17 +287,17 @@ mv reports/ reports.remoteservices/
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.16">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.18">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.11">
-      <timeoutMinutes>30</timeoutMinutes>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>30</timeoutMinutes>
+      </strategy>
       <failBuild>false</failBuild>
       <writingDescription>false</writingDescription>
-      <timeoutPercentage>0</timeoutPercentage>
-      <timeoutType>absolute</timeoutType>
-      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.osgi.services.tck.feature
