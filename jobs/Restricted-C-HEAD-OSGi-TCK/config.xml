@@ -202,6 +202,12 @@ echo &quot;=============================&quot;
 ${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,http://download.ecf-project.org/repo -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group
 
 echo &quot;=============================&quot;
+echo &quot;HACK compatiblity bundle to be installed &quot;
+echo &quot; https://bugs.eclipse.org/418742 &quot;
+echo &quot;=============================&quot;
+wget http://download.ecf-project.org/org.eclipse.ecf.provider.r_osgi.compatibility_1.0.0.HACK.jar jar/plugins/
+
+echo &quot;=============================&quot;
 echo &quot;Remove p2 director leftovers&quot;
 echo &quot;=============================&quot;
 rm -rf jar/p2
