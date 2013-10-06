@@ -205,7 +205,8 @@ echo &quot;=============================&quot;
 echo &quot;HACK compatiblity bundle to be installed &quot;
 echo &quot; https://bugs.eclipse.org/418742 &quot;
 echo &quot;=============================&quot;
-wget http://download.ecf-project.org/org.eclipse.ecf.provider.r_osgi.compatibility_1.0.0.HACK.jar jar/plugins/
+wget http://download.ecf-project.org/org.eclipse.ecf.provider.r_osgi.compatibility_1.0.0.HACK.jar 
+mv org.eclipse.ecf.provider.r_osgi.compatibility_1.0.0.HACK.jar jar/plugins/
 
 echo &quot;=============================&quot;
 echo &quot;Remove p2 director leftovers&quot;
