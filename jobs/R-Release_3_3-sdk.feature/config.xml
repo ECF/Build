@@ -11,6 +11,7 @@
   <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.21"/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.9">
     <flatten>false</flatten>
@@ -94,7 +95,7 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>Java1.5_update_22_x86-64</jdk>
-  <triggers class="vector"/>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
