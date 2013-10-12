@@ -14,6 +14,7 @@
       <projectUrl>http://github.com/ECF/Newsreader/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.21"/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.5.0">
     <configVersion>1</configVersion>
@@ -56,7 +57,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
   <authToken>yxcbv9u02984t5z79zhjasdfg</authToken>
-  <triggers class="vector">
+  <triggers>
     <hudson.triggers.SCMTrigger>
       <spec>* * * * *</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
