@@ -19,14 +19,14 @@
       <permission>hudson.model.Item.Workspace:psamolisov</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>300586853</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>300603286</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/C-HEAD-remoteservice.rpc.feature/workspace</string>
-              <long>300551653</long>
+              <long>300567645</long>
             </entry>
           </concurrent-hash-map>
         </entry>
