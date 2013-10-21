@@ -11,7 +11,7 @@
   <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>29515</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map"/>
     </hudson.plugins.disk__usage.DiskUsageProperty>
     <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.14">
