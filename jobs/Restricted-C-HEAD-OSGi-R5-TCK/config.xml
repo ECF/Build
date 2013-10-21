@@ -29,7 +29,7 @@ You have to sign an NDA before you are allowed access!</description>
       <permission>hudson.model.Item.Workspace:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>8368310</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
