@@ -14,7 +14,7 @@
       <projectUrl>http://github.com/ECF/Newsreader/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>189189567</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
