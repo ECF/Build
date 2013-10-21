@@ -30,7 +30,17 @@ You have to sign an NDA before you are allowed access!</description>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
       <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map"/>
+      <slaveWorkspacesUsage class="concurrent-hash-map">
+        <entry>
+          <string></string>
+          <concurrent-hash-map>
+            <entry>
+              <string>/opt/hudson/jobs/Restricted-C-HEAD-OSGi-R5-TCK/workspace</string>
+              <long>8346721</long>
+            </entry>
+          </concurrent-hash-map>
+        </entry>
+      </slaveWorkspacesUsage>
     </hudson.plugins.disk__usage.DiskUsageProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
