@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<maven2-moduleset>
+<maven2-moduleset plugin="maven-plugin@1.509.4">
   <actions/>
   <description></description>
-  <logRotator>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>5</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
@@ -11,17 +11,22 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Workspace:spearway</permission>
-      <permission>hudson.model.Item.Build:spearway</permission>
       <permission>hudson.model.Item.Read:spearway</permission>
       <permission>hudson.model.Item.Configure:spearway</permission>
+      <permission>hudson.model.Item.Build:spearway</permission>
+      <permission>hudson.model.Item.Workspace:spearway</permission>
     </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
+      <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
+      <slaveWorkspacesUsage class="concurrent-hash-map"/>
+    </hudson.plugins.disk__usage.DiskUsageProperty>
   </properties>
-  <scm class="hudson.scm.SubversionSCM">
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@1.53">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
         <remote>https://jmdns.svn.sourceforge.net/svnroot/jmdns/trunk</remote>
         <local>.</local>
+        <ignoreExternalsOption>false</ignoreExternalsOption>
       </hudson.scm.SubversionSCM_-ModuleLocation>
     </locations>
     <browser class="hudson.scm.browsers.ViewSVN">
@@ -34,15 +39,17 @@
     <excludedCommitMessages></excludedCommitMessages>
     <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
     <ignoreDirPropChanges>false</ignoreDirPropChanges>
+    <filterChangelog>false</filterChangelog>
   </scm>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
-  <triggers class="vector">
+  <triggers>
     <hudson.triggers.SCMTrigger>
       <spec>*/30 * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
@@ -64,6 +71,7 @@
   <runHeadless>false</runHeadless>
   <settingConfigId></settingConfigId>
   <globalSettingConfigId></globalSettingConfigId>
+  <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
   <reporters/>
   <publishers>
     <hudson.tasks.BuildTrigger>
@@ -72,6 +80,7 @@
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>
         <color>YELLOW</color>
+        <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
     <hudson.maven.RedeployPublisher>
@@ -82,13 +91,12 @@
     </hudson.maven.RedeployPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
-      <timeoutMinutes>30</timeoutMinutes>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>30</timeoutMinutes>
+      </strategy>
       <failBuild>true</failBuild>
       <writingDescription>false</writingDescription>
-      <timeoutPercentage>0</timeoutPercentage>
-      <timeoutType>absolute</timeoutType>
-      <timeoutMinutesElasticDefault>3</timeoutMinutesElasticDefault>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
   </buildWrappers>
   <prebuilders/>
@@ -97,5 +105,6 @@
     <name>FAILURE</name>
     <ordinal>2</ordinal>
     <color>RED</color>
+    <completeBuild>true</completeBuild>
   </runPostStepsIfResult>
 </maven2-moduleset>
