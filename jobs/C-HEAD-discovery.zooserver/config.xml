@@ -8,7 +8,7 @@
       <projectUrl>https://github.com/ECF/ZooServer/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>248690436</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
