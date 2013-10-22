@@ -36,14 +36,14 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>566354938</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>566345240</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/L-HEAD-sdk.tests.feature/workspace</string>
-              <long>565631896</long>
+              <long>565660864</long>
             </entry>
           </concurrent-hash-map>
         </entry>
