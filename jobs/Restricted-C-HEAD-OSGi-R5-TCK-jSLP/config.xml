@@ -13,20 +13,20 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Read:slewis</permission>
-      <permission>hudson.model.Item.Read:mkuppe</permission>
-      <permission>hudson.model.Run.Update:slewis</permission>
-      <permission>hudson.model.Run.Update:mkuppe</permission>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
-      <permission>hudson.model.Run.Delete:slewis</permission>
-      <permission>hudson.model.Run.Delete:mkuppe</permission>
-      <permission>hudson.model.Item.Delete:slewis</permission>
-      <permission>hudson.model.Item.Delete:mkuppe</permission>
       <permission>hudson.model.Item.Build:slewis</permission>
       <permission>hudson.model.Item.Build:mkuppe</permission>
       <permission>hudson.model.Item.Workspace:slewis</permission>
       <permission>hudson.model.Item.Workspace:mkuppe</permission>
+      <permission>hudson.model.Run.Delete:slewis</permission>
+      <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.model.Run.Update:slewis</permission>
+      <permission>hudson.model.Run.Update:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
       <diskUsageWithoutBuilds>9584300</diskUsageWithoutBuilds>
