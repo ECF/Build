@@ -17,7 +17,7 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>16643</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map"/>
     </hudson.plugins.disk__usage.DiskUsageProperty>
   </properties>
