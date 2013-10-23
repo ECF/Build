@@ -57,7 +57,7 @@
     <artifactId>ChatClientRoot</artifactId>
   </rootModule>
   <goals>clean install</goals>
-  <mavenName>apache-maven-3.0</mavenName>
+  <mavenName>apache-maven-3.1</mavenName>
   <mavenOpts>-Xmx512m -XX:MaxPermSize=256m</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
