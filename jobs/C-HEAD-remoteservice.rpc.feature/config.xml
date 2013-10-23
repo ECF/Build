@@ -19,7 +19,7 @@
       <permission>hudson.model.Run.Update:psamolisov</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>300643837</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>300965437</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
