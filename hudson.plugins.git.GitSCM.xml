@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.plugins.git.GitSCM_-DescriptorImpl plugin="git@1.4.0">
-  <generation>38</generation>
+<hudson.plugins.git.GitSCM_-DescriptorImpl plugin="git@2.0">
+  <generation>39</generation>
   <gitExe>/usr/local/bin/git</gitExe>
   <globalConfigName></globalConfigName>
   <globalConfigEmail></globalConfigEmail>

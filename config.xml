@@ -4,7 +4,7 @@
     <string>hudson.diagnosis.TooManyJobsButNoView</string>
     <string>jenkins.security.RekeySecretAdminMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>1.509.1</version>
+  <version>1.509.4</version>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -130,6 +130,11 @@
           </installers>
         </hudson.tools.InstallSourceProperty>
       </properties>
+    </jdk>
+    <jdk>
+      <name>JavaSE-1.6 (OS installation)</name>
+      <home>/opt/sun-jdk-1.6.0.35</home>
+      <properties/>
     </jdk>
   </jdks>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>

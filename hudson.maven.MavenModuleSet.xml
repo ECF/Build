@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.maven.MavenModuleSet_-DescriptorImpl plugin="maven-plugin@1.509.1">
+<hudson.maven.MavenModuleSet_-DescriptorImpl plugin="maven-plugin@1.509.4">
   <mavenValidationLevels class="linked-hash-map">
     <entry>
       <string>DEFAULT</string>
