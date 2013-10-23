@@ -58,6 +58,7 @@
   </rootModule>
   <goals>clean install</goals>
   <mavenName>apache-maven-3.0</mavenName>
+  <mavenOpts>-Xmx512m -XX:MaxPermSize=256m</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
   <localRepository class="hudson.maven.local_repo.PerJobLocalRepositoryLocator"/>
