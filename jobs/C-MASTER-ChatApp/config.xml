@@ -40,7 +40,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>Java1.6_update_20_x86-64</jdk>
+  <jdk>JavaSE-1.6 (OS installation)</jdk>
   <triggers>
     <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.8">
       <spec></spec>
