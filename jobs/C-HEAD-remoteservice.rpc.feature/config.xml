@@ -11,12 +11,12 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Workspace:psamolisov</permission>
-      <permission>hudson.model.Item.Read:psamolisov</permission>
       <permission>hudson.model.Item.Build:psamolisov</permission>
-      <permission>hudson.model.Run.Delete:psamolisov</permission>
-      <permission>hudson.model.Run.Update:psamolisov</permission>
       <permission>hudson.model.Item.Configure:psamolisov</permission>
+      <permission>hudson.model.Item.Read:psamolisov</permission>
+      <permission>hudson.model.Run.Delete:psamolisov</permission>
+      <permission>hudson.model.Item.Workspace:psamolisov</permission>
+      <permission>hudson.model.Run.Update:psamolisov</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
       <diskUsageWithoutBuilds>300643837</diskUsageWithoutBuilds>
@@ -32,6 +32,7 @@
         </entry>
       </slaveWorkspacesUsage>
     </hudson.plugins.disk__usage.DiskUsageProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0">
     <configVersion>2</configVersion>
