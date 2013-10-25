@@ -45,7 +45,7 @@ You have to sign an NDA before you are allowed access!</description>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/Restricted-C-HEAD-OSGi-TCK/workspace</string>
-              <long>98304</long>
+              <long>131072</long>
             </entry>
           </concurrent-hash-map>
         </entry>
