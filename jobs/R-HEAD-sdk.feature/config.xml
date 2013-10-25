@@ -19,14 +19,14 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>540088918</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>540095599</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/R-HEAD-sdk.feature/workspace</string>
-              <long>503642618</long>
+              <long>503648739</long>
             </entry>
           </concurrent-hash-map>
         </entry>
