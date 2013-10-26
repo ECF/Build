@@ -14,14 +14,14 @@
       <projectUrl>http://github.com/ECF/JMS/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>286855341</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>287177070</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/C-HEAD-jms.feature/workspace</string>
-              <long>286842992</long>
+              <long>287164969</long>
             </entry>
           </concurrent-hash-map>
         </entry>
