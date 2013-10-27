@@ -10,15 +10,6 @@
   </logRotator>
   <keepDependencies>true</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>TARGET_VERSION</name>
-          <description>The ECF version to be build</description>
-          <defaultValue>3.7.1</defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.14">
       <activeProcessNames>
         <string>Promoted_to_download.eclipse.org</string>
@@ -28,14 +19,14 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>0</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>540088918</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/R-HEAD-sdk.feature/workspace</string>
-              <long>503823311</long>
+              <long>503642618</long>
             </entry>
           </concurrent-hash-map>
         </entry>
@@ -57,6 +48,7 @@
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <extensions>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
@@ -90,23 +82,22 @@
       <equinoxLauncherArgs></equinoxLauncherArgs>
     </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
     <hudson.tasks.Shell>
-      <command>ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/staging/&apos;
-ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/site.p2&apos;
-ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/javadoc&apos;
-ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/*.zip&apos;
+      <command>ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/site.p2&apos;
+ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/javadoc&apos;
+ssh mkuppe@build.eclipse.org &apos;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/*.zip&apos;
 
-ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/&apos;
-scp -r site.p2/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/site.p2/
-scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}
-ssh mkuppe@build.eclipse.org &apos;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/site.p2&apos;
-ssh mkuppe@build.eclipse.org &apos;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/javadoc&apos;
+ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/&apos;
+scp -r site.p2/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/site.p2/
+scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/
+ssh mkuppe@build.eclipse.org &apos;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/site.p2&apos;
+ssh mkuppe@build.eclipse.org &apos;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/3.6Test/javadoc&apos;
 
 # Buckminster 3.6
 test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip ${WORKSPACE}
 # Buckminster 3.5
 test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip ${WORKSPACE}
 
-scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}
+scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/3.6Test
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
