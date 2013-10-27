@@ -26,7 +26,7 @@
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/R-HEAD-sdk.feature/workspace</string>
-              <long>503775293</long>
+              <long>503642618</long>
             </entry>
           </concurrent-hash-map>
         </entry>
@@ -134,8 +134,6 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
           <updateTag>false</updateTag>
         </hudson.plugins.git.GitPublisher_-TagToPush>
       </tagsToPush>
-      <branchesToPush/>
-      <notesToPush/>
     </hudson.plugins.git.GitPublisher>
     <hudson.tasks.Mailer plugin="mailer@1.5">
       <recipients>ecf-build@eclipse.org</recipients>
