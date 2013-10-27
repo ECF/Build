@@ -38,7 +38,7 @@ You have to sign an NDA before you are allowed access!</description>
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>420783582</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>356529</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
