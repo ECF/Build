@@ -17,14 +17,14 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>1052000661</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>1052012718</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/C-MASTER-ChatApp/workspace</string>
-              <long>1051988072</long>
+              <long>1052000128</long>
             </entry>
           </concurrent-hash-map>
         </entry>
