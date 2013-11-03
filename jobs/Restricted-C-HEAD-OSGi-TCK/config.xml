@@ -38,14 +38,14 @@ You have to sign an NDA before you are allowed access!</description>
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>420783582</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>132681513</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/Restricted-C-HEAD-OSGi-TCK/workspace</string>
-              <long>229376</long>
+              <long>172032</long>
             </entry>
           </concurrent-hash-map>
         </entry>
