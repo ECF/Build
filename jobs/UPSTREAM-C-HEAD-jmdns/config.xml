@@ -11,10 +11,10 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Build:spearway</permission>
-      <permission>hudson.model.Item.Workspace:spearway</permission>
-      <permission>hudson.model.Item.Read:spearway</permission>
       <permission>hudson.model.Item.Configure:spearway</permission>
+      <permission>hudson.model.Item.Build:spearway</permission>
+      <permission>hudson.model.Item.Read:spearway</permission>
+      <permission>hudson.model.Item.Workspace:spearway</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
       <diskUsageWithoutBuilds>6873618</diskUsageWithoutBuilds>
