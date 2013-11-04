@@ -11,19 +11,20 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>299318696</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>299475891</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/C-HEAD-osgi.services.feature/workspace</string>
-              <long>299304888</long>
+              <long>299462085</long>
             </entry>
           </concurrent-hash-map>
         </entry>
       </slaveWorkspacesUsage>
     </hudson.plugins.disk__usage.DiskUsageProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0">
     <configVersion>2</configVersion>
