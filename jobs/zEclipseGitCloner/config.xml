@@ -25,14 +25,14 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>86856130</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>86863689</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/zEclipseGitCloner/workspace</string>
-              <long>86827399</long>
+              <long>86834957</long>
             </entry>
           </concurrent-hash-map>
         </entry>
