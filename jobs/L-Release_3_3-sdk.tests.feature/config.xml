@@ -34,7 +34,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>19294</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>14139</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map"/>
     </hudson.plugins.disk__usage.DiskUsageProperty>
   </properties>
