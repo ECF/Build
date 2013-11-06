@@ -11,14 +11,14 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>299520081</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>299803969</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/C-HEAD-osgi.services.feature/workspace</string>
-              <long>299506273</long>
+              <long>299790161</long>
             </entry>
           </concurrent-hash-map>
         </entry>
