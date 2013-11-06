@@ -11,14 +11,14 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>310394500</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>310662432</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/C-HEAD-filetransfer.httpclient.feature/workspace</string>
-              <long>310623725</long>
+              <long>310643537</long>
             </entry>
           </concurrent-hash-map>
         </entry>
