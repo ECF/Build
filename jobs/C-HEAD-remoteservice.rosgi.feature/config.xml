@@ -14,14 +14,14 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>310040669</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>306826424</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map">
         <entry>
           <string></string>
           <concurrent-hash-map>
             <entry>
               <string>/opt/hudson/jobs/C-HEAD-remoteservice.rosgi.feature/workspace</string>
-              <long>310027747</long>
+              <long>306813503</long>
             </entry>
           </concurrent-hash-map>
         </entry>
