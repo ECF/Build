@@ -12,7 +12,7 @@
   <properties>
     <hudson.security.AuthorizationMatrixProperty/>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>8194</diskUsageWithoutBuilds>
+      <diskUsageWithoutBuilds>13084</diskUsageWithoutBuilds>
       <slaveWorkspacesUsage class="concurrent-hash-map"/>
     </hudson.plugins.disk__usage.DiskUsageProperty>
   </properties>
