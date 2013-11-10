@@ -10,15 +10,12 @@
   </logRotator>
   <keepDependencies>true</keepDependencies>
   <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>29515</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map"/>
-    </hudson.plugins.disk__usage.DiskUsageProperty>
     <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.14">
       <activeProcessNames>
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0">
     <configVersion>1</configVersion>
