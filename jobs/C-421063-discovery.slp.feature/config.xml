@@ -21,12 +21,12 @@ https://bugs.eclipse.org/421063</description>
       <hudson.plugins.git.UserRemoteConfig>
         <name>origin</name>
         <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
-        <url>git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf</url>
+        <url>file:///opt/hudson/git/org.eclipse.ecf.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>refs/changes/18/18618/1</name>
+        <name>master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -60,6 +60,10 @@ https://bugs.eclipse.org/421063</description>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.tasks.Shell>
+      <command>cd org.eclipse.ecf/
+git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/18618/1 &amp;&amp; git cherry-pick FETCH_HEAD</command>
+    </hudson.tasks.Shell>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
