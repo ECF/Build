@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Continuous HEAD build of SLP feature</description>
+  <description>Continuous branch/gerrit change build of SLP feature for bug #421063&#xd;
+https://bugs.eclipse.org/421063</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
@@ -9,23 +10,26 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <name>origin</name>
         <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
-        <url>file:///opt/hudson/git/org.eclipse.ecf.git</url>
+        <url>git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>master</name>
+        <name>refs/changes/18/18618/1</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <extensions>
       <hudson.plugins.git.extensions.impl.PathRestriction>
@@ -59,6 +63,11 @@
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.tasks.Shell>
+      <command># clear the site.p2/ folder because for this stream build we don&apos;t want to keep the artifacts as they might accidentally be picked up downstream consumers
+rm -rf ${WORKSPACE}/site.p2/
+#touch ${WORKSPACE}/site.p2/INTENTIONALLY_EMPTY.txt</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
