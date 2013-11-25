@@ -21,7 +21,6 @@
     <permission>hudson.model.Hudson.Administer:ted</permission>
     <permission>hudson.model.Hudson.Administer:wim.jongman</permission>
     <permission>hudson.model.Hudson.Read:harshana05</permission>
-    <permission>hudson.model.Hudson.Read:jmohiuddin</permission>
     <permission>hudson.model.Hudson.Read:mkuppe</permission>
     <permission>hudson.model.Hudson.Read:slewis</permission>
     <permission>hudson.model.Hudson.Read:ted</permission>
