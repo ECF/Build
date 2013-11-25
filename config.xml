@@ -77,6 +77,7 @@
     <permission>hudson.model.View.Delete:slewis</permission>
     <permission>hudson.model.View.Delete:ted</permission>
     <permission>hudson.model.View.Delete:wim.jongman</permission>
+    <permission>hudson.model.View.Read:jmohiuddin</permission>
     <permission>hudson.scm.SCM.Tag:mkuppe</permission>
     <permission>hudson.scm.SCM.Tag:slewis</permission>
     <permission>hudson.scm.SCM.Tag:ted</permission>
