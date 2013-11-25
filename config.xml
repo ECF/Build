@@ -46,6 +46,7 @@
     <permission>hudson.model.Item.Delete:ted</permission>
     <permission>hudson.model.Item.Delete:wim.jongman</permission>
     <permission>hudson.model.Item.Read:harshana05</permission>
+    <permission>hudson.model.Item.Read:jmohiuddin</permission>
     <permission>hudson.model.Item.Read:mkuppe</permission>
     <permission>hudson.model.Item.Read:slewis</permission>
     <permission>hudson.model.Item.Read:ted</permission>
