@@ -11,6 +11,12 @@ https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</descri
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Discover:jmohiuddin</permission>
+      <permission>hudson.model.Item.Read:jmohiuddin</permission>
+      <permission>hudson.model.Item.Workspace:jmohiuddin</permission>
+      <permission>hudson.model.Item.Build:jmohiuddin</permission>
+    </hudson.security.AuthorizationMatrixProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
