@@ -1,14 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <user>
   <fullName>Mohammad Jamal Mohiuddin</fullName>
+  <description></description>
   <properties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>QavazROE7YY0qVeg8o9AawD1ddqS6ibjJKM35+FkHoTJYkR7Ol/CogNWb/nN1U40</apiToken>
     </jenkins.security.ApiTokenProperty>
+    <hudson.plugins.greenballs.ColorBlindProperty plugin="greenballs@1.13">
+      <enabledColorBlindSupport>false</enabledColorBlindSupport>
+    </hudson.plugins.greenballs.ColorBlindProperty>
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.9.3">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.5">
+      <emailAddress>mjmohiuddin@cdac.in</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
     <hudson.model.MyViewsProperty>
+      <primaryViewName>jSLP</primaryViewName>
       <views>
         <hudson.model.AllView>
           <owner class="hudson.model.MyViewsProperty" reference="../../.."/>
@@ -26,14 +34,14 @@
         </hudson.model.MyView>
       </views>
     </hudson.model.MyViewsProperty>
-    <hudson.search.UserSearchProperty>
-      <insensitiveSearch>false</insensitiveSearch>
-    </hudson.search.UserSearchProperty>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$0e1Sf/7bGoMJopkA1MkDp.nAOaU3hL05mklSo/1XHV4.PrJDgI/hq</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.5">
-      <emailAddress>mjmohiuddin@cdac.in</emailAddress>
-    </hudson.tasks.Mailer_-UserProperty>
+    <org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
+      <authorizedKeys></authorizedKeys>
+    </org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
+    <hudson.search.UserSearchProperty>
+      <insensitiveSearch>false</insensitiveSearch>
+    </hudson.search.UserSearchProperty>
   </properties>
 </user>
