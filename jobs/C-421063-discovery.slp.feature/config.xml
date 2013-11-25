@@ -2,7 +2,7 @@
 <project>
   <actions/>
   <description>Continuous branch/gerrit change build of SLP feature for bug #421063&#xd;
-https://bugs.eclipse.org/421063</description>
+https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
@@ -62,7 +62,7 @@ https://bugs.eclipse.org/421063</description>
   <builders>
     <hudson.tasks.Shell>
       <command>cd org.eclipse.ecf/
-git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/18618/1 &amp;&amp; git cherry-pick FETCH_HEAD</command>
+git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/18618/2 &amp;&amp; git cherry-pick FETCH_HEAD</command>
     </hudson.tasks.Shell>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
