@@ -76,8 +76,7 @@ git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/1861
     <hudson.tasks.Shell>
       <command># clear the site.p2/ folder because for this stream build we don&apos;t want to keep the artifacts as they might accidentally be picked up downstream consumers
 rm -rf ${WORKSPACE}/site.p2/
-mkdir -p ${WORKSPACE}/site.p2/
-touch ${WORKSPACE}/site.p2/INTENTIONALLY_EMPTY.txt</command>
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
