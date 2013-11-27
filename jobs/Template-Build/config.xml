@@ -5,10 +5,9 @@
 So far we can only include builders, but no actions!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>16527</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map"/>
-    </hudson.plugins.disk__usage.DiskUsageProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -132,7 +131,7 @@ echo &quot;&lt;/feature&gt;&lt;/features&gt;&quot; &gt;&gt; karaf-features.xml</
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/</artifacts>
       <latestOnly>false</latestOnly>
-      <allowEmptyArchive>false</allowEmptyArchive>
+      <allowEmptyArchive>true</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.Mailer plugin="mailer@1.5">
       <recipients></recipients>
