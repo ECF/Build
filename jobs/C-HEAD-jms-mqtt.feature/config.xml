@@ -11,8 +11,11 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.8">
-      <projectUrl>http://github.com/ECF/JMS/</projectUrl>
+      <projectUrl>http://github.com/ECF/Mqtt-Provider/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0">
     <configVersion>2</configVersion>
@@ -20,7 +23,7 @@
       <hudson.plugins.git.UserRemoteConfig>
         <name>origin</name>
         <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
-        <url>git://github.com/ECF/JMS.git</url>
+        <url>git://github.com/ECF/Mqtt-Provider.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -29,7 +32,6 @@
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <extensions>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
@@ -69,15 +71,15 @@
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
-      <localVarText>FEATURE_NAME=org.eclipse.ecf.provider.jms.feature
-MSPEC_NAME=org.eclipse.ecf.jms.mspec
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.provider.jms.mqtt.feature
+MSPEC_NAME=org.eclipse.ecf.provider.jms.mqtt.mspec
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
-TEST_BUNDLE=org.eclipse.ecf.tests.provider.jms.activemq
-LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jms.activemq.launch</localVarText>
+TEST_BUNDLE=org.eclipse.ecf.tests.provider.jms.mqtt
+LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jms.mqtt.launch</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
 </project>
