@@ -68,7 +68,7 @@ https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</descri
   <builders>
     <hudson.tasks.Shell>
       <command>cd org.eclipse.ecf/
-git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/18618/8 &amp;&amp; git cherry-pick FETCH_HEAD</command>
+git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/18618/9 &amp;&amp; git cherry-pick FETCH_HEAD</command>
     </hudson.tasks.Shell>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
