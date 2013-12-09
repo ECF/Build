@@ -73,6 +73,34 @@ git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/1861
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
+      <installationName>Buckminster 3.6</installationName>
+      <commands>junit --launch ${TEST_BUNDLE}/LAUNCH_CONFIG_V6 -o &apos;${WORKSPACE}/junit_result_ipv6.xml&apos; --flatXML
+
+</commands>
+      <logLevel>debug</logLevel>
+      <params>-Decf.p2.repository=${ECF_P2_REPOSITORY}
+-Dsite.include.top=${SITE_INCLUDE_TOP}
+-Dsite.signing=${SITE_SIGNING}
+-Dsite.pack200=true
+-Dstaging.area=/home/data/httpd/download-staging.priv/rt/ecf
+-Dsigning.type=eclipse.remote
+-Declipse.committer.name=mkuppe
+-Declipse.committer.keyfile=/usr/share/tomcat5/.ssh/id_rsa
+-Dqualifier.replacement.*=generator:buildTimestamp
+-Dgenerator.buildTimestamp.format=&apos;v&apos;yyyyMMdd-HHmm
+-DtargetPlatformPath=${WORKSPACE}/targetPlatformPath
+-DprojectsPath=${WORKSPACE}/projects
+-Dosgi.console.enable.builtin=true
+</params>
+      <targetPlatformName>None</targetPlatformName>
+      <userTemp></userTemp>
+      <userOutput></userOutput>
+      <userCommand></userCommand>
+      <userWorkspace></userWorkspace>
+      <globalPropertiesFile></globalPropertiesFile>
+      <equinoxLauncherArgs></equinoxLauncherArgs>
+    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
     <hudson.tasks.Shell>
       <command># clear the site.p2/ folder because for this stream build we don&apos;t want to keep the artifacts as they might accidentally be picked up downstream consumers
 rm -rf ${WORKSPACE}/site.p2/
@@ -101,7 +129,8 @@ SITE_SIGNING=false
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
 TEST_BUNDLE=org.eclipse.ecf.tests.provider.jslp
-LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jslp.launch</localVarText>
+LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jslp.launch
+LAUNCH_CONFIG_V6=org.eclipse.ecf.tests.provider.jslp.ipv6.launch</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
 </project>
