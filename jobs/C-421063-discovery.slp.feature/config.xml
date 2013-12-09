@@ -75,7 +75,7 @@ git fetch git://git.eclipse.org/gitroot/ecf/org.eclipse.ecf refs/changes/18/1861
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
       <installationName>Buckminster 3.6</installationName>
-      <commands>junit --launch ${TEST_BUNDLE}/LAUNCH_CONFIG_V6 -o &apos;${WORKSPACE}/junit_result_ipv6.xml&apos; --flatXML
+      <commands>junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG_V6} -o &apos;${WORKSPACE}/junit_result_ipv6.xml&apos; --flatXML
 
 </commands>
       <logLevel>debug</logLevel>
