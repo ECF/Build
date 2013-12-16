@@ -4,7 +4,9 @@
   <description>Template project for a continuous build. Referenced by concrete builds.&#xd;
 So far we can only include builders, but no actions!</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
