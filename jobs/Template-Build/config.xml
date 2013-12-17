@@ -126,6 +126,12 @@ done
 
 echo &quot;&lt;/feature&gt;&lt;/features&gt;&quot; &gt;&gt; karaf-features.xml</command>
     </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command># https://bugs.eclipse.org/424251 
+cd site.p2/
+
+java -jar ${HUDSON_HOME}/tools/org.osgi.impl.bundle.repoindex.cli-0.0.5.jar plugins/*.jar</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
@@ -133,7 +139,7 @@ echo &quot;&lt;/feature&gt;&lt;/features&gt;&quot; &gt;&gt; karaf-features.xml</
       <latestOnly>false</latestOnly>
       <allowEmptyArchive>true</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.5">
+    <hudson.tasks.Mailer plugin="mailer@1.6">
       <recipients></recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>
