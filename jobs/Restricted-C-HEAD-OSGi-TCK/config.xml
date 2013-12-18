@@ -42,6 +42,7 @@ You have to sign an NDA before you are allowed access!</description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
               <string>C-HEAD-sdk.feature</string>
+              <string>C-RFC1.1-sdk.feature</string>
               <string>N-HEAD-sdk.feature</string>
               <string>R-HEAD-sdk.feature</string>
             </a>
