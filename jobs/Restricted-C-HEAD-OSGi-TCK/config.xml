@@ -13,27 +13,42 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Workspace:slewis</permission>
-      <permission>hudson.model.Item.Workspace:mkuppe</permission>
-      <permission>hudson.model.Item.Delete:slewis</permission>
-      <permission>hudson.model.Item.Delete:mkuppe</permission>
+      <permission>hudson.model.Run.Delete:slewis</permission>
+      <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Build:slewis</permission>
+      <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Item.Discover:slewis</permission>
+      <permission>hudson.model.Item.Discover:mkuppe</permission>
       <permission>hudson.scm.SCM.Tag:slewis</permission>
       <permission>hudson.scm.SCM.Tag:mkuppe</permission>
       <permission>hudson.model.Item.Cancel:slewis</permission>
       <permission>hudson.model.Item.Cancel:mkuppe</permission>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
       <permission>hudson.model.Run.Update:slewis</permission>
       <permission>hudson.model.Run.Update:mkuppe</permission>
-      <permission>hudson.model.Run.Delete:slewis</permission>
-      <permission>hudson.model.Run.Delete:mkuppe</permission>
-      <permission>hudson.model.Item.Discover:slewis</permission>
-      <permission>hudson.model.Item.Discover:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
       <permission>hudson.model.Item.Read:slewis</permission>
       <permission>hudson.model.Item.Read:mkuppe</permission>
-      <permission>hudson.model.Item.Build:slewis</permission>
-      <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>UPSTREAM_BUILD</name>
+          <description>Input for the CT tests</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>C-HEAD-sdk.feature</string>
+              <string>N-HEAD-sdk.feature</string>
+              <string>R-HEAD-sdk.feature</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -199,7 +214,7 @@ test -e generated &amp;&amp; rm -rf generated/
 echo &quot;=============================&quot;
 echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
 echo &quot;=============================&quot;
-${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,http://download.ecf-project.org/repo -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group
 
 echo &quot;=============================&quot;
 echo &quot;HACK compatiblity bundle to be installed &quot;
@@ -299,7 +314,7 @@ mv reports/ reports.remoteservices/
       <keepLongStdio>true</keepLongStdio>
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.5">
+    <hudson.tasks.Mailer plugin="mailer@1.6">
       <recipients>bugs.eclipse.org@lemmster.de slewis@composent.com</recipients>
       <dontNotifyEveryUnstableBuild>true</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -322,9 +337,7 @@ mv reports/ reports.remoteservices/
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
-      <localVarText>FEATURE_NAME=org.eclipse.ecf.osgi.services.tck.feature
-MSPEC_NAME=org.eclipse.ecf.osgi.services.tck.mspec
-ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
+      <localVarText>ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/${UPSTREAM_BUILD}/lastSuccessful/archive/site.p2/
 TCK_HOME=/home/mkuppe/osgi.tck/r5
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
