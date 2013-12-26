@@ -27,6 +27,7 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0">
     <configVersion>2</configVersion>
