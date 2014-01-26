@@ -176,6 +176,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
+      <recurse>false</recurse>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -202,6 +203,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
+      <recurse>false</recurse>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -228,6 +230,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
+      <recurse>false</recurse>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -251,6 +254,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
+      <recurse>false</recurse>
     </listView>
   </views>
   <primaryView>All</primaryView>
