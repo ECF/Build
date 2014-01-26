@@ -24,9 +24,10 @@
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.1">
     <configVersion>2</configVersion>
