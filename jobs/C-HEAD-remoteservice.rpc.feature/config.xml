@@ -11,13 +11,14 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Workspace:psamolisov</permission>
-      <permission>hudson.model.Item.Read:psamolisov</permission>
       <permission>hudson.model.Run.Update:psamolisov</permission>
+      <permission>hudson.model.Item.Read:psamolisov</permission>
+      <permission>hudson.model.Item.Configure:psamolisov</permission>
       <permission>hudson.model.Item.Build:psamolisov</permission>
       <permission>hudson.model.Run.Delete:psamolisov</permission>
-      <permission>hudson.model.Item.Configure:psamolisov</permission>
+      <permission>hudson.model.Item.Workspace:psamolisov</permission>
     </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.1">
     <configVersion>2</configVersion>
