@@ -19,7 +19,7 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.14">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.15">
       <activeProcessNames>
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
@@ -27,6 +27,7 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.1">
     <configVersion>2</configVersion>
