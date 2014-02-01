@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Continuous HEAD build of discovery feature</description>
+  <description>Continuous HEAD build of core feature</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
@@ -9,7 +9,11 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -25,12 +29,11 @@
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <extensions>
       <hudson.plugins.git.extensions.impl.PathRestriction>
         <includedRegions></includedRegions>
-        <excludedRegions>(?:(?!discovery.feature|provider.discovery|tests.discovery|bundles/org.eclipse.ecf.discovery).)+</excludedRegions>
+        <excludedRegions>(?:(?!core|bundles/org.eclipse.ecf.core).)+</excludedRegions>
       </hudson.plugins.git.extensions.impl.PathRestriction>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
@@ -49,7 +52,7 @@
     </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
       <spec># every 15 minutes
-*/15 * * * *
+H/15 * * * *
 </spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
@@ -83,15 +86,15 @@
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
-      <localVarText>FEATURE_NAME=org.eclipse.ecf.discovery.feature
-MSPEC_NAME=org.eclipse.ecf.discovery.mspec
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.core.feature
+MSPEC_NAME=org.eclipse.ecf.core.mspec
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
-TEST_BUNDLE=org.eclipse.ecf.tests.provider.discovery
-LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.discovery.launch</localVarText>
+TEST_BUNDLE=org.eclipse.ecf.tests
+LAUNCH_CONFIG=org.eclipse.ecf.tests.launch</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
 </project>
