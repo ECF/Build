@@ -27,6 +27,7 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.1">
     <configVersion>2</configVersion>
@@ -155,7 +156,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
     </hudson.plugins.twitter.TwitterPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.19">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.20">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
