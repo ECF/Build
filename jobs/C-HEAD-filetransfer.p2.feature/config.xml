@@ -65,7 +65,7 @@
   </builders>
   <publishers>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
-      <projectName>Template-BuildAndTest</projectName>
+      <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
