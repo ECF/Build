@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Continuous HEAD build of httpclient4 filetransfer feature</description>
+  <description>Continuous HEAD build of filetransfer p2 feature</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
@@ -9,7 +9,11 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -25,7 +29,6 @@
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <extensions>
       <hudson.plugins.git.extensions.impl.PathRestriction>
@@ -74,15 +77,13 @@
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
-      <localVarText>FEATURE_NAME=org.eclipse.ecf.filetransfer.httpclient4.feature
-MSPEC_NAME=org.eclipse.ecf.filetransfer.httpclient4.mspec
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.filetransfer.p2.feature
+MSPEC_NAME=org.eclipse.ecf.filetransfer.p2.mspec
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
-TEST_BUNDLE=org.eclipse.ecf.tests.filetransfer
-LAUNCH_CONFIG=org.eclipse.ecf.tests.filetransfer.httpclient4.launch
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
