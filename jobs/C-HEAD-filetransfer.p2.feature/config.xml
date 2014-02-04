@@ -81,7 +81,7 @@
 MSPEC_NAME=org.eclipse.ecf.filetransfer.p2.mspec
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
-SITE_SIGNING=false
+SITE_SIGNING=true
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
 </localVarText>
