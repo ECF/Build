@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Continuous HEAD build of core feature</description>
+  <description>Continuous HEAD build of sharedobject feature</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
@@ -60,21 +60,12 @@ H/15 * * * *
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
-      <projectName>Template-BuildAndTest</projectName>
+      <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
   <publishers>
-    <hudson.tasks.BuildTrigger>
-      <childProjects>C-HEAD-discovery.local.feature, C-HEAD-discovery.jmdns.feature, C-HEAD-discovery.slp.feature, C-HEAD-discovery.zookeeper.feature, C-HEAD-discovery.dnssd.feature</childProjects>
-      <threshold>
-        <name>SUCCESS</name>
-        <ordinal>0</ordinal>
-        <color>BLUE</color>
-        <completeBuild>true</completeBuild>
-      </threshold>
-    </hudson.tasks.BuildTrigger>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
-      <projectName>Template-BuildAndTest</projectName>
+      <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
@@ -93,8 +84,7 @@ SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
-TEST_BUNDLE=org.eclipse.ecf.tests
-LAUNCH_CONFIG=org.eclipse.ecf.tests.launch</localVarText>
+</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
 </project>
