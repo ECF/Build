@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Continuous HEAD build of JMS feature</description>
+  <description>Continuous HEAD build of JMS MQTT feature</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
