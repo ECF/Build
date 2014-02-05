@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Continuous HEAD build of sharedobject feature</description>
+  <description>Continuous HEAD build of generic provider feature</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
@@ -77,8 +77,8 @@ H/15 * * * *
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
-      <localVarText>FEATURE_NAME=org.eclipse.ecf.sharedobject.feature
-MSPEC_NAME=org.eclipse.ecf.sharedobject.mspec
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.provider.generic.feature
+MSPEC_NAME=org.eclipse.ecf.provider.generic.mspec
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
