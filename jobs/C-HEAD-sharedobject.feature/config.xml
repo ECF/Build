@@ -77,8 +77,8 @@ H/15 * * * *
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
-      <localVarText>FEATURE_NAME=org.eclipse.ecf.core.feature
-MSPEC_NAME=org.eclipse.ecf.core.mspec
+      <localVarText>FEATURE_NAME=org.eclipse.ecf.sharedobject.feature
+MSPEC_NAME=org.eclipse.ecf.sharedobject.mspec
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
