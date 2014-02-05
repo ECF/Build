@@ -78,7 +78,8 @@ SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
-</localVarText>
+TEST_BUNDLE=org.eclipse.ecf.tests.provider.jms.mqtt
+LAUNCH_CONFIG=org.eclipse.ecf.tests.provider.jms.mqtt.launch</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
 </project>
