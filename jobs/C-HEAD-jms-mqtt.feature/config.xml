@@ -54,12 +54,12 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
-      <projectName>Template-Build</projectName>
+      <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
   <publishers>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
-      <projectName>Template-Build</projectName>
+      <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
