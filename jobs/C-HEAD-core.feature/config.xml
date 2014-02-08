@@ -93,8 +93,8 @@ SITE_INCLUDE_TOP=true
 SITE_SIGNING=false
 SITE_PACK200=true
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
-TEST_BUNDLE=org.eclipse.ecf.tests
-LAUNCH_CONFIG=org.eclipse.ecf.tests.launch</localVarText>
+TEST_BUNDLE=org.eclipse.ecf.tests.core
+LAUNCH_CONFIG=org.eclipse.ecf.tests.core.launch</localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
 </project>
