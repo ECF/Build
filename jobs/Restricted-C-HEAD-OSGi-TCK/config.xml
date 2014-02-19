@@ -13,26 +13,26 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
       <permission>hudson.model.Run.Delete:slewis</permission>
       <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
       <permission>hudson.model.Item.Build:slewis</permission>
       <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Item.Cancel:slewis</permission>
+      <permission>hudson.model.Item.Cancel:mkuppe</permission>
       <permission>hudson.model.Item.Discover:slewis</permission>
       <permission>hudson.model.Item.Discover:mkuppe</permission>
       <permission>hudson.scm.SCM.Tag:slewis</permission>
       <permission>hudson.scm.SCM.Tag:mkuppe</permission>
-      <permission>hudson.model.Item.Cancel:slewis</permission>
-      <permission>hudson.model.Item.Cancel:mkuppe</permission>
-      <permission>hudson.model.Item.Workspace:slewis</permission>
-      <permission>hudson.model.Item.Workspace:mkuppe</permission>
       <permission>hudson.model.Run.Update:slewis</permission>
       <permission>hudson.model.Run.Update:mkuppe</permission>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
       <permission>hudson.model.Item.Read:slewis</permission>
       <permission>hudson.model.Item.Read:mkuppe</permission>
-      <permission>hudson.model.Item.Delete:slewis</permission>
-      <permission>hudson.model.Item.Delete:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
@@ -51,7 +51,7 @@ You have to sign an NDA before you are allowed access!</description>
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
@@ -216,7 +216,7 @@ test -e generated &amp;&amp; rm -rf generated/
 echo &quot;=============================&quot;
 echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
 echo &quot;=============================&quot;
-${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.core.feature.feature.group,org.eclipse.ecf.remoteservice.feature.feature.group,org.eclipse.ecf.discovery.feature.feature.group,org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group,org.eclipse.ecf.provider.generic.feature.feature.group,org.eclipse.ecf.provider.generic.remoteservice.feature.feature.group
 
 echo &quot;=============================&quot;
 echo &quot;HACK compatiblity bundle to be installed &quot;
@@ -316,7 +316,7 @@ mv reports/ reports.remoteservices/
       <keepLongStdio>true</keepLongStdio>
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.6">
+    <hudson.tasks.Mailer plugin="mailer@1.8">
       <recipients>bugs.eclipse.org@lemmster.de slewis@composent.com</recipients>
       <dontNotifyEveryUnstableBuild>true</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -326,7 +326,7 @@ mv reports/ reports.remoteservices/
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.19">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.20">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
