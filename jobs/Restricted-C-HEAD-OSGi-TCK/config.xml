@@ -216,7 +216,7 @@ test -e generated &amp;&amp; rm -rf generated/
 echo &quot;=============================&quot;
 echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
 echo &quot;=============================&quot;
-${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.core.feature.feature.group,org.eclipse.ecf.remoteservice.feature.feature.group,org.eclipse.ecf.discovery.feature.feature.group,org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group,org.eclipse.ecf.provider.generic.feature.feature.group,org.eclipse.ecf.provider.generic.remoteservice.feature.feature.group
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.core.feature.feature.group,org.eclipse.ecf.sharedobject.feature.feature.group,org.eclipse.ecf.remoteservice.feature.feature.group,org.eclipse.ecf.discovery.feature.feature.group,org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group,org.eclipse.ecf.provider.generic.feature.feature.group,org.eclipse.ecf.provider.generic.remoteservice.feature.feature.group
 
 echo &quot;=============================&quot;
 echo &quot;HACK compatiblity bundle to be installed &quot;
