@@ -4,7 +4,11 @@
   <description>Template project for a continuous build. Referenced by concrete builds.&#xd;
 So far we can only include builders, but no actions!</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
@@ -18,7 +22,7 @@ So far we can only include builders, but no actions!</description>
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 3.6</installationName>
+      <installationName>Buckminster 4.2</installationName>
       <commands>bglaunch --launch ${TEST_BUNDLE}/${SUPPORT_LAUNCH_CONFIG} --ignoremissing
 junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_result.xml&apos; --flatXML
 
