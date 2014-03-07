@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Continuous HEAD build of ECF Remote Service SDK (continuous)</description>
+  <description>Continuous HEAD build of ECF Remote Service SDK Examples (continuous)</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>30</daysToKeep>
     <numToKeep>1</numToKeep>
@@ -119,8 +119,8 @@
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
 SITE_PACK200=true
-FEATURE_NAME=org.eclipse.ecf.remoteservice.sdk
-MSPEC_NAME=org.eclipse.ecf.remoteservice.sdk.mspec
+FEATURE_NAME=org.eclipse.ecf.remoteservice.sdk.examples
+MSPEC_NAME=org.eclipse.ecf.remoteservice.sdk.examples.mspec
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
