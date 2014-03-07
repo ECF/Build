@@ -84,8 +84,8 @@
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
 SITE_PACK200=true
-FEATURE_NAME=org.eclipse.ecf.remoteservice.sdk
-MSPEC_NAME=org.eclipse.ecf.remoteservice.sdk.mspec
+FEATURE_NAME=org.eclipse.ecf.remoteservice.sdk.feature
+MSPEC_NAME=org.eclipse.ecf.remoteservice.sdk.feature.mspec
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
