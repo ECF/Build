@@ -53,29 +53,8 @@
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
-    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 3.6</installationName>
-      <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc
-</commands>
-      <logLevel>info</logLevel>
-      <params></params>
-      <targetPlatformName>None</targetPlatformName>
-      <userTemp></userTemp>
-      <userOutput></userOutput>
-      <userCommand></userCommand>
-      <userWorkspace></userWorkspace>
-      <globalPropertiesFile></globalPropertiesFile>
-      <equinoxLauncherArgs></equinoxLauncherArgs>
-    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
-    <hudson.tasks.Shell>
-      <command>for i in $(find ${WORKSPACE} \( -type d -name &apos;javadoc&apos; \) -o \( -type f -name &apos;toc.htm*&apos; \) | sed -e &apos;s/toc\.^Cm.//&apos; | sort -u); do /opt/hudson/tools/hudson.model.JDK/Java1.7_update_25_x86-64/bin/java -jar /opt/hudson/tools/JavadocUpdaterTool-1_2_2013/JavadocUpdaterTool.jar -R $i; done</command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.JavadocArchiver plugin="javadoc@1.1">
-      <javadocDir>javadoc</javadocDir>
-      <keepAll>false</keepAll>
-    </hudson.tasks.JavadocArchiver>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/</artifacts>
       <latestOnly>false</latestOnly>
@@ -91,20 +70,6 @@
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.22">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>UPSTREAM_BUILD=${JOB_NAME}</properties>
-            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-          </configs>
-          <projects>L-HEAD-sdk.tests.feature</projects>
-          <condition>UNSTABLE_OR_BETTER</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
     <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
