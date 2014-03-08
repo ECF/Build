@@ -15,7 +15,7 @@
         <hudson.model.StringParameterDefinition>
           <name>TARGET_VERSION</name>
           <description>The ECF version to be build</description>
-          <defaultValue>3.7.1</defaultValue>
+          <defaultValue>3.8.0</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
