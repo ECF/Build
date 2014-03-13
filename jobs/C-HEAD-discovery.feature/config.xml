@@ -9,8 +9,10 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.3">
+  <properties>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.4">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -56,7 +58,7 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4">
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4.1">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
@@ -70,7 +72,7 @@
         <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
-    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4">
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.1">
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
