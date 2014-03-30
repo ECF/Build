@@ -11,13 +11,14 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Run.Delete:psamolisov</permission>
-      <permission>hudson.model.Item.Build:psamolisov</permission>
-      <permission>hudson.model.Item.Configure:psamolisov</permission>
-      <permission>hudson.model.Run.Update:psamolisov</permission>
-      <permission>hudson.model.Item.Workspace:psamolisov</permission>
       <permission>hudson.model.Item.Read:psamolisov</permission>
+      <permission>hudson.model.Run.Update:psamolisov</permission>
+      <permission>hudson.model.Item.Configure:psamolisov</permission>
+      <permission>hudson.model.Item.Build:psamolisov</permission>
+      <permission>hudson.model.Item.Workspace:psamolisov</permission>
+      <permission>hudson.model.Run.Delete:psamolisov</permission>
     </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.4">
     <configVersion>2</configVersion>
@@ -75,12 +76,15 @@
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>30</timeoutMinutes>
       </strategy>
-      <failBuild>false</failBuild>
-      <writingDescription>false</writingDescription>
+      <operationList class="java.util.Arrays$ArrayList">
+        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
+          <hudson.plugins.build__timeout.operations.AbortOperation/>
+        </a>
+      </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.remoteservice.rpc.feature
