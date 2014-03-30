@@ -9,7 +9,9 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>true</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
+  </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.11">
     <flatten>false</flatten>
     <repositories>
@@ -166,12 +168,15 @@ MSPEC_NAME=org.eclipse.ecf.sdk.mspec
 ECF_P2_REPOSITORY=
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>90</timeoutMinutes>
       </strategy>
-      <failBuild>false</failBuild>
-      <writingDescription>false</writingDescription>
+      <operationList class="java.util.Arrays$ArrayList">
+        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
+          <hudson.plugins.build__timeout.operations.AbortOperation/>
+        </a>
+      </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
   </buildWrappers>
 </project>
