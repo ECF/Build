@@ -13,6 +13,7 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.4">
     <configVersion>2</configVersion>
@@ -69,12 +70,15 @@
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>45</timeoutMinutes>
       </strategy>
-      <failBuild>false</failBuild>
-      <writingDescription>false</writingDescription>
+      <operationList class="java.util.Arrays$ArrayList">
+        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
+          <hudson.plugins.build__timeout.operations.AbortOperation/>
+        </a>
+      </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.filetransfer.p2.feature
