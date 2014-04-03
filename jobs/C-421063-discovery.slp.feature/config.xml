@@ -20,7 +20,6 @@ https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</descri
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
-    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.1.0">
     <configVersion>2</configVersion>
