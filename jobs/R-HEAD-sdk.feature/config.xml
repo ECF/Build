@@ -27,8 +27,9 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.0.4">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.1.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -116,7 +117,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       <targets></targets>
       <recordBuildArtifacts>true</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.git.GitPublisher plugin="git@2.0.4">
+    <hudson.plugins.git.GitPublisher plugin="git@2.1.0">
       <configVersion>2</configVersion>
       <pushMerge>false</pushMerge>
       <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
