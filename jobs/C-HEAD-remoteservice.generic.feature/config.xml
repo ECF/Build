@@ -33,7 +33,7 @@
     <extensions>
       <hudson.plugins.git.extensions.impl.PathRestriction>
         <includedRegions></includedRegions>
-        <excludedRegions>(?:(?!provider.remoteservice|bundles/org.eclispe.ecf.remoteservice|remoteservice.feature|tests.remoteservice).)+</excludedRegions>
+        <excludedRegions>(?:(?!provider.generic.remoteservice|bundles/org.eclispe.ecf.remoteservice|remoteservice.feature|tests.remoteservice).)+</excludedRegions>
       </hudson.plugins.git.extensions.impl.PathRestriction>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
@@ -82,10 +82,8 @@
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>120</timeoutMinutes>
       </strategy>
-      <operationList class="java.util.Arrays$ArrayList">
-        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
-          <hudson.plugins.build__timeout.operations.AbortOperation/>
-        </a>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.AbortOperation/>
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
