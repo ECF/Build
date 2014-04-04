@@ -33,7 +33,7 @@
     <extensions>
       <hudson.plugins.git.extensions.impl.PathRestriction>
         <includedRegions></includedRegions>
-        <excludedRegions>(?:(?!core|bundles/org.eclipse.ecf.core).)+</excludedRegions>
+        <excludedRegions>(?:(?!core|bundles/org.eclipse.ecf.core|org.eclipse.ecf.provider.generic).)+</excludedRegions>
       </hudson.plugins.git.extensions.impl.PathRestriction>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
@@ -73,10 +73,8 @@ H/15 * * * *
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>45</timeoutMinutes>
       </strategy>
-      <operationList class="java.util.Arrays$ArrayList">
-        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
-          <hudson.plugins.build__timeout.operations.AbortOperation/>
-        </a>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.AbortOperation/>
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
