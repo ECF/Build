@@ -37,6 +37,10 @@
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
       </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+      <hudson.plugins.git.extensions.impl.PathRestriction>
+        <includedRegions></includedRegions>
+        <excludedRegions>(?:(?!jms.mqtt).)+</excludedRegions>
+      </hudson.plugins.git.extensions.impl.PathRestriction>
     </extensions>
   </scm>
   <quietPeriod>5</quietPeriod>
@@ -50,6 +54,11 @@
     <hudson.triggers.TimerTrigger>
       <spec>@weekly</spec>
     </hudson.triggers.TimerTrigger>
+    <hudson.triggers.SCMTrigger>
+      <spec># every 15 minutes
+*/5 * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
@@ -67,10 +76,8 @@
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>30</timeoutMinutes>
       </strategy>
-      <operationList class="java.util.Arrays$ArrayList">
-        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
-          <hudson.plugins.build__timeout.operations.AbortOperation/>
-        </a>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.AbortOperation/>
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
