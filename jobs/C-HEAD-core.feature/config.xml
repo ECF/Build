@@ -64,8 +64,11 @@ H/15 * * * *
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
   <publishers>
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.1">
+      <projectName>Template-BuildAndTest</projectName>
+    </hudson.plugins.templateproject.ProxyPublisher>
     <hudson.tasks.BuildTrigger>
-      <childProjects>C-HEAD-discovery.local.feature, C-HEAD-discovery.jmdns.feature, C-HEAD-discovery.slp.feature, C-HEAD-discovery.zookeeper.feature, C-HEAD-discovery.dnssd.feature</childProjects>
+      <childProjects>C-HEAD-discovery.jmdns.feature, C-HEAD-discovery.slp.feature, C-HEAD-discovery.zookeeper.feature, C-HEAD-discovery.dnssd.feature, C-HEAD-filetransfer.feature</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -73,9 +76,6 @@ H/15 * * * *
         <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
-    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.1">
-      <projectName>Template-BuildAndTest</projectName>
-    </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
     <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
