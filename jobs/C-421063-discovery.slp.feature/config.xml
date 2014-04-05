@@ -40,7 +40,7 @@ https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</descri
     <extensions>
       <hudson.plugins.git.extensions.impl.PathRestriction>
         <includedRegions></includedRegions>
-        <excludedRegions>(?:(?!slp).)+</excludedRegions>
+        <excludedRegions></excludedRegions>
       </hudson.plugins.git.extensions.impl.PathRestriction>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
@@ -117,10 +117,8 @@ rm -rf ${WORKSPACE}/site.p2/
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>15</timeoutMinutes>
       </strategy>
-      <operationList class="java.util.Arrays$ArrayList">
-        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
-          <hudson.plugins.build__timeout.operations.AbortOperation/>
-        </a>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.AbortOperation/>
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
