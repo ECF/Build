@@ -40,7 +40,7 @@ https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</descri
     <extensions>
       <hudson.plugins.git.extensions.impl.PathRestriction>
         <includedRegions></includedRegions>
-        <excludedRegions></excludedRegions>
+        <excludedRegions>(?:(?!slp).)+</excludedRegions>
       </hudson.plugins.git.extensions.impl.PathRestriction>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
