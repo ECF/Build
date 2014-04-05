@@ -37,10 +37,6 @@
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
       </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
-      <hudson.plugins.git.extensions.impl.PathRestriction>
-        <includedRegions></includedRegions>
-        <excludedRegions>(?:(?!jms.mqtt).)+</excludedRegions>
-      </hudson.plugins.git.extensions.impl.PathRestriction>
     </extensions>
   </scm>
   <quietPeriod>5</quietPeriod>
@@ -55,8 +51,8 @@
       <spec>@weekly</spec>
     </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
-      <spec># every 15 minutes
-*/5 * * * *</spec>
+      <spec>#w every 15 minutes
+*/15 * * * *</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
