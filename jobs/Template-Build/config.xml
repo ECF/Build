@@ -57,7 +57,7 @@ git config user.name &quot;Markus Alexander Kuppe&quot;
 echo -n &apos;Done, ready to fire off Bucky\n===================\n&apos;</command>
     </hudson.tasks.Shell>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 3.6</installationName>
+      <installationName>Buckminster 4.3</installationName>
       <commands>installJRE --location ${HUDSON_HOME}/tools/Java1.4.2_update_18_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.5_update_22_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.6_update_20_x86-64/jre
