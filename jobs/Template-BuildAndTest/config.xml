@@ -22,7 +22,7 @@ So far we can only include builders, but no actions!</description>
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 3.6</installationName>
+      <installationName>Buckminster 4.3</installationName>
       <commands>bglaunch --launch ${TEST_BUNDLE}/${SUPPORT_LAUNCH_CONFIG} --ignoremissing
 junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_result.xml&apos; --flatXML
 
