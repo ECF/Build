@@ -5,10 +5,9 @@
 So far we can only include builders, but no actions!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>15667</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map"/>
-    </hudson.plugins.disk__usage.DiskUsageProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -58,10 +57,11 @@ git config user.name &quot;Markus Alexander Kuppe&quot;
 echo -n &apos;Done, ready to fire off Bucky\n===================\n&apos;</command>
     </hudson.tasks.Shell>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 3.6</installationName>
+      <installationName>Buckminster 4.3</installationName>
       <commands>installJRE --location ${HUDSON_HOME}/tools/Java1.4.2_update_18_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.5_update_22_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.6_update_20_x86-64/jre
+installJRE --location ${HUDSON_HOME}/tools/jdk1.8.0/jre
 setpref org.eclipse.buckminster.pde.targetPlatformPath=${WORKSPACE}/targetPlatformPath
 import ${WORKSPACE}/${MSPEC_NAME}
 importtargetdefinition http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/plain/releng/org.eclipse.ecf.releng.bm/ECF3-5Baseline.target
@@ -105,7 +105,7 @@ perform -Q -Dtarget.os=win32 -Dtarget.ws=win32 -Dtarget.arch=x86 ${PRODUCT_FEATU
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.35">
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.40">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
@@ -114,7 +114,7 @@ perform -Q -Dtarget.os=win32 -Dtarget.ws=win32 -Dtarget.arch=x86 ${PRODUCT_FEATU
       <canRunOnFailed>false</canRunOnFailed>
       <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.54">
+      <thresholds plugin="analysis-core@1.56">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -143,7 +143,7 @@ perform -Q -Dtarget.os=win32 -Dtarget.ws=win32 -Dtarget.arch=x86 ${PRODUCT_FEATU
       <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.5">
+    <hudson.tasks.Mailer plugin="mailer@1.8">
       <recipients>ecf-build@eclipse.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
