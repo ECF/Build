@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.plugins.xvnc.Xvnc_-DescriptorImpl plugin="xvnc@1.14">
+<hudson.plugins.xvnc.Xvnc_-DescriptorImpl plugin="xvnc@1.17">
   <xvnc></xvnc>
   <minDisplayNumber>10</minDisplayNumber>
   <maxDisplayNumber>99</maxDisplayNumber>

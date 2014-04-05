@@ -4,7 +4,7 @@
     <string>hudson.diagnosis.TooManyJobsButNoView</string>
     <string>jenkins.security.RekeySecretAdminMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>1.509.4</version>
+  <version>1.532.2</version>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -131,6 +131,10 @@
               <id>jdk-7u25-oth-JPR</id>
               <acceptLicense>true</acceptLicense>
             </hudson.tools.JDKInstaller>
+            <hudson.tools.JDKInstaller>
+              <id>jdk-8-oth-JPR</id>
+              <acceptLicense>true</acceptLicense>
+            </hudson.tools.JDKInstaller>
           </installers>
         </hudson.tools.InstallSourceProperty>
       </properties>
@@ -138,6 +142,11 @@
     <jdk>
       <name>JavaSE-1.6 (OS installation)</name>
       <home>/opt/sun-jdk-1.6.0.35</home>
+      <properties/>
+    </jdk>
+    <jdk>
+      <name>Java8  (OS installation)</name>
+      <home>/opt/hudson/tools/jdk1.8.0</home>
       <properties/>
     </jdk>
   </jdks>
