@@ -61,7 +61,7 @@ echo -n &apos;Done, ready to fire off Bucky\n===================\n&apos;</comman
       <commands>installJRE --location ${HUDSON_HOME}/tools/Java1.4.2_update_18_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.5_update_22_x86-64/jre
 installJRE --location ${HUDSON_HOME}/tools/Java1.6_update_20_x86-64/jre
-installJRE --location ${HUDSON_HOME}/tools/tools/jdk1.8.0/jre
+installJRE --location ${HUDSON_HOME}/tools/jdk1.8.0/jre
 setpref org.eclipse.buckminster.pde.targetPlatformPath=${WORKSPACE}/targetPlatformPath
 import ${WORKSPACE}/${MSPEC_NAME}
 importtargetdefinition http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/plain/releng/org.eclipse.ecf.releng.bm/ECF3-6Baseline.target
