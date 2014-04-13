@@ -52,7 +52,7 @@
     </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
       <spec># every 15 minutes
-*/5 * * * *
+*/15 * * * *
 </spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
