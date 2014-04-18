@@ -128,8 +128,7 @@ echo &apos;-runbundles = \&apos;
 for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
 do
     ## skip this single bundle in runbundles
-    if [[ (!($f == jar/plugins/org.eclipse.ecf.osgi.services.distribution_*)) || ($2 == remoteservices) ]] \
-         &amp;&amp; [[ (!($f == jar/plugins/org.eclipse.ecf.remoteservice.asyncproxy_2*)) ]]; then
+    if [[ (!($f == jar/plugins/org.eclipse.ecf.osgi.services.distribution_*)) || ($2 == remoteservices) &amp;&amp; (!($f == jar/plugins/org.eclipse.ecf.remoteservice.asyncproxy_2*)) ]]; then
 	echo $f&quot;;version=file, \\&quot;
     fi
 done
