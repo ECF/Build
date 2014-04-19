@@ -169,7 +169,7 @@ echo &apos;-runproperties = \
     zoodiscovery.autoStart=true, \
     zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \
     org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.requireServiceExportedConfigs=true, \
-    org.eclipse.ecf.osgi.services.remoteserviceadmin.HostContainerSelector.reuseExistingContainers=false&apos;
+    org.eclipse.ecf.osgi.services.remoteserviceadmin.HostContainerSelector.reuseExistingContainers=false, \&apos;
 
 
 if [[ $2 == remoteserviceadmin.secure ]]; then
