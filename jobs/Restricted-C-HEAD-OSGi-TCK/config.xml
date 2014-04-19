@@ -151,7 +151,7 @@ echo &apos;-runproperties = \
     service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
     service.exported.intents.extra=&quot;passByValue&quot;, \
     service.exported.configs=&quot;$ECF_DISTRIBUTION_PROVIDER&quot;, \
-    ecf.generic.server.port=&quot;@@FREE_PORT@@&quot;, \
+    ecf.generic.server.port=&quot;-1&quot;, \
     ecf.generic.client.keepalive=&quot;30001&quot;, \
     net.mdns.port=65354, \
     net.mdns.interface=127.0.0.1, \
@@ -167,7 +167,9 @@ echo &apos;-runproperties = \
     net.slp.multicastMaximumWait=2000, \
     net.slp.interface=127.0.0.1, \
     zoodiscovery.autoStart=true, \
-    zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \&apos;
+    zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \
+    org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.requireServiceExportedConfigs=true, \
+    org.eclipse.ecf.osgi.services.remoteserviceadmin.HostContainerSelector.reuseExistingContainers=false&apos;
 
 
 if [[ $2 == remoteserviceadmin.secure ]]; then
