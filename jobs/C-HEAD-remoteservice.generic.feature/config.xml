@@ -60,7 +60,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4.1">
-      <projectName>Template-BuildAndTest</projectName>
+      <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
   <publishers>
@@ -74,7 +74,7 @@
       </threshold>
     </hudson.tasks.BuildTrigger>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.1">
-      <projectName>Template-BuildAndTest</projectName>
+      <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
