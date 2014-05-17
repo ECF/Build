@@ -33,6 +33,7 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
   </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.11">
     <flatten>false</flatten>
