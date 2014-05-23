@@ -4,7 +4,7 @@
     <string>hudson.diagnosis.TooManyJobsButNoView</string>
     <string>jenkins.security.RekeySecretAdminMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>1.532.2</version>
+  <version>1.554.1</version>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -93,7 +93,7 @@
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
   <systemMessage>Eclipse Communication Framework (ECF) at &lt;a href=&quot;http://www.eclipse.org/ecf&quot; target=&quot;blank&quot;&gt;http://www.eclipse.org/ecf&lt;/a&gt; &#xd;
 -- p2 repositories available at &lt;a href=&quot;http://download.ecf-project.org/repo&quot; target=&quot;blank&quot;&gt;http://download.ecf-project.org/repo&lt;/a&gt;</systemMessage>
-  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter">
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.1">
     <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
   </markupFormatter>
   <jdks>
@@ -132,7 +132,7 @@
               <acceptLicense>true</acceptLicense>
             </hudson.tools.JDKInstaller>
             <hudson.tools.JDKInstaller>
-              <id>jdk-8-oth-JPR</id>
+              <id>jdk-8u5-oth-JPR</id>
               <acceptLicense>true</acceptLicense>
             </hudson.tools.JDKInstaller>
           </installers>
