@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<matrix-project>
+  <actions/>
+  <description>Runs the OSGi (R5) test compliance kit for remote services and remote service admin (osgi.enterprise).&#xd;
+&#xd;
+You have to sign an NDA before you are allowed access!</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>30</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.scm.SCM.Tag:slewis</permission>
+      <permission>hudson.scm.SCM.Tag:mkuppe</permission>
+      <permission>hudson.model.Item.Build:slewis</permission>
+      <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Run.Delete:slewis</permission>
+      <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Run.Update:slewis</permission>
+      <permission>hudson.model.Run.Update:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Cancel:slewis</permission>
+      <permission>hudson.model.Item.Cancel:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Discover:slewis</permission>
+      <permission>hudson.model.Item.Discover:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>UPSTREAM_BUILD</name>
+          <description>Input for the CT tests</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>C-HEAD-sdk.feature</string>
+              <string>C-RFC1.1-sdk.feature</string>
+              <string>C-424059-sdk.feature</string>
+              <string>N-HEAD-sdk.feature</string>
+              <string>R-HEAD-sdk.feature</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>@weekly</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <axes>
+    <hudson.matrix.TextAxis>
+      <name>ECF_DISCOVERY_PROVIDER</name>
+      <values>
+        <string>org.eclipse.ecf.discovery.zookeeper.feature.feature.group</string>
+        <string>org.eclipse.ecf.discovery.slp.feature.feature.group</string>
+        <string>org.eclipse.ecf.discovery.jmdns.feature.feature.group</string>
+      </values>
+    </hudson.matrix.TextAxis>
+    <hudson.matrix.JDKAxis>
+      <name>jdk</name>
+      <values>
+        <string>Java1.6_update_20_x86-64</string>
+        <string>Java1.7_update_25_x86-64</string>
+      </values>
+    </hudson.matrix.JDKAxis>
+    <hudson.matrix.TextAxis>
+      <name>EQUINOX_FRAMEWORK</name>
+      <values>
+        <string>4.2</string>
+        <string>4.3</string>
+        <string>4.4</string>
+      </values>
+    </hudson.matrix.TextAxis>
+    <hudson.matrix.TextAxis>
+      <name>ECF_DISTRIBUTION_PROVIDER</name>
+      <values>
+        <string>ecf.generic.server</string>
+        <string>ecf.r_osgi.peer</string>
+      </values>
+    </hudson.matrix.TextAxis>
+  </axes>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+echo &quot;====================&quot;
+echo &quot;Generating genBND.sh&quot;
+echo &quot;====================&quot;
+cat &gt; bnd.sh &lt;&lt; \EOF
+
+#!/bin/bash
+echo &apos;build=.&apos;
+
+##target
+echo &quot;&quot;
+echo &apos;-target = \
+    jar/&apos;$1&apos;;version=file&apos;
+
+## runpath
+#    jar/org.eclipse.osgi_3.8.2.R36x_v20110210.jar;version=file, \
+echo &quot;&quot;
+echo &apos;-runpath = \
+    jar/org.eclipse.osgi.jar;version=file, \
+    jar/com.springsource.junit-3.8.2.jar;version=file;export=&quot;junit.framework;version=3.8&quot;&apos;
+
+## runbundles
+echo &quot;&quot;
+echo &apos;-runbundles = \&apos;
+
+for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
+do
+    ## skip this single bundle in runbundles
+    if [[ (!($f == jar/plugins/org.eclipse.ecf.osgi.services.distribution_*)) || ($2 == remoteservices) ]] \
+         &amp;&amp; [[ (!($f == jar/plugins/org.eclipse.ecf.remoteservice.asyncproxy_2*)) ]]; then
+	echo $f&quot;;version=file, \\&quot;
+    fi
+done
+echo &apos;jar/&apos;$1&apos;;version=file&apos;
+
+## runproperties
+echo &quot;&quot;
+echo &apos;-runproperties = \
+    osgi.noShutdown=&quot;false&quot;, \
+    osgi.console.enable.builtin=true, \
+    report=&quot;true&quot;, \
+    launch.trace=true, \
+    osgi.compatibility.bootdelegation=&quot;false&quot;, \
+    org.osgi.test.cases.&apos;$2&apos;.system.packages.extra=&quot;junit.framework;version=3.8&quot;, \
+    osgi.support.multipleHosts=&quot;true&quot;, \
+    rsa.ct.timeout=&quot;30000&quot;, \
+    rsa.ct.timeout.factor=&quot;3&quot;, \
+    org.osgi.test.cases.&apos;$2&apos;.serverconfig=&quot;service.exported.intents.extra,\
+    service.exported.configs,ecf.generic.server.port,ecf.generic.client.keepalive&quot;, \
+    service.exported.intents.extra=&quot;passByValue&quot;, \
+    service.exported.configs=&quot;$ECF_DISTRIBUTION_PROVIDER&quot;, \
+    ecf.generic.server.port=&quot;-1&quot;, \
+    ecf.generic.client.keepalive=&quot;30001&quot;, \
+    net.mdns.port=65354, \
+    net.mdns.interface=127.0.0.1, \
+    net.slp.port=65354, \
+    net.slp.rediscover=15000, \
+    ch.ethz.iks.slp.debug=true, \
+    net.slp.traceDATraffic=false, \
+    net.slp.traceMsg=true, \
+    net.slp.traceDrop=true, \
+    net.slp.traceReg=true, \
+    net.slp.failercount=3, \
+    net.slp.multicastTimeouts=10,25,50,100,250,500,1000, \
+    net.slp.multicastMaximumWait=2000, \
+    net.slp.interface=127.0.0.1, \
+    zoodiscovery.autoStart=true, \
+    zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \
+    org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.requireServiceExportedConfigs=true, \
+    org.eclipse.ecf.osgi.services.remoteserviceadmin.HostContainerSelector.reuseExistingContainers=false, \&apos;
+
+
+if [[ $2 == remoteserviceadmin.secure ]]; then
+    echo &apos;    java.security.manager, \&apos;
+fi
+
+if [[ ($2 == remoteserviceadmin) || ($2 == remoteserviceadmin.secure) ]]; then
+    echo &apos;    org.eclipse.ecf.osgi.services.discovery.disableDiscovery=true, \&apos;
+fi
+    
+echo &apos;org.osgi.test.cases.&apos;$2&apos;.bundles=&quot;\&apos;
+for f in `find jar/plugins/ -name *.jar -print | sed &apos;s/.\/jar/jar/g&apos;`
+do
+    ## skip this single bundle in runbundles
+    if [[ ! $f == jar/plugins/org.eclipse.ecf.osgi.services.distribution.launch-* ]] &amp;&amp; \
+    [[ (!($f == jar/plugins/org.eclipse.ecf.remoteservice.asyncproxy_2*)) ]]; then
+        echo $f&quot;,\\&quot;
+    fi
+done
+echo &apos;&quot;&apos;
+
+
+echo &apos;-runvm = \
+    -Xmx512m, -XX:MaxPermSize=350m&apos;
+
+echo &apos;-runtrace = true&apos;
+echo &apos;&apos;
+
+
+EOF
+
+# replace the string §ECF_DISTRIBUTION_PROVIDER in generated bnd.sh with the actual environment variable provided by jenkins (do not know a better HACK right now)
+sed -i -e &apos;s/$ECF_DISTRIBUTION_PROVIDER/&apos;$ECF_DISTRIBUTION_PROVIDER&apos;/g&apos; bnd.sh
+
+chmod +x bnd.sh</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+echo &quot;=============================&quot;
+echo &quot;purge leftover folders if any&quot;
+echo &quot;=============================&quot;
+test -e bin &amp;&amp; rm -rf bin/
+test -e jar &amp;&amp; rm -rf jar/
+test -e reports &amp;&amp; rm -rf reports/
+test -e generated &amp;&amp; rm -rf generated/
+
+echo &quot;=============================&quot;
+echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
+echo &quot;=============================&quot;
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.core.feature.feature.group,org.eclipse.ecf.sharedobject.feature.feature.group,org.eclipse.ecf.remoteservice.feature.feature.group,org.eclipse.ecf.discovery.feature.feature.group,org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.remoteservice.rosgi.feature.feature.group,org.eclipse.ecf.provider.generic.feature.feature.group,org.eclipse.ecf.provider.generic.remoteservice.feature.feature.group
+
+echo &quot;=============================&quot;
+echo &quot;HACK compatiblity bundle to be installed &quot;
+echo &quot; https://bugs.eclipse.org/418742 &quot;
+echo &quot;=============================&quot;
+wget http://download.ecf-project.org/org.eclipse.ecf.provider.r_osgi.compatibility_1.0.0.HACK.jar 
+mv org.eclipse.ecf.provider.r_osgi.compatibility_1.0.0.HACK.jar jar/plugins/
+
+echo &quot;=============================&quot;
+echo &quot;Remove p2 director leftovers&quot;
+echo &quot;=============================&quot;
+rm -rf jar/p2
+rm jar/artifacts.xml
+
+echo &quot;=============================&quot;
+echo &quot;    Remove unwanted jars     &quot;
+echo &quot;=============================&quot;
+rm jar/plugins/javax.xml_*.jar
+rm jar/plugins/org.eclipse.ecf.console_*.jar
+rm jar/plugins/org.eclipse.equinox.ds_*.jar
+rm jar/plugins/org.eclipse.ecf.provider.discovery_*.jar
+rm jar/plugins/org.eclipse.ecf.remoteservice.servlet_*.jar
+
+echo &quot;=============================&quot;
+echo &quot;Move osgi runtime to current folder to have it find plugins/&quot;
+echo &quot;=============================&quot;
+mv ${WORKSPACE}/jar/plugins/org.eclipse.osgi_* jar/
+
+echo &quot;=============================&quot;
+echo &quot;Remove version suffix from osgi runtime (.bnd files expect this) /&quot;
+echo &quot;=============================&quot;
+cp jar/org.eclipse.osgi_* jar/org.eclipse.osgi.jar
+
+echo &quot;=============================&quot;
+echo &quot;Copy NDA-restricted RI tests to current folder for execution&quot;
+echo &quot;=============================&quot;
+ls -l ${TCK_HOME}/*
+cp -r ${TCK_HOME}/* ${WORKSPACE}
+
+echo &quot;=============================&quot;
+echo &quot;Generate and print BND file&quot;
+echo &quot;=============================&quot;
+cat bnd.sh
+
+echo &quot;###########################################&quot;
+echo &quot;######### remoteserviceadmin ##############&quot;
+echo &quot;###########################################&quot;
+./bnd.sh org.osgi.test.cases.remoteserviceadmin-5.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
+cat org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
+
+echo &quot;=============================&quot;
+echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
+echo &quot;=============================&quot;
+java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin
+mv org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd.off
+mv reports/ reports.remoteserviceadmin/
+
+echo &quot;###########################################&quot;
+echo &quot;######## remoteserviceadmin.secure#########&quot;
+echo &quot;###########################################&quot;
+
+echo &quot;=============================&quot;
+echo &quot;Generate and print BND file&quot;
+echo &quot;=============================&quot;
+./bnd.sh org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
+cat org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
+
+echo &quot;=============================&quot;
+echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
+echo &quot;=============================&quot;
+java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin.secure
+mv org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd.off
+mv reports/ reports.remoteserviceadmin.secure/
+
+echo &quot;###########################################&quot;
+echo &quot;########## remoteservices #################&quot;
+echo &quot;###########################################&quot;
+
+echo &quot;=============================&quot;
+echo &quot;Generate and print BND file&quot;
+echo &quot;=============================&quot;
+./bnd.sh org.osgi.test.cases.remoteservices-5.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-5.0.0.bnd
+cat org.osgi.test.cases.remoteservices-5.0.0.bnd
+
+echo &quot;=============================&quot;
+echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
+echo &quot;=============================&quot;
+java -jar jar/bnd.jar runtests -t osgi.ct.remoteservices
+mv org.osgi.test.cases.remoteservices-5.0.0.bnd org.osgi.test.cases.remoteservices-5.0.0.bnd.off
+mv reports/ reports.remoteservices/
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>reports.remoteservices/*.xml, reports.remoteserviceadmin.secure/*.xml, reports.remoteserviceadmin/*.xml</testResults>
+      <keepLongStdio>true</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.tasks.Mailer plugin="mailer@1.8">
+      <recipients>bugs.eclipse.org@lemmster.de slewis@composent.com</recipients>
+      <dontNotifyEveryUnstableBuild>true</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher plugin="blame-upstream-commiters@1.2">
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.20">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>30</timeoutMinutes>
+      </strategy>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.AbortOperation/>
+      </operationList>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+      <localVarText>ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/${UPSTREAM_BUILD}/lastSuccessful/archive/site.p2/
+TCK_HOME=/home/slewis/osgi.tck/r5
+</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+  <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
+    <runSequentially>true</runSequentially>
+  </executionStrategy>
+</matrix-project>
