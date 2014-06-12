@@ -51,8 +51,8 @@
       <spec>@weekly</spec>
     </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
-      <spec># every 30 minutes
-*/30 * * * *
+      <spec># every 15 minutes
+*/15 * * * *
 </spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
