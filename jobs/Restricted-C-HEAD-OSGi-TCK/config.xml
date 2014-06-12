@@ -87,6 +87,7 @@ You have to sign an NDA before you are allowed access!</description>
       <values>
         <string>4.2</string>
         <string>4.3</string>
+        <string>4.4milestones</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
