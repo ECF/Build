@@ -11,6 +11,7 @@
   <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty/>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.1">
     <configVersion>1</configVersion>
@@ -66,7 +67,7 @@
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.14">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>240</timeoutMinutes>
       </strategy>
