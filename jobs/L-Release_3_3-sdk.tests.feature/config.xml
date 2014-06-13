@@ -33,8 +33,9 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.1"/>
   </properties>
-  <scm class="hudson.scm.CVSSCM" plugin="cvs@2.11">
+  <scm class="hudson.scm.CVSSCM" plugin="cvs@2.12">
     <flatten>false</flatten>
     <repositories>
       <hudson.scm.CvsRepository>
@@ -119,7 +120,7 @@ TESTSUITE_PLUGIN_INCLUSION=^org\.eclipse\.ecf\.tests(\..+)?
 TESTSUITE_PLUGIN_EXCLUSION=^org\.eclipse\.ecf\.tests$
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.14">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>240</timeoutMinutes>
       </strategy>
