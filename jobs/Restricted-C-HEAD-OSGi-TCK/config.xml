@@ -13,24 +13,24 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.scm.SCM.Tag:slewis</permission>
+      <permission>hudson.scm.SCM.Tag:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Build:slewis</permission>
+      <permission>hudson.model.Item.Build:mkuppe</permission>
       <permission>hudson.model.Item.Workspace:slewis</permission>
       <permission>hudson.model.Item.Workspace:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
+      <permission>hudson.model.Item.Discover:slewis</permission>
+      <permission>hudson.model.Item.Discover:mkuppe</permission>
       <permission>hudson.model.Item.Read:slewis</permission>
       <permission>hudson.model.Item.Read:mkuppe</permission>
       <permission>hudson.model.Run.Delete:slewis</permission>
       <permission>hudson.model.Run.Delete:mkuppe</permission>
       <permission>hudson.model.Item.Cancel:slewis</permission>
       <permission>hudson.model.Item.Cancel:mkuppe</permission>
-      <permission>hudson.scm.SCM.Tag:slewis</permission>
-      <permission>hudson.scm.SCM.Tag:mkuppe</permission>
-      <permission>hudson.model.Item.Delete:slewis</permission>
-      <permission>hudson.model.Item.Delete:mkuppe</permission>
-      <permission>hudson.model.Item.Discover:slewis</permission>
-      <permission>hudson.model.Item.Discover:mkuppe</permission>
-      <permission>hudson.model.Item.Build:slewis</permission>
-      <permission>hudson.model.Item.Build:mkuppe</permission>
       <permission>hudson.model.Run.Update:slewis</permission>
       <permission>hudson.model.Run.Update:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
@@ -330,12 +330,12 @@ mv reports/ reports.remoteservices/
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.20">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.21">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.13">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.14">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>30</timeoutMinutes>
       </strategy>
@@ -345,7 +345,7 @@ mv reports/ reports.remoteservices/
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/${UPSTREAM_BUILD}/lastSuccessful/archive/site.p2/
-TCK_HOME=/home/mkuppe/osgi.tck/r5
+TCK_HOME=/home/slewis/osgi.tck/r5
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
