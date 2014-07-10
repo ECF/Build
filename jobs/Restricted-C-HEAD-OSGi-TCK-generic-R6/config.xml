@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <matrix-project>
   <actions/>
-  <description>Runs the OSGi (R5) test compliance kit for remote services and remote service admin (osgi.enterprise) using the generic distribution provider&#xd;
+  <description>Runs the OSGi (R6) test compliance kit for remote services and remote service admin (osgi.enterprise) using the generic distribution provider&#xd;
 &#xd;
 You have to sign an NDA before you are allowed access!</description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -13,24 +13,24 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Delete:slewis</permission>
-      <permission>hudson.model.Item.Delete:mkuppe</permission>
       <permission>hudson.scm.SCM.Tag:slewis</permission>
       <permission>hudson.scm.SCM.Tag:mkuppe</permission>
+      <permission>hudson.model.Item.Delete:slewis</permission>
+      <permission>hudson.model.Item.Delete:mkuppe</permission>
       <permission>hudson.model.Item.Build:slewis</permission>
       <permission>hudson.model.Item.Build:mkuppe</permission>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
       <permission>hudson.model.Item.Workspace:slewis</permission>
       <permission>hudson.model.Item.Workspace:mkuppe</permission>
-      <permission>hudson.model.Item.Read:slewis</permission>
-      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
       <permission>hudson.model.Item.Discover:slewis</permission>
       <permission>hudson.model.Item.Discover:mkuppe</permission>
-      <permission>hudson.model.Item.Cancel:slewis</permission>
-      <permission>hudson.model.Item.Cancel:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
       <permission>hudson.model.Run.Delete:slewis</permission>
       <permission>hudson.model.Run.Delete:mkuppe</permission>
+      <permission>hudson.model.Item.Cancel:slewis</permission>
+      <permission>hudson.model.Item.Cancel:mkuppe</permission>
       <permission>hudson.model.Run.Update:slewis</permission>
       <permission>hudson.model.Run.Update:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
@@ -42,7 +42,6 @@ You have to sign an NDA before you are allowed access!</description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
               <string>C-HEAD-sdk.feature</string>
-              <string>C-RFC1.1-sdk.feature</string>
               <string>C-424059-sdk.feature</string>
               <string>N-HEAD-sdk.feature</string>
               <string>R-HEAD-sdk.feature</string>
