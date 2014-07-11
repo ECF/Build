@@ -259,14 +259,14 @@ cat bnd.sh
 echo &quot;###########################################&quot;
 echo &quot;######### remoteserviceadmin ##############&quot;
 echo &quot;###########################################&quot;
-./bnd.sh org.osgi.test.cases.remoteserviceadmin-5.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
-cat org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd
+./bnd.sh org.osgi.test.cases.remoteserviceadmin-6.0.0.jar remoteserviceadmin 1111 &gt; org.osgi.test.cases.remoteserviceadmin-6.0.0.bnd
+cat org.osgi.test.cases.remoteserviceadmin-6.0.0.bnd
 
 echo &quot;=============================&quot;
 echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
 echo &quot;=============================&quot;
 java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin
-mv org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin-5.0.0.bnd.off
+mv org.osgi.test.cases.remoteserviceadmin-6.0.0.bnd org.osgi.test.cases.remoteserviceadmin-6.0.0.bnd.off
 mv reports/ reports.remoteserviceadmin/
 
 echo &quot;###########################################&quot;
@@ -276,14 +276,14 @@ echo &quot;###########################################&quot;
 echo &quot;=============================&quot;
 echo &quot;Generate and print BND file&quot;
 echo &quot;=============================&quot;
-./bnd.sh org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
-cat org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd
+./bnd.sh org.osgi.test.cases.remoteserviceadmin.secure-6.0.0.jar remoteserviceadmin.secure 1113 &gt; org.osgi.test.cases.remoteserviceadmin.secure-6.0.0.bnd
+cat org.osgi.test.cases.remoteserviceadmin.secure-6.0.0.bnd
 
 echo &quot;=============================&quot;
 echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
 echo &quot;=============================&quot;
 java -jar jar/bnd.jar runtests -t osgi.ct.remoteserviceadmin.secure
-mv org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd org.osgi.test.cases.remoteserviceadmin.secure-5.0.0.bnd.off
+mv org.osgi.test.cases.remoteserviceadmin.secure-6.0.0.bnd org.osgi.test.cases.remoteserviceadmin.secure-6.0.0.bnd.off
 mv reports/ reports.remoteserviceadmin.secure/
 
 echo &quot;###########################################&quot;
@@ -293,14 +293,14 @@ echo &quot;###########################################&quot;
 echo &quot;=============================&quot;
 echo &quot;Generate and print BND file&quot;
 echo &quot;=============================&quot;
-./bnd.sh org.osgi.test.cases.remoteservices-5.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-5.0.0.bnd
-cat org.osgi.test.cases.remoteservices-5.0.0.bnd
+./bnd.sh org.osgi.test.cases.remoteservices-6.0.0.jar remoteservices 1112 &gt; org.osgi.test.cases.remoteservices-6.0.0.bnd
+cat org.osgi.test.cases.remoteservices-6.0.0.bnd
 
 echo &quot;=============================&quot;
 echo &quot;Spawn test VM (reports/ folder will contain test results)&quot;
 echo &quot;=============================&quot;
 java -jar jar/bnd.jar runtests -t osgi.ct.remoteservices
-mv org.osgi.test.cases.remoteservices-5.0.0.bnd org.osgi.test.cases.remoteservices-5.0.0.bnd.off
+mv org.osgi.test.cases.remoteservices-6.0.0.bnd org.osgi.test.cases.remoteservices-6.0.0.bnd.off
 mv reports/ reports.remoteservices/
 </command>
     </hudson.tasks.Shell>
