@@ -336,7 +336,7 @@ mv reports/ reports.remoteservices/
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
       <localVarText>ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/${UPSTREAM_BUILD}/lastSuccessful/archive/site.p2/
-TCK_HOME=/home/slewis/osgi.tck/r5
+TCK_HOME=/home/slewis/osgi.tck/r6
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
   </buildWrappers>
