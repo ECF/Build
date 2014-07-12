@@ -13,6 +13,7 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.2">
     <configVersion>2</configVersion>
@@ -63,12 +64,12 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4.1">
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
   </builders>
   <publishers>
-    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.1">
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
