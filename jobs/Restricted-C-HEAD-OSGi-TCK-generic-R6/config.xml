@@ -168,7 +168,7 @@ echo &apos;-runproperties = \
     zoodiscovery.flavor=&quot;zoodiscovery.flavor.centralized=disco.ecf-project.org&quot;, \
     org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.requireServiceExportedConfigs=true, \
     org.eclipse.ecf.osgi.services.remoteserviceadmin.HostContainerSelector.reuseExistingContainers=false, \
-    org.eclipse.ecf.osgi.services.distribution.disableBasicTopologyManager=true \&apos;
+    org.eclipse.ecf.osgi.services.distribution.disableBasicTopologyManager=true, \&apos;
 
 if [[ $2 == remoteserviceadmin.secure ]]; then
     echo &apos;    java.security.manager, \&apos;
