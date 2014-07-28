@@ -13,26 +13,26 @@ You have to sign an NDA before you are allowed access!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Run.Update:slewis</permission>
+      <permission>hudson.model.Run.Update:mkuppe</permission>
+      <permission>hudson.model.Item.Read:slewis</permission>
+      <permission>hudson.model.Item.Read:mkuppe</permission>
+      <permission>hudson.scm.SCM.Tag:slewis</permission>
+      <permission>hudson.scm.SCM.Tag:mkuppe</permission>
+      <permission>hudson.model.Item.Workspace:slewis</permission>
+      <permission>hudson.model.Item.Workspace:mkuppe</permission>
       <permission>hudson.model.Run.Delete:slewis</permission>
       <permission>hudson.model.Run.Delete:mkuppe</permission>
       <permission>hudson.model.Item.Cancel:slewis</permission>
       <permission>hudson.model.Item.Cancel:mkuppe</permission>
-      <permission>hudson.model.Item.Workspace:slewis</permission>
-      <permission>hudson.model.Item.Workspace:mkuppe</permission>
       <permission>hudson.model.Item.Discover:slewis</permission>
       <permission>hudson.model.Item.Discover:mkuppe</permission>
-      <permission>hudson.model.Item.Configure:slewis</permission>
-      <permission>hudson.model.Item.Configure:mkuppe</permission>
-      <permission>hudson.model.Item.Read:slewis</permission>
-      <permission>hudson.model.Item.Read:mkuppe</permission>
       <permission>hudson.model.Item.Build:slewis</permission>
       <permission>hudson.model.Item.Build:mkuppe</permission>
+      <permission>hudson.model.Item.Configure:slewis</permission>
+      <permission>hudson.model.Item.Configure:mkuppe</permission>
       <permission>hudson.model.Item.Delete:slewis</permission>
       <permission>hudson.model.Item.Delete:mkuppe</permission>
-      <permission>hudson.scm.SCM.Tag:slewis</permission>
-      <permission>hudson.scm.SCM.Tag:mkuppe</permission>
-      <permission>hudson.model.Run.Update:slewis</permission>
-      <permission>hudson.model.Run.Update:mkuppe</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
@@ -81,14 +81,6 @@ You have to sign an NDA before you are allowed access!</description>
         <string>Java1.7_update_25_x86-64</string>
       </values>
     </hudson.matrix.JDKAxis>
-    <hudson.matrix.TextAxis>
-      <name>EQUINOX_FRAMEWORK</name>
-      <values>
-        <string>4.2</string>
-        <string>4.3</string>
-        <string>4.4</string>
-      </values>
-    </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
       <name>ECF_DISTRIBUTION_PROVIDER</name>
       <values>
@@ -217,7 +209,7 @@ test -e generated &amp;&amp; rm -rf generated/
 echo &quot;=============================&quot;
 echo &quot;Install OSGi, ECF as well as test dependencies with p2 director&quot;
 echo &quot;=============================&quot;
-${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/$EQUINOX_FRAMEWORK,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.core.feature.feature.group,org.eclipse.ecf.sharedobject.feature.feature.group,org.eclipse.ecf.remoteservice.feature.feature.group,org.eclipse.ecf.discovery.feature.feature.group,org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.provider.generic.feature.feature.group,org.eclipse.ecf.provider.generic.remoteservice.feature.feature.group
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://ftp.osuosl.org/pub/eclipse/eclipse/updates/4.4,${ECF_P2_REPOSITORY} -d jar -i org.eclipse.ecf.core.feature.feature.group,org.eclipse.ecf.sharedobject.feature.feature.group,org.eclipse.ecf.remoteservice.feature.feature.group,org.eclipse.ecf.discovery.feature.feature.group,org.eclipse.ecf.osgi.services.feature.feature.group,org.eclipse.equinox.event,org.eclipse.equinox.ds,org.eclipse.equinox.log,org.eclipse.ecf.osgi.services.source.feature.feature.group,$ECF_DISCOVERY_PROVIDER,org.eclipse.ecf.provider.generic.feature.feature.group,org.eclipse.ecf.provider.generic.remoteservice.feature.feature.group
 
 echo &quot;=============================&quot;
 echo &quot;Remove p2 director leftovers&quot;
