@@ -27,8 +27,9 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.2">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.4">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -108,7 +109,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.JavadocArchiver plugin="javadoc@1.1">
+    <hudson.tasks.JavadocArchiver plugin="javadoc@1.2">
       <javadocDir>javadoc</javadocDir>
       <keepAll>false</keepAll>
     </hudson.tasks.JavadocArchiver>
@@ -116,7 +117,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       <targets></targets>
       <recordBuildArtifacts>true</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.git.GitPublisher plugin="git@2.2.2">
+    <hudson.plugins.git.GitPublisher plugin="git@2.2.4">
       <configVersion>2</configVersion>
       <pushMerge>false</pushMerge>
       <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
@@ -130,7 +131,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
         </hudson.plugins.git.GitPublisher_-TagToPush>
       </tagsToPush>
     </hudson.plugins.git.GitPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.9">
+    <hudson.tasks.Mailer plugin="mailer@1.10">
       <recipients>ecf-build@eclipse.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -155,7 +156,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
     </hudson.plugins.twitter.TwitterPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.21">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.22">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
