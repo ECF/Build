@@ -8,6 +8,7 @@ So far we can only include builders, but no actions!</description>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -60,7 +61,7 @@ junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_resul
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.10">
+    <hudson.tasks.Mailer plugin="mailer@1.11">
       <recipients></recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>
