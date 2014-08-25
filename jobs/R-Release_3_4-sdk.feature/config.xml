@@ -15,8 +15,9 @@
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.4">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
     <configVersion>1</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -98,7 +99,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <targets></targets>
       <recordBuildArtifacts>true</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.git.GitPublisher plugin="git@2.2.4">
+    <hudson.plugins.git.GitPublisher plugin="git@2.2.5">
       <configVersion>2</configVersion>
       <pushMerge>false</pushMerge>
       <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
@@ -111,7 +112,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
         </hudson.plugins.git.GitPublisher_-TagToPush>
       </tagsToPush>
     </hudson.plugins.git.GitPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.10">
+    <hudson.tasks.Mailer plugin="mailer@1.11">
       <recipients>ecf-build@eclipse.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
