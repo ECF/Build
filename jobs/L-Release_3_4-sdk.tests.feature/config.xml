@@ -11,7 +11,6 @@
   <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty/>
-    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
     <configVersion>1</configVersion>
