@@ -3,7 +3,7 @@
   <fullName>Wim Jongman</fullName>
   <description></description>
   <properties>
-    <hudson.tasks.Mailer_-UserProperty>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.11">
       <emailAddress>wim.jongman@gmail.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -23,5 +23,20 @@
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>Xkaqtq:46b53e846916bc6943cdfd7802aa0f1130be0d45a9c8baf34c8f8cfd6b3d6bc0</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
+    <hudson.model.PaneStatusProperties>
+      <collapsed/>
+    </hudson.model.PaneStatusProperties>
+    <jenkins.security.ApiTokenProperty>
+      <apiToken>Ty9urTYZmwg7Quo7Wf2f7oWTayST82Oy2hGz3KwY76XJYkR7Ol/CogNWb/nN1U40</apiToken>
+    </jenkins.security.ApiTokenProperty>
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.16.1">
+      <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
+    </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
+    <hudson.search.UserSearchProperty>
+      <insensitiveSearch>false</insensitiveSearch>
+    </hudson.search.UserSearchProperty>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <timestamp>0</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
