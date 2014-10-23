@@ -11,18 +11,19 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Read:psamolisov</permission>
-      <permission>hudson.model.Item.Build:psamolisov</permission>
-      <permission>hudson.model.Item.Workspace:psamolisov</permission>
-      <permission>hudson.model.Item.Configure:psamolisov</permission>
       <permission>hudson.model.Run.Update:psamolisov</permission>
+      <permission>hudson.model.Item.Workspace:psamolisov</permission>
+      <permission>hudson.model.Item.Build:psamolisov</permission>
+      <permission>hudson.model.Item.Configure:psamolisov</permission>
+      <permission>hudson.model.Item.Read:psamolisov</permission>
       <permission>hudson.model.Run.Delete:psamolisov</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.7">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
