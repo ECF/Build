@@ -35,6 +35,7 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.7">
     <configVersion>2</configVersion>
@@ -110,7 +111,7 @@
         </org.jvnet.hudson.plugins.port__allocator.DefaultPortType>
       </ports>
     </org.jvnet.hudson.plugins.port__allocator.PortAllocator>
-    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.2">
       <localVarText>SITE_SIGNING=false
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
