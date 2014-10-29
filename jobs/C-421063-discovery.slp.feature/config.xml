@@ -12,14 +12,15 @@ https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</descri
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Discover:jmohiuddin</permission>
-      <permission>hudson.model.Item.Read:jmohiuddin</permission>
-      <permission>hudson.model.Item.Workspace:jmohiuddin</permission>
       <permission>hudson.model.Item.Build:jmohiuddin</permission>
+      <permission>hudson.model.Item.Discover:jmohiuddin</permission>
+      <permission>hudson.model.Item.Workspace:jmohiuddin</permission>
+      <permission>hudson.model.Item.Read:jmohiuddin</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.7">
     <configVersion>2</configVersion>
@@ -121,7 +122,7 @@ rm -rf ${WORKSPACE}/site.p2/
         <hudson.plugins.build__timeout.operations.AbortOperation/>
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
-    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.2">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.discovery.slp.feature
 MSPEC_NAME=org.eclipse.ecf.slp.mspec
 BUILD_ACTION=site.p2
