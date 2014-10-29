@@ -9,7 +9,9 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.7">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -76,7 +78,7 @@
         </a>
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
-    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.2">
       <localVarText>FEATURE_NAME=org.eclipse.ecf.filetransfer.httpclient4.feature
 MSPEC_NAME=org.eclipse.ecf.filetransfer.httpclient4.mspec
 BUILD_ACTION=site.p2
