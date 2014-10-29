@@ -33,6 +33,7 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.12">
     <flatten>false</flatten>
@@ -101,7 +102,7 @@
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.1">
+    <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.2">
       <localVarText>SITE_SIGNING=false
 BUILD_ACTION=site.p2
 SITE_INCLUDE_TOP=true
