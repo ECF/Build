@@ -22,6 +22,7 @@
     <permission>hudson.model.Hudson.Administer:wim.jongman</permission>
     <permission>hudson.model.Hudson.Read:harshana05</permission>
     <permission>hudson.model.Hudson.Read:jmohiuddin</permission>
+    <permission>hudson.model.Hudson.Read:mat.booth</permission>
     <permission>hudson.model.Hudson.Read:mkuppe</permission>
     <permission>hudson.model.Hudson.Read:slewis</permission>
     <permission>hudson.model.Hudson.Read:ted</permission>
@@ -93,7 +94,7 @@
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
   <systemMessage>Eclipse Communication Framework (ECF) at &lt;a href=&quot;http://www.eclipse.org/ecf&quot; target=&quot;blank&quot;&gt;http://www.eclipse.org/ecf&lt;/a&gt; &#xd;
 -- p2 repositories available at &lt;a href=&quot;http://download.ecf-project.org/repo&quot; target=&quot;blank&quot;&gt;http://download.ecf-project.org/repo&lt;/a&gt;</systemMessage>
-  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.1">
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.2">
     <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
   </markupFormatter>
   <jdks>
