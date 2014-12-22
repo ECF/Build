@@ -12,16 +12,17 @@ https://bugs.eclipse.org/421063 and https://git.eclipse.org/r/#/c/18618/</descri
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Workspace:jmohiuddin</permission>
       <permission>hudson.model.Item.Read:jmohiuddin</permission>
-      <permission>hudson.model.Item.Discover:jmohiuddin</permission>
       <permission>hudson.model.Item.Build:jmohiuddin</permission>
+      <permission>hudson.model.Item.Workspace:jmohiuddin</permission>
+      <permission>hudson.model.Item.Discover:jmohiuddin</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.8">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.10">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
