@@ -9,9 +9,7 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
-  </properties>
+  <properties/>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.10">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
