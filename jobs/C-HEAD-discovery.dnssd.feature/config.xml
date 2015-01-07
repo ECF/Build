@@ -13,8 +13,9 @@
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.10">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.11">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -72,7 +73,7 @@
     </hudson.plugins.templateproject.ProxyPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.14">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.14.1">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>15</timeoutMinutes>
       </strategy>
