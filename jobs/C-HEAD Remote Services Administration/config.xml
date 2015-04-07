@@ -28,7 +28,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>(Default)</jdk>
+  <jdk>Java8  (OS installation)</jdk>
   <triggers>
     <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.10">
       <spec></spec>
@@ -36,7 +36,7 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <goals>clean verify</goals>
-  <mavenName>apache-maven-2.2.1</mavenName>
+  <mavenName>apache-maven-3.1</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
