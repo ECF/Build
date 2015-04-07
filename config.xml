@@ -95,7 +95,7 @@
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
   <systemMessage>Eclipse Communication Framework (ECF) at &lt;a href=&quot;http://www.eclipse.org/ecf&quot; target=&quot;blank&quot;&gt;http://www.eclipse.org/ecf&lt;/a&gt; &#xd;
 -- p2 repositories available at &lt;a href=&quot;http://download.ecf-project.org/repo&quot; target=&quot;blank&quot;&gt;http://download.ecf-project.org/repo&lt;/a&gt;</systemMessage>
-  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.2">
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.3">
     <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
   </markupFormatter>
   <jdks>
@@ -198,6 +198,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>C-HEAD Remote Services Administration</string>
         <string>C-HEAD-osgi.services.feature</string>
         <string>C-HEAD-remoteservice.generic.feature</string>
         <string>C-HEAD-remoteservice.rest.feature</string>
