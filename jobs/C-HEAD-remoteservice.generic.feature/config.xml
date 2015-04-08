@@ -65,7 +65,7 @@
   </builders>
   <publishers>
     <hudson.tasks.BuildTrigger>
-      <childProjects>C-HEAD-osgi.services.feature, C-HEAD-remoteservice.rest.feature, C-HEAD-remoteservice.rosgi.feature, C-HEAD-xmpp.feature</childProjects>
+      <childProjects>C-HEAD-osgi.services.feature,C-HEAD-remoteservice.rest.feature,C-HEAD-remoteservice.rosgi.feature,C-HEAD-xmpp.feature</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

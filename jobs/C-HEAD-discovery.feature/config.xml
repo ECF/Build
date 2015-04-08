@@ -65,7 +65,7 @@
   </builders>
   <publishers>
     <hudson.tasks.BuildTrigger>
-      <childProjects>C-HEAD-discovery.jmdns.feature, C-HEAD-discovery.slp.feature, C-HEAD-discovery.zookeeper.feature, C-HEAD-discovery.dnssd.feature</childProjects>
+      <childProjects>C-HEAD-discovery.jmdns.feature,C-HEAD-discovery.slp.feature,C-HEAD-discovery.zookeeper.feature,C-HEAD-discovery.dnssd.feature</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

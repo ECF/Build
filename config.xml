@@ -198,7 +198,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>C-HEAD Remote Services Administration</string>
+        <string>C-HEAD Remote Services Management</string>
         <string>C-HEAD-osgi.services.feature</string>
         <string>C-HEAD-remoteservice.generic.feature</string>
         <string>C-HEAD-remoteservice.rest.feature</string>

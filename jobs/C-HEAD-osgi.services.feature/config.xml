@@ -83,7 +83,7 @@
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
     <hudson.tasks.BuildTrigger>
-      <childProjects>Restricted-C-HEAD-OSGi-R5-TCK, Restricted-C-HEAD-OSGi-TCK</childProjects>
+      <childProjects>Restricted-C-HEAD-OSGi-R5-TCK,Restricted-C-HEAD-OSGi-TCK</childProjects>
       <threshold>
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>
