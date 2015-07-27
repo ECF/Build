@@ -60,16 +60,12 @@
       <artifacts>site.p2/</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
-      <fingerprint>false</fingerprint>
+      <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.2-beta-4">
       <includeFailedBuilds>false</includeFailedBuilds>
     </hudson.tasks.test.AggregatedTestResultPublisher>
-    <hudson.tasks.Fingerprinter>
-      <targets></targets>
-      <recordBuildArtifacts>true</recordBuildArtifacts>
-    </hudson.tasks.Fingerprinter>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
