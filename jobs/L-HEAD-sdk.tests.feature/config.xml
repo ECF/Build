@@ -80,12 +80,11 @@
       <artifacts>site.p2/, reports/</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
-      <fingerprint>false</fingerprint>
+      <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.Fingerprinter>
       <targets>site.p2/, reports/</targets>
-      <recordBuildArtifacts>true</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.4.2">
       <projectName>Template-Test</projectName>
