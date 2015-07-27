@@ -50,13 +50,9 @@
       <artifacts>dnsjava-*.jar, org.xbill.dns_*.jar</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
-      <fingerprint>false</fingerprint>
+      <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Fingerprinter>
-      <targets></targets>
-      <recordBuildArtifacts>true</recordBuildArtifacts>
-    </hudson.tasks.Fingerprinter>
   </publishers>
   <buildWrappers>
     <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.14.1">
