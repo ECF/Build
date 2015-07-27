@@ -119,16 +119,12 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <artifacts>site.p2/</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
-      <fingerprint>false</fingerprint>
+      <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.2-beta-4">
       <includeFailedBuilds>false</includeFailedBuilds>
     </hudson.tasks.test.AggregatedTestResultPublisher>
-    <hudson.tasks.Fingerprinter>
-      <targets></targets>
-      <recordBuildArtifacts>true</recordBuildArtifacts>
-    </hudson.tasks.Fingerprinter>
     <hudson.tasks.Mailer plugin="mailer@1.11">
       <recipients>ecf-build@eclipse.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
