@@ -88,7 +88,6 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
     </hudson.tasks.JavadocArchiver>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/</artifacts>
-      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
