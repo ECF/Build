@@ -58,7 +58,6 @@
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>site.p2/</artifacts>
-      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
