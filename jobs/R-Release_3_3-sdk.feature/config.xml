@@ -9,7 +9,9 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>true</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.4.2"/>
+  </properties>
   <scm class="hudson.scm.CVSSCM" plugin="cvs@2.12">
     <flatten>false</flatten>
     <repositories>
@@ -122,7 +124,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.7">
+    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.8">
       <includeFailedBuilds>false</includeFailedBuilds>
     </hudson.tasks.test.AggregatedTestResultPublisher>
     <hudson.tasks.Mailer plugin="mailer@1.15">
