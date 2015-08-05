@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<maven2-moduleset plugin="maven-plugin@1.509.4">
+<maven2-moduleset plugin="maven-plugin@2.10">
   <actions/>
   <description></description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -11,27 +11,13 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <permission>hudson.model.Item.Build:spearway</permission>
-      <permission>hudson.model.Item.Workspace:spearway</permission>
       <permission>hudson.model.Item.Read:spearway</permission>
+      <permission>hudson.model.Item.Build:spearway</permission>
       <permission>hudson.model.Item.Configure:spearway</permission>
+      <permission>hudson.model.Item.Workspace:spearway</permission>
     </hudson.security.AuthorizationMatrixProperty>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>6873618</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map">
-        <entry>
-          <string></string>
-          <concurrent-hash-map>
-            <entry>
-              <string>/opt/hudson/jobs/UPSTREAM-C-HEAD-jmdns/workspace</string>
-              <long>6856474</long>
-            </entry>
-          </concurrent-hash-map>
-        </entry>
-      </slaveWorkspacesUsage>
-    </hudson.plugins.disk__usage.DiskUsageProperty>
   </properties>
-  <scm class="hudson.scm.SubversionSCM" plugin="subversion@1.53">
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.1">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
         <remote>https://jmdns.svn.sourceforge.net/svnroot/jmdns/trunk</remote>
@@ -72,9 +58,10 @@
   <mavenOpts>-DargLine=&quot;-Dnet.mdns.interface=127.0.0.1&quot;</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <perModuleEmail>true</perModuleEmail>
   <ignoreUpstremChanges>false</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
+  <siteArchivingDisabled>false</siteArchivingDisabled>
+  <fingerprintingDisabled>false</fingerprintingDisabled>
   <resolveDependencies>false</resolveDependencies>
   <processPlugins>false</processPlugins>
   <mavenValidationLevel>0</mavenValidationLevel>
@@ -101,12 +88,15 @@
     </hudson.maven.RedeployPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.15">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>30</timeoutMinutes>
       </strategy>
-      <failBuild>true</failBuild>
-      <writingDescription>false</writingDescription>
+      <operationList class="java.util.Arrays$ArrayList">
+        <a class="hudson.plugins.build_timeout.BuildTimeOutOperation-array">
+          <hudson.plugins.build__timeout.operations.FailOperation/>
+        </a>
+      </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
   </buildWrappers>
   <prebuilders/>

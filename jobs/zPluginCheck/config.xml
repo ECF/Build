@@ -9,22 +9,7 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>15355</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map">
-        <entry>
-          <string></string>
-          <concurrent-hash-map>
-            <entry>
-              <string>/opt/hudson/jobs/zPluginCheck/workspace</string>
-              <long>4096</long>
-            </entry>
-          </concurrent-hash-map>
-        </entry>
-      </slaveWorkspacesUsage>
-    </hudson.plugins.disk__usage.DiskUsageProperty>
-  </properties>
+  <properties/>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -38,7 +23,7 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.groovy.SystemGroovy plugin="groovy@1.14">
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@1.26">
       <scriptSource class="hudson.plugins.groovy.StringScriptSource">
         <command>// Works only with Jenkins &gt;= 1.501
 //hudson.model.Hudson.instance.updateCenter.getSiteList().each({hudson.model.UpdateSite site -&gt; site.doInvalidateData(); println(site.isDue())})
@@ -75,7 +60,7 @@ if(!pluginsWithUpdates.empty) {
     </hudson.plugins.groovy.SystemGroovy>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.5">
+    <hudson.tasks.Mailer plugin="mailer@1.15">
       <recipients>mkuppe@ecf-project.org</recipients>
       <dontNotifyEveryUnstableBuild>true</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
