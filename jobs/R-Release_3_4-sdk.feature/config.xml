@@ -10,11 +10,12 @@
   </logRotator>
   <keepDependencies>true</keepDependencies>
   <properties>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.21">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.23">
       <activeProcessNames>
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.1"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
     <configVersion>1</configVersion>
@@ -49,7 +50,7 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.4.2">
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.5.1">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
@@ -93,7 +94,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.8">
+    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.9">
       <includeFailedBuilds>false</includeFailedBuilds>
     </hudson.tasks.test.AggregatedTestResultPublisher>
     <hudson.plugins.git.GitPublisher plugin="git@2.4.0">
@@ -119,7 +120,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
       <includeUrl>true</includeUrl>
     </hudson.plugins.twitter.TwitterPublisher>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.27">
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.29">
       <configs>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
