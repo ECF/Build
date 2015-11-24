@@ -15,6 +15,7 @@
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.1"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
     <configVersion>1</configVersion>
@@ -145,7 +146,7 @@ MSPEC_NAME=org.eclipse.ecf.sdk.mspec
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.15">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.15.1">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>90</timeoutMinutes>
       </strategy>
