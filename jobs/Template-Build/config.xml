@@ -67,7 +67,7 @@ setpref org.eclipse.buckminster.pde.targetPlatformPath=${WORKSPACE}/targetPlatfo
 import ${WORKSPACE}/${MSPEC_NAME}
 importtargetdefinition http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/plain/releng/org.eclipse.ecf.releng.bm/ECF3-6Baseline.target
 lstargets
-addbaseline -A ECF3-6Baseline
+addbaseline -A ECF3-12Baseline
 build
 perform ${FEATURE_NAME}#${BUILD_ACTION}
 </commands>
@@ -139,7 +139,7 @@ java -jar ${HUDSON_HOME}/tools/org.osgi.impl.bundle.repoindex.cli-0.0.5.jar plug
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.15">
+    <hudson.tasks.Mailer plugin="mailer@1.16">
       <recipients></recipients>
       <dontNotifyEveryUnstableBuild>true</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>
