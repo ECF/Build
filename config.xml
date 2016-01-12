@@ -12,9 +12,11 @@
     <permission>hudson.model.Computer.Configure:mkuppe</permission>
     <permission>hudson.model.Computer.Configure:slewis</permission>
     <permission>hudson.model.Computer.Configure:ted</permission>
+    <permission>hudson.model.Computer.Configure:wim.jongman</permission>
     <permission>hudson.model.Computer.Delete:mkuppe</permission>
     <permission>hudson.model.Computer.Delete:slewis</permission>
     <permission>hudson.model.Computer.Delete:ted</permission>
+    <permission>hudson.model.Computer.Delete:wim.jongman</permission>
     <permission>hudson.model.Hudson.Administer:harshana05</permission>
     <permission>hudson.model.Hudson.Administer:mkuppe</permission>
     <permission>hudson.model.Hudson.Administer:slewis</permission>
@@ -62,9 +64,11 @@
     <permission>hudson.model.Run.Delete:mkuppe</permission>
     <permission>hudson.model.Run.Delete:slewis</permission>
     <permission>hudson.model.Run.Delete:ted</permission>
+    <permission>hudson.model.Run.Delete:wim.jongman</permission>
     <permission>hudson.model.Run.Update:mkuppe</permission>
     <permission>hudson.model.Run.Update:slewis</permission>
     <permission>hudson.model.Run.Update:ted</permission>
+    <permission>hudson.model.Run.Update:wim.jongman</permission>
     <permission>hudson.model.View.Configure:harshana05</permission>
     <permission>hudson.model.View.Configure:mkuppe</permission>
     <permission>hudson.model.View.Configure:slewis</permission>
@@ -84,6 +88,7 @@
     <permission>hudson.scm.SCM.Tag:mkuppe</permission>
     <permission>hudson.scm.SCM.Tag:slewis</permission>
     <permission>hudson.scm.SCM.Tag:ted</permission>
+    <permission>hudson.scm.SCM.Tag:wim.jongman</permission>
   </authorizationStrategy>
   <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
     <disableSignup>true</disableSignup>
