@@ -11,83 +11,68 @@
   <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
     <permission>hudson.model.Computer.Configure:mkuppe</permission>
     <permission>hudson.model.Computer.Configure:slewis</permission>
-    <permission>hudson.model.Computer.Configure:ted</permission>
     <permission>hudson.model.Computer.Configure:wim.jongman</permission>
     <permission>hudson.model.Computer.Delete:mkuppe</permission>
     <permission>hudson.model.Computer.Delete:slewis</permission>
-    <permission>hudson.model.Computer.Delete:ted</permission>
     <permission>hudson.model.Computer.Delete:wim.jongman</permission>
     <permission>hudson.model.Hudson.Administer:harshana05</permission>
     <permission>hudson.model.Hudson.Administer:mkuppe</permission>
     <permission>hudson.model.Hudson.Administer:slewis</permission>
-    <permission>hudson.model.Hudson.Administer:ted</permission>
     <permission>hudson.model.Hudson.Administer:wim.jongman</permission>
     <permission>hudson.model.Hudson.Read:harshana05</permission>
     <permission>hudson.model.Hudson.Read:jmohiuddin</permission>
     <permission>hudson.model.Hudson.Read:mat.booth</permission>
     <permission>hudson.model.Hudson.Read:mkuppe</permission>
     <permission>hudson.model.Hudson.Read:slewis</permission>
-    <permission>hudson.model.Hudson.Read:ted</permission>
     <permission>hudson.model.Hudson.Read:wim.jongman</permission>
     <permission>hudson.model.Item.Build:harshana05</permission>
     <permission>hudson.model.Item.Build:mkuppe</permission>
     <permission>hudson.model.Item.Build:slewis</permission>
-    <permission>hudson.model.Item.Build:ted</permission>
     <permission>hudson.model.Item.Build:wim.jongman</permission>
     <permission>hudson.model.Item.Configure:harshana05</permission>
     <permission>hudson.model.Item.Configure:mkuppe</permission>
     <permission>hudson.model.Item.Configure:slewis</permission>
-    <permission>hudson.model.Item.Configure:ted</permission>
     <permission>hudson.model.Item.Configure:wim.jongman</permission>
     <permission>hudson.model.Item.Create:harshana05</permission>
     <permission>hudson.model.Item.Create:mkuppe</permission>
     <permission>hudson.model.Item.Create:slewis</permission>
-    <permission>hudson.model.Item.Create:ted</permission>
     <permission>hudson.model.Item.Create:wim.jongman</permission>
     <permission>hudson.model.Item.Delete:harshana05</permission>
     <permission>hudson.model.Item.Delete:mkuppe</permission>
     <permission>hudson.model.Item.Delete:slewis</permission>
-    <permission>hudson.model.Item.Delete:ted</permission>
     <permission>hudson.model.Item.Delete:wim.jongman</permission>
     <permission>hudson.model.Item.Read:harshana05</permission>
     <permission>hudson.model.Item.Read:jmohiuddin</permission>
     <permission>hudson.model.Item.Read:mat.booth</permission>
     <permission>hudson.model.Item.Read:mkuppe</permission>
     <permission>hudson.model.Item.Read:slewis</permission>
-    <permission>hudson.model.Item.Read:ted</permission>
     <permission>hudson.model.Item.Read:wim.jongman</permission>
     <permission>hudson.model.Item.Workspace:harshana05</permission>
     <permission>hudson.model.Item.Workspace:mkuppe</permission>
     <permission>hudson.model.Item.Workspace:slewis</permission>
-    <permission>hudson.model.Item.Workspace:ted</permission>
     <permission>hudson.model.Item.Workspace:wim.jongman</permission>
     <permission>hudson.model.Run.Delete:mkuppe</permission>
     <permission>hudson.model.Run.Delete:slewis</permission>
-    <permission>hudson.model.Run.Delete:ted</permission>
     <permission>hudson.model.Run.Delete:wim.jongman</permission>
     <permission>hudson.model.Run.Update:mkuppe</permission>
     <permission>hudson.model.Run.Update:slewis</permission>
-    <permission>hudson.model.Run.Update:ted</permission>
     <permission>hudson.model.Run.Update:wim.jongman</permission>
     <permission>hudson.model.View.Configure:harshana05</permission>
     <permission>hudson.model.View.Configure:mkuppe</permission>
     <permission>hudson.model.View.Configure:slewis</permission>
-    <permission>hudson.model.View.Configure:ted</permission>
     <permission>hudson.model.View.Configure:wim.jongman</permission>
     <permission>hudson.model.View.Create:harshana05</permission>
     <permission>hudson.model.View.Create:mkuppe</permission>
     <permission>hudson.model.View.Create:slewis</permission>
-    <permission>hudson.model.View.Create:ted</permission>
     <permission>hudson.model.View.Create:wim.jongman</permission>
     <permission>hudson.model.View.Delete:harshana05</permission>
     <permission>hudson.model.View.Delete:mkuppe</permission>
     <permission>hudson.model.View.Delete:slewis</permission>
-    <permission>hudson.model.View.Delete:ted</permission>
     <permission>hudson.model.View.Delete:wim.jongman</permission>
     <permission>hudson.model.View.Read:jmohiuddin</permission>
+    <permission>hudson.model.View.Read:wim.jongman</permission>
     <permission>hudson.scm.SCM.Tag:mkuppe</permission>
     <permission>hudson.scm.SCM.Tag:slewis</permission>
-    <permission>hudson.scm.SCM.Tag:ted</permission>
     <permission>hudson.scm.SCM.Tag:wim.jongman</permission>
   </authorizationStrategy>
   <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
