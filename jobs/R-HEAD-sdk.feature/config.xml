@@ -56,7 +56,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>Java1.5_update_22_x86-64</jdk>
+  <jdk>Java8  (OS installation)</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
