@@ -56,7 +56,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>Java8  (OS installation)</jdk>
+  <jdk>JavaSE-1.6 (OS installation)</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
@@ -172,7 +172,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       <localVarText>SITE_SIGNING=true
 BUILD_ACTION=site.p2.zip
 SITE_INCLUDE_TOP=false
-SITE_PACK200=true
+SITE_PACK200=false
 FEATURE_NAME=org.eclipse.ecf.sdk
 MSPEC_NAME=org.eclipse.ecf.sdk.mspec
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
