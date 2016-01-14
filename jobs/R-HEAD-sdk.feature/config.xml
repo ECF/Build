@@ -169,7 +169,8 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.2">
-      <localVarText>SITE_SIGNING=true
+      <localVarText>com.sun.java.util.jar.pack.verbose=1
+SITE_SIGNING=true
 BUILD_ACTION=site.p2.zip
 SITE_INCLUDE_TOP=false
 SITE_PACK200=true
