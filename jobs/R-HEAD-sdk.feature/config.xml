@@ -169,10 +169,11 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.setenv.SetEnvBuildWrapper plugin="setenv@1.2">
-      <localVarText>SITE_SIGNING=true
+      <localVarText>JAR_PROCESSOR_JAVA=java8
+SITE_SIGNING=true
 BUILD_ACTION=site.p2.zip
 SITE_INCLUDE_TOP=false
-SITE_PACK200=false
+SITE_PACK200=true
 FEATURE_NAME=org.eclipse.ecf.sdk
 MSPEC_NAME=org.eclipse.ecf.sdk.mspec
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
