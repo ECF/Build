@@ -9,6 +9,7 @@ So far we can only include builders, but no actions!</description>
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.1"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -70,7 +71,6 @@ junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_resul
     <hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher plugin="blame-upstream-commiters@1.2">
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
-    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.7"/>
   </publishers>
   <buildWrappers/>
 </project>
