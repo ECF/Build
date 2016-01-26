@@ -4,7 +4,7 @@
     <string>hudson.diagnosis.TooManyJobsButNoView</string>
     <string>jenkins.security.RekeySecretAdminMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>1.554.1</version>
+  <version>1.609.3</version>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -124,7 +124,7 @@
               <acceptLicense>true</acceptLicense>
             </hudson.tools.JDKInstaller>
             <hudson.tools.JDKInstaller>
-              <id>jdk-8u5-oth-JPR</id>
+              <id>jdk-8u72-oth-JPR</id>
               <acceptLicense>true</acceptLicense>
             </hudson.tools.JDKInstaller>
           </installers>

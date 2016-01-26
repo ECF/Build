@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jenkins.model.JenkinsLocationConfiguration>
+  <adminAddress>hudson@ecf-project.org</adminAddress>
+  <jenkinsUrl>https://build.ecf-project.org/hudson/</jenkinsUrl>
+</jenkins.model.JenkinsLocationConfiguration>
