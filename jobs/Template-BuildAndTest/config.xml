@@ -9,6 +9,7 @@ So far we can only include builders, but no actions!</description>
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.2"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -19,7 +20,7 @@ So far we can only include builders, but no actions!</description>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.5.1">
+    <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.5.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
@@ -59,7 +60,7 @@ junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_resul
       <testDataPublishers/>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.5.1">
+    <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.5.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
     <hudson.tasks.Mailer plugin="mailer@1.16">
