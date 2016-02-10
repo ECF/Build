@@ -76,7 +76,6 @@
       <userCommand></userCommand>
       <userWorkspace></userWorkspace>
       <globalPropertiesFile></globalPropertiesFile>
-      <equinoxLauncherArgs>JAR_PROCESSOR_JAVA=java8</equinoxLauncherArgs>
     </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
     <hudson.tasks.Shell>
       <command>ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/staging/&apos;
