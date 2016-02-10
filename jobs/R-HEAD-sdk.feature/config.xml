@@ -69,14 +69,14 @@
       <installationName>Buckminster 4.4</installationName>
       <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc</commands>
       <logLevel>info</logLevel>
-      <params></params>
+      <params>-DJAR_PROCESSOR_JAVA=java8</params>
       <targetPlatformName>None</targetPlatformName>
       <userTemp></userTemp>
       <userOutput></userOutput>
       <userCommand></userCommand>
       <userWorkspace></userWorkspace>
       <globalPropertiesFile></globalPropertiesFile>
-      <equinoxLauncherArgs></equinoxLauncherArgs>
+      <equinoxLauncherArgs>JAR_PROCESSOR_JAVA=java8</equinoxLauncherArgs>
     </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
     <hudson.tasks.Shell>
       <command>ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/staging/&apos;
