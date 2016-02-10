@@ -9,7 +9,12 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -24,6 +29,8 @@
         <string>Java1.6_update_20_x86-64</string>
         <string>Java1.5_update_22_x86-64</string>
         <string>Java1.4.2_update_18_x86-64</string>
+        <string>Java1.7_update_25_x86-64</string>
+        <string>Java1.8_update_u74_x86-64</string>
       </values>
     </hudson.matrix.JDKAxis>
   </axes>
