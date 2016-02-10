@@ -2,23 +2,16 @@
 <project>
   <actions/>
   <description>This is the released build for HEAD.  Output is signed.</description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>30</daysToKeep>
-    <numToKeep>15</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>-1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>true</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>TARGET_VERSION</name>
-          <description>The ECF version to be build</description>
-          <defaultValue>3.9.0</defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>15</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.24.1">
       <activeProcessNames>
         <string>Promoted_to_download.eclipse.org</string>
@@ -28,6 +21,15 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>TARGET_VERSION</name>
+          <description>The ECF version to be build</description>
+          <defaultValue>3.9.0</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.2">
     <configVersion>2</configVersion>
@@ -56,7 +58,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>Java1.7_update_25_x86-64</jdk>
+  <jdk>Java1.8_update_u74_x86-64</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
