@@ -108,17 +108,17 @@ java -Dnet.mdns.port=${TEST_MDNS_PORT} -Dnet.slp.port=${TEST_SLP_PORT} -Dnet.slp
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.8">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.10">
       <testResults>testresults/</testResults>
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers/>
+      <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.15">
+    <hudson.tasks.Mailer plugin="mailer@1.16">
       <recipients></recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.twitter.TwitterPublisher plugin="twitter@0.7"/>
   </publishers>
   <buildWrappers>
     <org.jvnet.hudson.plugins.port__allocator.PortAllocator plugin="port-allocator@1.8">

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<maven2-moduleset plugin="maven-plugin@2.10">
+<maven2-moduleset plugin="maven-plugin@2.12.1">
   <actions/>
   <description></description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -12,31 +12,12 @@
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
       <permission>hudson.model.Item.Read:spearway</permission>
+      <permission>hudson.model.Item.Workspace:spearway</permission>
       <permission>hudson.model.Item.Build:spearway</permission>
       <permission>hudson.model.Item.Configure:spearway</permission>
-      <permission>hudson.model.Item.Workspace:spearway</permission>
     </hudson.security.AuthorizationMatrixProperty>
   </properties>
-  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.1">
-    <locations>
-      <hudson.scm.SubversionSCM_-ModuleLocation>
-        <remote>https://jmdns.svn.sourceforge.net/svnroot/jmdns/trunk</remote>
-        <local>.</local>
-        <ignoreExternalsOption>false</ignoreExternalsOption>
-      </hudson.scm.SubversionSCM_-ModuleLocation>
-    </locations>
-    <browser class="hudson.scm.browsers.ViewSVN">
-      <url>https://jmdns.svn.sourceforge.net/svnroot/jmdns/</url>
-    </browser>
-    <excludedRegions></excludedRegions>
-    <includedRegions></includedRegions>
-    <excludedUsers></excludedUsers>
-    <excludedRevprop></excludedRevprop>
-    <excludedCommitMessages></excludedCommitMessages>
-    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
-    <ignoreDirPropChanges>false</ignoreDirPropChanges>
-    <filterChangelog>false</filterChangelog>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -88,7 +69,7 @@
     </hudson.maven.RedeployPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.15">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.16">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>30</timeoutMinutes>
       </strategy>
