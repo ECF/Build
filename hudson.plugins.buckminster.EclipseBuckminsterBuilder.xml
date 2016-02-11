@@ -53,6 +53,7 @@
       <properties/>
       <params>-Xmx768m
 -Xms768m
+-noverify
 </params>
     </hudson.plugins.buckminster.BuckminsterInstallation>
   </buckminsterInstallations>
