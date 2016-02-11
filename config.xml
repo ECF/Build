@@ -5,7 +5,7 @@
     <string>jenkins.security.RekeySecretAdminMonitor</string>
     <string>jenkins.security.s2m.MasterKillSwitchWarning</string>
   </disabledAdministrativeMonitors>
-  <version>1.609.3</version>
+  <version>1.642.1</version>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>

@@ -47,6 +47,14 @@
 -XX:PermSize=512M
 -XX:MaxPermSize=512M</params>
     </hudson.plugins.buckminster.BuckminsterInstallation>
+    <hudson.plugins.buckminster.BuckminsterInstallation>
+      <name>Buckminster 4.5</name>
+      <home>/opt/hudson/tools/Buckminster/Buckminster_4.5/buckminster</home>
+      <properties/>
+      <params>-Xmx768m
+-Xms768m
+</params>
+    </hudson.plugins.buckminster.BuckminsterInstallation>
   </buckminsterInstallations>
   <installations/>
 </hudson.plugins.buckminster.EclipseBuckminsterBuilder_-DescriptorImpl>
