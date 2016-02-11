@@ -65,18 +65,6 @@
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.5.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
-    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 4.4</installationName>
-      <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc</commands>
-      <logLevel>info</logLevel>
-      <params>-DJAR_PROCESSOR_JAVA=java8</params>
-      <targetPlatformName>None</targetPlatformName>
-      <userTemp></userTemp>
-      <userOutput></userOutput>
-      <userCommand></userCommand>
-      <userWorkspace></userWorkspace>
-      <globalPropertiesFile></globalPropertiesFile>
-    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
     <hudson.tasks.Shell>
       <command>ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/staging/&apos;
 ssh mkuppe@build.eclipse.org &quot;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/site.p2&quot;
@@ -85,9 +73,7 @@ ssh mkuppe@build.eclipse.org &quot;rm -rf /home/data/httpd/download.eclipse.org/
 
 ssh mkuppe@build.eclipse.org &quot;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/&quot;
 scp -r site.p2/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/site.p2/
-scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}
 ssh mkuppe@build.eclipse.org &quot;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/site.p2&quot;
-ssh mkuppe@build.eclipse.org &quot;chmod -R g+w /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/javadoc&quot;
 
 # Buckminster 3.6
 test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p2.zip/${FEATURE_NAME}_*.zip ${WORKSPACE}
@@ -96,9 +82,6 @@ test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEAT
 
 scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}
 </command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>for i in $(find ${WORKSPACE} \( -type d -name &apos;javadoc&apos; \) -o \( -type f -name &apos;toc.htm*&apos; \) | sed -e &apos;s/toc\.^Cm.//&apos; | sort -u); do /opt/hudson/tools/hudson.model.JDK/Java1.7_update_25_x86-64/bin/java -jar /opt/hudson/tools/JavadocUpdaterTool-1_2_2013/JavadocUpdaterTool.jar -R $i; done</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -113,10 +96,6 @@ scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.ecl
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.JavadocArchiver plugin="javadoc@1.3">
-      <javadocDir>javadoc</javadocDir>
-      <keepAll>false</keepAll>
-    </hudson.tasks.JavadocArchiver>
     <hudson.plugins.git.GitPublisher plugin="git@2.4.2">
       <configVersion>2</configVersion>
       <pushMerge>false</pushMerge>
