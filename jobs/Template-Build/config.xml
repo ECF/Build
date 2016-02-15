@@ -76,7 +76,7 @@ perform ${FEATURE_NAME}#${BUILD_ACTION}
 -Dsite.include.top=${SITE_INCLUDE_TOP}
 -Dsite.signing=${SITE_SIGNING}
 -Dsite.pack200=${SITE_PACK200}
--Dorg.eclipse.update.jarprocessor.pack200=/opt/hudson/tools/hudson.model.JDK/Java1.8_update_u74_x86-64/bin/
+-Dorg.eclipse.update.jarprocessor.pack200=/opt/hudson/tools/hudson.model.JDK/Java1.6_update_20_x86-64/bin/
 -Dpde.bundle.range.generation=false
 -Dstaging.area=/home/data/httpd/download-staging.priv/rt/ecf
 -Dsigning.type=eclipse.remote
