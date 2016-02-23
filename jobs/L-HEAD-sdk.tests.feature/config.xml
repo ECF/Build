@@ -69,7 +69,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>(System)</jdk>
+  <jdk>Java1.7_update_25_x86-64</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
