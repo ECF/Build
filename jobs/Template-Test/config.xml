@@ -42,9 +42,9 @@ test -e testresults/ || mkdir -p testresults/
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://download.eclipse.org/releases/indigo/,http://download.eclipse.org/eclipse/updates/3.7/,http://self.pluginbuilder.org/nightly/p2-updateSite,http://download.eclipse.org/technology/swtbot/helios/dev-build/update-site -d ${WORKSPACE}/tests/ -i org.eclipse.sdk.ide,org.pluginbuilder.autotestsuite.feature.feature.group,org.eclipse.swtbot.eclipse.feature.group -profile SDKProfile -vmargs -Declipse.p2.mirrors=true
+      <command>${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://download.eclipse.org/releases/indigo/,http://download.eclipse.org/eclipse/updates/3.7/,http://self.pluginbuilder.org/nightly/p2-updateSite,http://download.eclipse.org/technology/swtbot/helios/dev-build/update-site -d ${WORKSPACE}/tests/ -i org.eclipse.sdk.ide,org.pluginbuilder.autotestsuite.feature.feature.group,org.eclipse.swtbot.eclipse.feature.group -profile SDKProfile -vmargs -Declipse.p2.mirrors=false
 
-${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://rsync.osuosl.org/pub/eclipse/releases/indigo/,http://rsync.osuosl.org/pub/eclipse/eclipse/updates/3.7/,${ECF_P2_REPOSITORY},file://${HUDSON_HOME}/repo/${UPSTREAM_BUILD},file://${WORKSPACE}/site.p2 -d ${WORKSPACE}/tests/ -i ${INSTALLABLE_UNITS} -vmargs -Declipse.p2.mirrors=true
+${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://rsync.osuosl.org/pub/eclipse/releases/indigo/,http://rsync.osuosl.org/pub/eclipse/eclipse/updates/3.7/,${ECF_P2_REPOSITORY},file://${HUDSON_HOME}/repo/${UPSTREAM_BUILD},file://${WORKSPACE}/site.p2 -d ${WORKSPACE}/tests/ -i ${INSTALLABLE_UNITS} -vmargs -Declipse.p2.mirrors=false
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
