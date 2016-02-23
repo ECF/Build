@@ -5,6 +5,10 @@
 So far we can only include builders, but no actions!</description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -24,7 +28,7 @@ So far we can only include builders, but no actions!</description>
   <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>(Default)</jdk>
+  <jdk>(System)</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
@@ -38,15 +42,15 @@ test -e testresults/ || mkdir -p testresults/
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://download.eclipse.org/releases/indigo/,http://download.eclipse.org/eclipse/updates/3.7/,http://self.pluginbuilder.org/nightly/p2-updateSite,http://download.eclipse.org/technology/swtbot/helios/dev-build/update-site -d ${WORKSPACE}/tests/ -i org.eclipse.sdk.ide,org.pluginbuilder.autotestsuite.feature.feature.group,org.eclipse.swtbot.eclipse.feature.group -profile SDKProfile
+      <command>${HUDSON_HOME}/tools/Buckminster_4.4/director/director -r http://download.eclipse.org/releases/indigo/,http://download.eclipse.org/eclipse/updates/3.7/,http://self.pluginbuilder.org/nightly/p2-updateSite,http://download.eclipse.org/technology/swtbot/helios/dev-build/update-site -d ${WORKSPACE}/tests/ -i org.eclipse.sdk.ide,org.pluginbuilder.autotestsuite.feature.feature.group,org.eclipse.swtbot.eclipse.feature.group -profile SDKProfile
 
-${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://rsync.osuosl.org/pub/eclipse/releases/indigo/,http://rsync.osuosl.org/pub/eclipse/eclipse/updates/3.7/,${ECF_P2_REPOSITORY},file://${HUDSON_HOME}/repo/${UPSTREAM_BUILD},file://${WORKSPACE}/site.p2 -d ${WORKSPACE}/tests/ -i ${INSTALLABLE_UNITS} -vmargs -Declipse.p2.mirrors=true
+${HUDSON_HOME}/tools/Buckminster_4.4/director/director -r http://rsync.osuosl.org/pub/eclipse/releases/indigo/,http://rsync.osuosl.org/pub/eclipse/eclipse/updates/3.7/,${ECF_P2_REPOSITORY},file://${HUDSON_HOME}/repo/${UPSTREAM_BUILD},file://${WORKSPACE}/site.p2 -d ${WORKSPACE}/tests/ -i ${INSTALLABLE_UNITS} -vmargs -Declipse.p2.mirrors=true
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>echo &apos;&lt;project name=&quot;apitask&quot; basedir=&quot;.&quot; default=&quot;run&quot;&gt;
     &lt;property environment=&quot;env&quot; /&gt;
-    &lt;property name=&quot;eclipse.install.dir&quot; value=&quot;${env.HUDSON_HOME}/tools/Buckminster_3.6/buckminster/plugins&quot;/&gt;
+    &lt;property name=&quot;eclipse.install.dir&quot; value=&quot;${env.HUDSON_HOME}/tools/Buckminster_4.4/buckminster/plugins&quot;/&gt;
     &lt;property name=&quot;eclipse.lib.dir&quot; value=&quot;${env.WORKSPACE}/tmp&quot;/&gt;
     &lt;property name=&quot;task.props&quot; value=&quot;${env.WORKSPACE}/tmp/scripts/api-tasks.properties&quot;/&gt;
     &lt;property name=&quot;report.loc&quot; value=&quot;${env.WORKSPACE}/reports/xml&quot;/&gt;
@@ -111,7 +115,7 @@ java -Dnet.mdns.port=${TEST_MDNS_PORT} -Dnet.slp.port=${TEST_SLP_PORT} -Dnet.slp
     <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.10">
       <testResults>testresults/</testResults>
       <keepLongStdio>false</keepLongStdio>
-      <testDataPublishers/>
+      <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.tasks.Mailer plugin="mailer@1.16">
