@@ -28,7 +28,7 @@ So far we can only include builders, but no actions!</description>
   <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>(System)</jdk>
+  <jdk>Java8  (OS installation)</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
