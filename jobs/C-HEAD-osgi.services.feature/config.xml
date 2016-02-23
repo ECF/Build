@@ -70,7 +70,7 @@
       <projectName>Template-BuildAndTest</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 3.6</installationName>
+      <installationName>Buckminster 4.4</installationName>
       <commands>junit --launch org.eclipse.ecf.tests.osgi.services.distribution.r-osgi/org.eclipse.ecf.tests.osgi.services.distribution.r-osgi.launch -o &apos;${WORKSPACE}/junit_result2.xml&apos; --flatXML
 </commands>
       <logLevel>info</logLevel>
