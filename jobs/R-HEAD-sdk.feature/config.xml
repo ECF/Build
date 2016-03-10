@@ -83,6 +83,20 @@ test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEAT
 scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}
 </command>
     </hudson.tasks.Shell>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
+      <installationName>Buckminster 4.4</installationName>
+      <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc
+</commands>
+      <logLevel>info</logLevel>
+      <params>-DJAR_PROCESSOR_JAVA=java8</params>
+      <targetPlatformName>None</targetPlatformName>
+      <userTemp></userTemp>
+      <userOutput></userOutput>
+      <userCommand></userCommand>
+      <userWorkspace></userWorkspace>
+      <globalPropertiesFile></globalPropertiesFile>
+      <equinoxLauncherArgs></equinoxLauncherArgs>
+    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
   </builders>
   <publishers>
     <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.11">
