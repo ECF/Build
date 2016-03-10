@@ -81,6 +81,9 @@ test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/site.p
 test -e ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip &amp;&amp; mv ${WORKSPACE}/buckminster.output/${FEATURE_NAME}_*-eclipse.feature/${FEATURE_NAME}_*.zip ${WORKSPACE}
 
 scp ${FEATURE_NAME}_*.zip mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}
+
+test -e ${WORKSPACE}/javadoc &amp;&amp; rm -rf ${WORKSPACE}/javadoc
+mkdir ${WORKSPACE}/javadoc
 </command>
     </hudson.tasks.Shell>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
