@@ -87,7 +87,7 @@ mkdir ${WORKSPACE}/javadoc
 </command>
     </hudson.tasks.Shell>
     <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 4.4</installationName>
+      <installationName>Buckminster 4.5</installationName>
       <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc
 </commands>
       <logLevel>info</logLevel>
