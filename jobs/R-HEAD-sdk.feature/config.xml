@@ -65,6 +65,20 @@
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.5.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
+    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
+      <installationName>Buckminster 4.5</installationName>
+      <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc
+</commands>
+      <logLevel>info</logLevel>
+      <params>-DJAR_PROCESSOR_JAVA=java8</params>
+      <targetPlatformName>None</targetPlatformName>
+      <userTemp></userTemp>
+      <userOutput></userOutput>
+      <userCommand></userCommand>
+      <userWorkspace></userWorkspace>
+      <globalPropertiesFile></globalPropertiesFile>
+      <equinoxLauncherArgs></equinoxLauncherArgs>
+    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
     <hudson.tasks.Shell>
       <command>ssh mkuppe@build.eclipse.org &apos;mkdir -p /home/data/httpd/download.eclipse.org/rt/ecf/staging/&apos;
 ssh mkuppe@build.eclipse.org &quot;rm -rf /home/data/httpd/download.eclipse.org/rt/ecf/staging/${TARGET_VERSION}/site.p2&quot;
@@ -86,20 +100,6 @@ test -e ${WORKSPACE}/javadoc &amp;&amp; rm -rf ${WORKSPACE}/javadoc
 mkdir ${WORKSPACE}/javadoc
 </command>
     </hudson.tasks.Shell>
-    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 4.5</installationName>
-      <commands>perform -Djavadoc.output=${WORKSPACE}/javadoc/ -DprojectsPath=${WORKSPACE}/org.eclipse.ecf/ -DtargetPlatformPath=${WORKSPACE}/targetPlatformPath org.eclipse.ecf#create.javadoc
-</commands>
-      <logLevel>info</logLevel>
-      <params>-DJAR_PROCESSOR_JAVA=java8</params>
-      <targetPlatformName>None</targetPlatformName>
-      <userTemp></userTemp>
-      <userOutput></userOutput>
-      <userCommand></userCommand>
-      <userWorkspace></userWorkspace>
-      <globalPropertiesFile></globalPropertiesFile>
-      <equinoxLauncherArgs></equinoxLauncherArgs>
-    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
   </builders>
   <publishers>
     <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.11">
