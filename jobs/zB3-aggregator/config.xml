@@ -60,7 +60,7 @@ cp -f org.eclipse.ecf/releng/org.eclipse.ecf.releng.bm/rmap2b3aggr.xsl ${WORKSPA
 xsltproc --stringparam repository ${REPOSITORY} rmap2b3aggr.xsl ecf.rmap &gt; ecf.b3aggr
 cat ecf.b3aggr
 
-${HUDSON_HOME}/tools/Buckminster_4.4/b3aggr/b3 aggregate --buildModel ecf.b3aggr --action CLEAN_BUILD --buildRoot ${WORKSPACE}/b3.temp
+${HUDSON_HOME}/tools/Buckminster/Buckminster_4.4/b3aggr/b3 aggregate --buildModel ecf.b3aggr --action CLEAN_BUILD --buildRoot ${WORKSPACE}/b3.temp
 
 # remove garbage
 rm -rf ${WORKSPACE}/b3.temp/final/p2.packed/
