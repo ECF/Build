@@ -49,7 +49,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>JavaSE-1.6 (OS installation)</jdk>
+  <jdk>Java8  (OS installation)</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
@@ -60,16 +60,16 @@ cp -f org.eclipse.ecf/releng/org.eclipse.ecf.releng.bm/rmap2b3aggr.xsl ${WORKSPA
 xsltproc --stringparam repository ${REPOSITORY} rmap2b3aggr.xsl ecf.rmap &gt; ecf.b3aggr
 cat ecf.b3aggr
 
-${HUDSON_HOME}/tools/Buckminster_3.6/b3aggr/b3 aggregate --buildModel ecf.b3aggr --action CLEAN_BUILD --buildRoot ${WORKSPACE}
+${HUDSON_HOME}/tools/Buckminster_4.4/b3aggr/b3 aggregate --buildModel ecf.b3aggr --action CLEAN_BUILD --buildRoot ${WORKSPACE}/b3.temp
 
 # remove garbage
-rm -rf ${WORKSPACE}/final/p2.packed/
-rm ${WORKSPACE}/final/artifacts.jar
-rm ${WORKSPACE}/final/content.jar
+rm -rf ${WORKSPACE}/b3.temp/final/p2.packed/
+rm ${WORKSPACE}/b3.temp/final/artifacts.jar
+rm ${WORKSPACE}/b3.temp/final/content.jar
 
 # copy the rest
 mkdir -p ${OUTPUT}
-cp -rf ${WORKSPACE}/final/* ${OUTPUT}
+cp -rf ${WORKSPACE}/b3.temp/final/* ${OUTPUT}
 </command>
     </hudson.tasks.Shell>
   </builders>
