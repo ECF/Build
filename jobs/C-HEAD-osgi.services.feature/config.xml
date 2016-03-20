@@ -16,8 +16,9 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.2"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.2">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.3">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -36,16 +37,6 @@
       <url>http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/</url>
     </browser>
     <submoduleCfg class="list"/>
-    <extensions>
-      <hudson.plugins.git.extensions.impl.PathRestriction>
-        <includedRegions></includedRegions>
-        <excludedRegions>(?:(?!osgi.services).)+</excludedRegions>
-      </hudson.plugins.git.extensions.impl.PathRestriction>
-      <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
-        <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
-      </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
-      <hudson.plugins.git.extensions.impl.CleanCheckout/>
-    </extensions>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>
