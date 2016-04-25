@@ -58,7 +58,7 @@ test -e org.eclipse.ecf/sip/bundles/ || ln -s ${WORKSPACE}/sip/bundles/ org.ecli
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.5.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.16">
+    <hudson.tasks.Mailer plugin="mailer@1.17">
       <recipients>harshana05@gmail.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

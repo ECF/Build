@@ -53,7 +53,7 @@ junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_resul
     </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
   </builders>
   <publishers>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.11">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.12">
       <testResults>junit_*.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
@@ -62,7 +62,7 @@ junit --launch ${TEST_BUNDLE}/${LAUNCH_CONFIG} -o &apos;${WORKSPACE}/junit_resul
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.5.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.16">
+    <hudson.tasks.Mailer plugin="mailer@1.17">
       <recipients></recipients>
       <dontNotifyEveryUnstableBuild>true</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>

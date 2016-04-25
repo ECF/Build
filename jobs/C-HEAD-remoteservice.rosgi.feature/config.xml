@@ -36,7 +36,11 @@
       <url>http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/</url>
     </browser>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+      </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+    </extensions>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>

@@ -101,10 +101,6 @@ ${HUDSON_HOME}/tools/Buckminster_3.6/director/director -r http://rsync.osuosl.or
 &lt;/project&gt;
 &apos; &gt; build.xml</command>
     </hudson.tasks.Shell>
-    <hudson.tasks.Ant plugin="ant@1.2">
-      <targets></targets>
-      <antName>apache-ant-1.8.1</antName>
-    </hudson.tasks.Ant>
     <hudson.tasks.Shell>
       <command>cd ${WORKSPACE}/tests/
 java -Dnet.mdns.port=${TEST_MDNS_PORT} -Dnet.slp.port=${TEST_SLP_PORT} -Dnet.slp.failercount=3 -Dnet.slp.multicastTimeouts=10,25,50,100,250,500,1000 -Dnet.slp.multicastMaximumWait=2000 -Dautotestsuite.headless=true -Dautotestsuite.debug=true -Dautotestsuite.results.directory=/${WORKSPACE}/testresults/ -Dautotestsuite.plugin.inclusions=${TESTSUITE_PLUGIN_INCLUSION} -Dautotestsuite.class.inclusions=${TESTSUITE_CLASS_INCLUSION} -Dautotestsuite.plugin.exclusions=${TESTSUITE_PLUGIN_EXCLUSION} -Dautotestsuite.class.exclusion=${TESTSUITE_CLASS_EXCLUSION} ${TEST_DEBUG_RUN} -Dchat.room.name=ecf-test-chatroom -Dusername0=ecf-test1@ecf-project.org -Dpassword0=8yxbe3f89f -Dusername1=ecf-test2@ecf-project.org -Dpassword1=8yxbe3f89f -Dusername2=ecf-test3@ecf-project.org -Dpassword2=8yxbe3f89f -Xmx768m -Xms768m -XX:PermSize=512M -XX:MaxPermSize=512M -jar plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -data ${WORKSPACE}/tests/workspace -application org.pluginbuilder.autotestsuite.application.autoTestApplication -testApplication org.eclipse.ui.ide.workbench -clean -consolelog -console || exit 0
@@ -112,7 +108,7 @@ java -Dnet.mdns.port=${TEST_MDNS_PORT} -Dnet.slp.port=${TEST_SLP_PORT} -Dnet.slp
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.10">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.11">
       <testResults>testresults/</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>

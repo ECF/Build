@@ -47,7 +47,11 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        <relativeTargetDir>org.eclipse.ecf</relativeTargetDir>
+      </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+    </extensions>
   </scm>
   <quietPeriod>5</quietPeriod>
   <canRoam>true</canRoam>
@@ -101,7 +105,7 @@ scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/r
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.11">
+    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.12">
       <includeFailedBuilds>false</includeFailedBuilds>
     </hudson.tasks.test.AggregatedTestResultPublisher>
     <hudson.tasks.ArtifactArchiver>
@@ -127,7 +131,7 @@ scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/r
         </hudson.plugins.git.GitPublisher_-TagToPush>
       </tagsToPush>
     </hudson.plugins.git.GitPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.16">
+    <hudson.tasks.Mailer plugin="mailer@1.17">
       <recipients>ecf-build@eclipse.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
