@@ -171,6 +171,7 @@ SITE_SIGNING=true
 BUILD_ACTION=site.p2.zip
 SITE_INCLUDE_TOP=false
 SITE_PACK200=true
+siterepack=false
 FEATURE_NAME=org.eclipse.ecf.sdk
 MSPEC_NAME=org.eclipse.ecf.sdk.mspec
 ECF_P2_REPOSITORY=http://download.ecf-project.org/repo/
