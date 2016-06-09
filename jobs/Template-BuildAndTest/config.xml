@@ -15,7 +15,7 @@ So far we can only include builders, but no actions!</description>
   <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>(System)</jdk>
+  <jdk>Java1.8_update_u74_x86-64</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
