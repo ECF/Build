@@ -22,32 +22,6 @@ So far we can only include builders, but no actions!</description>
     <hudson.plugins.templateproject.ProxyBuilder plugin="template-project@1.5.2">
       <projectName>Template-Build</projectName>
     </hudson.plugins.templateproject.ProxyBuilder>
-    <hudson.plugins.buckminster.EclipseBuckminsterBuilder plugin="buckminster@1.1.1">
-      <installationName>Buckminster 4.4</installationName>
-      <commands></commands>
-      <logLevel>debug</logLevel>
-      <params>-Decf.p2.repository=${ECF_P2_REPOSITORY}
--Dsite.include.top=${SITE_INCLUDE_TOP}
--Dsite.signing=${SITE_SIGNING}
--Dsite.pack200=true
--Dstaging.area=/home/data/httpd/download-staging.priv/rt/ecf
--Dsigning.type=eclipse.remote
--Declipse.committer.name=mkuppe
--Declipse.committer.keyfile=/usr/share/tomcat5/.ssh/id_rsa
--Dqualifier.replacement.*=generator:buildTimestamp
--Dgenerator.buildTimestamp.format=&apos;v&apos;yyyyMMdd-HHmm
--DtargetPlatformPath=${WORKSPACE}/targetPlatformPath
--DprojectsPath=${WORKSPACE}/projects
--Dosgi.console.enable.builtin=true
-</params>
-      <targetPlatformName>None</targetPlatformName>
-      <userTemp></userTemp>
-      <userOutput></userOutput>
-      <userCommand></userCommand>
-      <userWorkspace></userWorkspace>
-      <globalPropertiesFile></globalPropertiesFile>
-      <equinoxLauncherArgs></equinoxLauncherArgs>
-    </hudson.plugins.buckminster.EclipseBuckminsterBuilder>
   </builders>
   <publishers>
     <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.13">
