@@ -14,6 +14,7 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.2"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.0">
     <configVersion>2</configVersion>
@@ -81,7 +82,7 @@
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.18">
+    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.19">
       <includeFailedBuilds>false</includeFailedBuilds>
     </hudson.tasks.test.AggregatedTestResultPublisher>
     <hudson.plugins.templateproject.ProxyPublisher plugin="template-project@1.5.2">
