@@ -15,6 +15,7 @@
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.2"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.0">
     <configVersion>1</configVersion>
@@ -89,7 +90,7 @@ scp ${FEATURE_NAME}_*.zip mkuppe@dev.eclipse.org:/home/data/httpd/download.eclip
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.18">
+    <hudson.tasks.test.AggregatedTestResultPublisher plugin="junit@1.19">
       <includeFailedBuilds>false</includeFailedBuilds>
     </hudson.tasks.test.AggregatedTestResultPublisher>
     <hudson.plugins.git.GitPublisher plugin="git@3.0.0">
