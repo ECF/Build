@@ -33,6 +33,7 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.2"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <quietPeriod>5</quietPeriod>
@@ -86,7 +87,7 @@ TESTSUITE_PLUGIN_INCLUSION=^org\.eclipse\.ecf\.tests(\..+)?
 TESTSUITE_PLUGIN_EXCLUSION=^org\.eclipse\.ecf\.tests$
 </localVarText>
     </hudson.plugins.setenv.SetEnvBuildWrapper>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.17.1">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>240</timeoutMinutes>
       </strategy>
