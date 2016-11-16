@@ -30,6 +30,7 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.2"/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.0">
     <configVersion>2</configVersion>
@@ -157,7 +158,7 @@ scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/r
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.17.1">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>90</timeoutMinutes>
       </strategy>
