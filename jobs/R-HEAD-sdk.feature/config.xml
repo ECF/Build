@@ -12,7 +12,7 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.27">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.28">
       <activeProcessNames>
         <string>Promoted_to_download.eclipse.org</string>
       </activeProcessNames>
@@ -30,8 +30,9 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.templateproject.UpdateTransientProperty plugin="template-project@1.5.2"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -116,7 +117,7 @@ scp -r javadoc/ mkuppe@build.eclipse.org:/home/data/httpd/download.eclipse.org/r
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.plugins.git.GitPublisher plugin="git@3.0.0">
+    <hudson.plugins.git.GitPublisher plugin="git@3.0.1">
       <configVersion>2</configVersion>
       <pushMerge>false</pushMerge>
       <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
